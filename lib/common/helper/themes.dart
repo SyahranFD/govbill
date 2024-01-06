@@ -23,6 +23,7 @@ const Color categoryPBB = Color(0xFFFF844F);
 const Color categoryPLN = Color(0xFFFFBF43);
 const Color categoryPGN = Color(0xFF5675E3);
 const Color categoryBPJS = Color(0xFF41BEBE);
+const Color categoryPDAM = Color(0xFF4CABDB);
 
 //FONT STYLES INITIAL
 TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
