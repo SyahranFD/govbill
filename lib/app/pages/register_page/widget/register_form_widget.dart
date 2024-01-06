@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class RegisterFormWidget extends StatelessWidget {
-  Widget? iconPrefix;
-  String? hintText;
-  bool? isObsecure;
-  Widget? iconSuffix;
+  final Widget? iconPrefix;
+  final String? hintText;
+  final bool? isObsecure;
+  final Widget? iconSuffix;
 
   RegisterFormWidget({
     Key? key,
