@@ -21,6 +21,9 @@ class RegisterFormWidget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       child: TextFormField(
         decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: secondaryColor, width: 1.5),
+                borderRadius: BorderRadius.circular(10)),
             constraints: BoxConstraints(maxHeight: 55),
             prefixIconConstraints: BoxConstraints(
               minWidth: 60,

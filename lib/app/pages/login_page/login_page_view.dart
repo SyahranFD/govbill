@@ -13,7 +13,7 @@ class LoginPageView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-
+              
             ],
           ),
         ),
