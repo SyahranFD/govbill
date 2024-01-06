@@ -28,7 +28,7 @@ const Color categoryPDAM = Color(0xFF4CABDB);
 //FONT STYLES INITIAL
 
 figmaFontsize(int fontSize) {
-  return fontSize * 0.95;
+  return fontSize * 1.2;
 }
 
 TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(

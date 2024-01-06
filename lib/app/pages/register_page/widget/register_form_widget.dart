@@ -19,27 +19,33 @@ class RegisterFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      margin: EdgeInsets.only(bottom: 12),
+      margin: EdgeInsets.only(bottom: 15),
       child: TextFormField(
         decoration: InputDecoration(
+            constraints: BoxConstraints(maxHeight: 55),
             prefixIconConstraints: BoxConstraints(
               minWidth: 60,
               minHeight: 30,
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             prefixIcon: Container(
                 height: 20,
                 width: 20,
                 margin: EdgeInsets.only(left: 15, right: 15),
                 child: iconPrefix),
+            suffixIcon: Container(
+              height: 20,
+              width: 20,
+              margin: EdgeInsets.only(right: 15),
+              child: iconSuffix,
+            ),
             fillColor: primaryColor,
             filled: true,
             hintText: hintText,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(10)),
-            hintStyle: tsBodyMediumRegularDarkGrey),
+            hintStyle: tsLabelRegularDarkGrey),
       ),
     );
   }
