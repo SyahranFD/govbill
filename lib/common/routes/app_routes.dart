@@ -1,0 +1,41 @@
+part of 'app_pages.dart';
+
+abstract class Routes {
+  Routes._();
+  static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
+  static const REGISTER_PAGE = _Paths.REGISTER_PAGE;
+  static const LOGIN_PAGE  = _Paths.LOGIN_PAGE;
+  static const HOME_PAGE = _Paths.HOME_PAGE;
+  static const TAGIHAN_AKAN_DATANG_PAGE = _Paths.TAGIHAN_AKAN_DATANG_PAGE;
+  static const DETAIL_KATEGORI_PAGE = _Paths.DETAIL_KATEGORI_PAGE;
+  static const DETAIL_KENDARAAN_PAGE = _Paths.DETAIL_KENDARAAN_PAGE;
+  static const METODE_PEMBAYARAN_PAGE = _Paths.METODE_PEMBAYARAN_PAGE;
+  static const TAMBAH_METODE_PEMBAYARAN_PAGE = _Paths.TAMBAH_METODE_PEMBAYARAN_PAGE;
+  static const TAMBAH_KARTU_PAGE = _Paths.TAMBAH_KARTU_PAGE;
+  static const PILIH_TAGIHAN_PAGE = _Paths.PILIH_TAGIHAN_PAGE;
+  static const TAMBAH_TAGIHAN_PAGE = _Paths.TAMBAH_TAGIHAN_PAGE;
+  static const DAFTAR_ALAMAT_PAGE = _Paths.DAFTAR_ALAMAT_PAGE;
+  static const TAMBAH_ALAMAT_PAGE = _Paths.TAMBAH_ALAMAT_PAGE;
+  static const HISTORY_PAGE = _Paths.HISTORY_PAGE;
+  static const PROFILE_PAGE = _Paths.PROFILE_PAGE;
+}
+
+abstract class _Paths {
+  _Paths._();
+  static const SPLASH_SCREEN = '/splashscreen';
+  static const REGISTER_PAGE = '/register';
+  static const LOGIN_PAGE = '/login';
+  static const HOME_PAGE = '/';
+  static const TAGIHAN_AKAN_DATANG_PAGE = '/tagihan-akan-datang';
+  static const DETAIL_KATEGORI_PAGE = '/detail-kategori';
+  static const DETAIL_KENDARAAN_PAGE = '/detail-kendaraan';
+  static const METODE_PEMBAYARAN_PAGE = '/metode-pembayaran';
+  static const TAMBAH_METODE_PEMBAYARAN_PAGE = '/tambah-metode-pembayaran';
+  static const TAMBAH_KARTU_PAGE = '/tambah-kartu';
+  static const PILIH_TAGIHAN_PAGE = '/pilih-tagihan';
+  static const TAMBAH_TAGIHAN_PAGE = '/tambah-tagihan';
+  static const DAFTAR_ALAMAT_PAGE = '/daftar-alamat';
+  static const TAMBAH_ALAMAT_PAGE = '/tambah-alamat';
+  static const HISTORY_PAGE = '/history';
+  static const PROFILE_PAGE = '/profile';
+}
