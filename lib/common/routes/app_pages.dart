@@ -35,7 +35,8 @@ class AppPages {
   // static var routes;
 
   AppPages._();
-  static const INITIAL = Routes.TAMBAH_ALAMAT_PAGE;
+  static const INITIAL = Routes.METODE_PEMBAYARAN_PAGE;
+
 
   static final routes = [
     GetPage(
