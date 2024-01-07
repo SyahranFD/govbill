@@ -55,18 +55,41 @@ class RegisterPageView extends StatelessWidget {
                 hintText: "Password",
                 iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
                 isObsecure: false,
+                  iconSuffix: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.visibility,
+                      color: darkGrey,
+                    ),
+                  )
               ),
               RegisterFormWidget(
                 hintText: "Password",
                 iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
                 isObsecure: false,
+                iconSuffix: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.visibility,
+                    color: darkGrey,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 20,
               ),
               GestureDetector(
                 child: Container(
-                  child: Text("Daftar Sekarang "),
+                  width: double.infinity,
+                  height: 55,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "Daftar Sekarang ",
+                    style: tsBodyMediumSemiboldWhite,
+                  ),
                 ),
               )
             ],

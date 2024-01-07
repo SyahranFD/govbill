@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class RegisterFormWidget extends StatelessWidget {
+class LoginFormWidget extends StatelessWidget {
   final Widget? iconPrefix;
   final String? hintText;
   final bool? isObsecure;
   final Widget? iconSuffix;
 
-  RegisterFormWidget({
+  LoginFormWidget({
     Key? key,
     this.iconPrefix,
     this.hintText,
@@ -30,7 +30,7 @@ class RegisterFormWidget extends StatelessWidget {
               minWidth: 60,
               minHeight: 30,
             ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             prefixIcon: Container(
                 height: 20,
                 width: 20,
@@ -39,6 +39,7 @@ class RegisterFormWidget extends StatelessWidget {
             suffixIcon: Container(
               height: 20,
               width: 20,
+              alignment: Alignment.center,
               margin: EdgeInsets.only(right: 15),
               child: iconSuffix,
             ),
