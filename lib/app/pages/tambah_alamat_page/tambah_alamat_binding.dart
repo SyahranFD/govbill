@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:govbill/app/pages/tambah_tagihan_binding/tambah_tagihan_controller.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/tambah_tagihan_controller.dart';
 
 class TambahAlamatPageBinding extends Bindings {
   @override
