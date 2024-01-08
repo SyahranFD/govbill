@@ -22,6 +22,8 @@ import 'package:govbill/app/pages/register_page/register_page_binding.dart';
 import 'package:govbill/app/pages/register_page/register_page_view.dart';
 import 'package:govbill/app/pages/splash_screen_page/splash_screen_binding.dart';
 import 'package:govbill/app/pages/splash_screen_page/splash_screen_view.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_binding.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_view.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_binding.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_view.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_binding.dart';
@@ -59,6 +61,12 @@ class AppPages {
       name: _Paths.HOME_PAGE,
       page: () => HomePageView(),
       binding: HomePageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.TAGIHAN_AKAN_DATANG_PAGE,
+      page: () => TagihanAkanDatangPageView(),
+      binding: TagihanAkanDatangPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
