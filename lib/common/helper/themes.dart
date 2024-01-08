@@ -176,9 +176,9 @@ TextStyle tsLabelRegularBlueGrey = GoogleFonts.poppins(
 );
 
 TextStyle tsLabelRegularDarkGrey = GoogleFonts.poppins(
-        color: darkGrey,
-        fontWeight: FontWeight.w400,
-        fontSize: figmaFontsize(10),
+  color: darkGrey,
+  fontWeight: FontWeight.w400,
+  fontSize: figmaFontsize(10),
 );
 
 TextStyle tsLabelRegularRed = GoogleFonts.poppins(

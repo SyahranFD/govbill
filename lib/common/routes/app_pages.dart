@@ -3,8 +3,9 @@ import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_binding.dart'
 import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_view.dart';
 import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_binding.dart';
 import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_view.dart';
+import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_mobil/detail_mobil_view.dart';
+import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_motor/detail_motor_view.dart';
 import 'package:govbill/app/pages/detail_kendaraan_page/detail_kendaraan_binding.dart';
-import 'package:govbill/app/pages/detail_kendaraan_page/detail_kendaraan_view.dart';
 import 'package:govbill/app/pages/history_page/history_page_binding.dart';
 import 'package:govbill/app/pages/history_page/history_page_view.dart';
 import 'package:govbill/app/pages/home_page/home_page_binding.dart';
@@ -27,16 +28,13 @@ import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_binding.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_view.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_binding.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_view.dart';
-import 'package:govbill/app/pages/tambah_tagihan_binding/tambah_tagihan_binding.dart';
-import 'package:govbill/app/pages/tambah_tagihan_binding/tambah_tagihan_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
   // static var routes;
 
   AppPages._();
-  static const INITIAL = Routes.TAMBAH_METODE_PEMBAYARAN_PAGE;
-
+  static const INITIAL = Routes.DETAIL_MOBIL_PAGE;
 
   static final routes = [
     GetPage(
@@ -70,12 +68,6 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.DETAIL_KENDARAAN_PAGE,
-      page: () => DetailKendaraanPageView(),
-      binding: DetailKendaraanPageBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
       name: _Paths.METODE_PEMBAYARAN_PAGE,
       page: () => MetodePembayaranPageView(),
       binding: MetodePembayaranPageBinding(),
@@ -100,12 +92,6 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.TAMBAH_TAGIHAN_PAGE,
-      page: () => TambahTagihanPageView(),
-      binding: TambahTagihanPageBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
       name: _Paths.DAFTAR_ALAMAT_PAGE,
       page: () => DaftarAlamatPageView(),
       binding: DaftarAlamatPageBinding(),
@@ -127,6 +113,18 @@ class AppPages {
       name: _Paths.PROFILE_PAGE,
       page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MOTOR_PAGE,
+      page: () => DetailMotorPageView(),
+      binding: DetailKendaraanPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MOBIL_PAGE,
+      page: () => DetailMobilPageView(),
+      binding: DetailKendaraanPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
