@@ -35,7 +35,7 @@ class AppPages {
   // static var routes;
 
   AppPages._();
-  static const INITIAL = Routes.METODE_PEMBAYARAN_PAGE;
+  static const INITIAL = Routes.PILIH_TAGIHAN_PAGE;
 
 
   static final routes = [
