@@ -36,7 +36,7 @@ class AppPages {
   // static var routes;
 
   AppPages._();
-  static const INITIAL = Routes.DETAIL_MOBIL_PAGE;
+  static const INITIAL = Routes.REGISTER_PAGE;
 
   static final routes = [
     GetPage(
