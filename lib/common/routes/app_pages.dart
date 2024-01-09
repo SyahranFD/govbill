@@ -3,8 +3,9 @@ import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_binding.dart'
 import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_view.dart';
 import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_binding.dart';
 import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_view.dart';
+import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_mobil/detail_mobil_view.dart';
+import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_motor/detail_motor_view.dart';
 import 'package:govbill/app/pages/detail_kendaraan_page/detail_kendaraan_binding.dart';
-import 'package:govbill/app/pages/detail_kendaraan_page/detail_kendaraan_view.dart';
 import 'package:govbill/app/pages/history_page/history_page_binding.dart';
 import 'package:govbill/app/pages/history_page/history_page_view.dart';
 import 'package:govbill/app/pages/home_page/home_page_binding.dart';
@@ -21,21 +22,21 @@ import 'package:govbill/app/pages/register_page/register_page_binding.dart';
 import 'package:govbill/app/pages/register_page/register_page_view.dart';
 import 'package:govbill/app/pages/splash_screen_page/splash_screen_binding.dart';
 import 'package:govbill/app/pages/splash_screen_page/splash_screen_view.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_binding.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_view.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_binding.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_view.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_binding.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_view.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_binding.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_view.dart';
-import 'package:govbill/app/pages/tambah_tagihan_binding/tambah_tagihan_binding.dart';
-import 'package:govbill/app/pages/tambah_tagihan_binding/tambah_tagihan_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
   // static var routes;
 
   AppPages._();
-  static const INITIAL = Routes.PILIH_TAGIHAN_PAGE;
+  static const INITIAL = Routes.METODE_PEMBAYARAN_PAGE;
 
 
   static final routes = [
@@ -64,15 +65,15 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.DETAIL_KATEGORI_PAGE,
-      page: () => DetailKategoriPageView(),
-      binding: DetailKategoriPageBinding(),
+      name: _Paths.TAGIHAN_AKAN_DATANG_PAGE,
+      page: () => TagihanAkanDatangPageView(),
+      binding: TagihanAkanDatangPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.DETAIL_KENDARAAN_PAGE,
-      page: () => DetailKendaraanPageView(),
-      binding: DetailKendaraanPageBinding(),
+      name: _Paths.DETAIL_KATEGORI_PAGE,
+      page: () => DetailKategoriPageView(),
+      binding: DetailKategoriPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
@@ -100,12 +101,6 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.TAMBAH_TAGIHAN_PAGE,
-      page: () => TambahTagihanPageView(),
-      binding: TambahTagihanPageBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
       name: _Paths.DAFTAR_ALAMAT_PAGE,
       page: () => DaftarAlamatPageView(),
       binding: DaftarAlamatPageBinding(),
@@ -127,6 +122,18 @@ class AppPages {
       name: _Paths.PROFILE_PAGE,
       page: () => ProfilePageView(),
       binding: ProfilePageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MOTOR_PAGE,
+      page: () => DetailMotorPageView(),
+      binding: DetailKendaraanPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MOBIL_PAGE,
+      page: () => DetailMobilPageView(),
+      binding: DetailKendaraanPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
