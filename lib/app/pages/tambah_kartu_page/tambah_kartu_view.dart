@@ -54,6 +54,7 @@ class TambahKartuPageView extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                  keyboardType: TextInputType.number,
                   decoration: globalInputDecoration(
                       "Nomor Kartu Kredit/Debit",
                       double.infinity,

@@ -19,6 +19,11 @@ abstract class Routes {
   static const PROFILE_PAGE = _Paths.PROFILE_PAGE;
   static const DETAIL_MOTOR_PAGE = _Paths.DETAIL_MOTOR_PAGE;
   static const DETAIL_MOBIL_PAGE = _Paths.DETAIL_MOBIL_PAGE;
+  static const TAMBAH_MOTOR_PAGE = _Paths.TAMBAH_MOTOR_PAGE;
+  static const TAMBAH_MOTOR_KONFIRMASI = _Paths.TAMBAH_MOTOR_KONFIRMASI;
+  static const TAMBAH_MOBIL_PAGE = _Paths.TAMBAH_MOBIL_PAGE;
+  static const TAMBAH_MOBIL_KONFIRMASI = _Paths.TAMBAH_MOBIL_KONFIRMASI;
+  
 }
 
 abstract class _Paths {
@@ -40,4 +45,8 @@ abstract class _Paths {
   static const PROFILE_PAGE = '/profile';
   static const DETAIL_MOTOR_PAGE = '/detail-motor';
   static const DETAIL_MOBIL_PAGE = '/detail-mobil';
+  static const TAMBAH_MOTOR_PAGE = '/tambah-motor';
+  static const TAMBAH_MOTOR_KONFIRMASI = "/tambah-motor-konfirmasi";
+  static const TAMBAH_MOBIL_PAGE = '/tambah-mobil';
+  static const TAMBAH_MOBIL_KONFIRMASI = "/tambah-mobil-konfirmasi";
 }
