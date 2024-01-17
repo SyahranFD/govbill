@@ -61,7 +61,7 @@ class TambahMobilPageView extends StatelessWidget {
       ),
       floatingActionButton: ButtonWidget(
         onTap: () {},
-        title: "Verifikasi Motor",
+        title: "Verifikasi Mobil",
         height: 55,
         width: double.infinity,
         alignment: Alignment.center,
