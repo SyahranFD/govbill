@@ -23,7 +23,7 @@ abstract class Routes {
   static const TAMBAH_MOTOR_KONFIRMASI = _Paths.TAMBAH_MOTOR_KONFIRMASI;
   static const TAMBAH_MOBIL_PAGE = _Paths.TAMBAH_MOBIL_PAGE;
   static const TAMBAH_MOBIL_KONFIRMASI = _Paths.TAMBAH_MOBIL_KONFIRMASI;
-  
+  static const TAMBAH_PLN = _Paths.TAMBAH_PLN;
 }
 
 abstract class _Paths {
@@ -49,4 +49,5 @@ abstract class _Paths {
   static const TAMBAH_MOTOR_KONFIRMASI = "/tambah-motor-konfirmasi";
   static const TAMBAH_MOBIL_PAGE = '/tambah-mobil';
   static const TAMBAH_MOBIL_KONFIRMASI = "/tambah-mobil-konfirmasi";
+  static const TAMBAH_PLN = "/tambah-pln";
 }
