@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.TAMBAH_MOTOR_KONFIRMASI;
+  static const INITIAL = Routes.TAMBAH_MOBIL_PAGE;
 
   static final routes = [
     GetPage(
@@ -114,6 +114,16 @@ class AppPages {
     GetPage(
         name: _Paths.TAMBAH_MOTOR_KONFIRMASI,
         page: () => TambahMotorKonfirmasiView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_MOBIL_PAGE,
+        page: () => TambahMobilPageView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_MOBIL_KONFIRMASI,
+        page: () => TambahMobilKonfirmasiView(),
         binding: TambahTagihanPageBinding(),
         transition: Transition.noTransition),
   ];
