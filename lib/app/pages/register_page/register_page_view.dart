@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -89,7 +91,6 @@ class RegisterPageView extends StatelessWidget {
                     color: darkGrey,
                   ),
                 ),
-                controller: registerPageController.ctrPassword,
               ),
               SizedBox(
                 height: 20,
@@ -123,6 +124,23 @@ class RegisterPageView extends StatelessWidget {
                           ),
                       );
                 }),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Get.offAllNamed('/login');
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 55,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: secondaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      "Pindah ke login",
+                      style: tsBodyMediumSemiboldWhite,
+                    ),
+                  )
               )
             ],
           ),
