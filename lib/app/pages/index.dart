@@ -75,9 +75,14 @@ export 'tambah_metode_pembayaran_page/tambah_metode_pembayaran_controller.dart' 
 export 'tambah_metode_pembayaran_page/tambah_metode_pembayaran_binding.dart' show TambahMetodePembayaranPageBinding;
 
 // Tambah Tagihan Page
+export 'tambah_tagihan_page/tambah_tagihan_controller.dart'show TambahTagihanPageController;
+export 'tambah_tagihan_page/tambah_tagihan_binding.dart'show TambahTagihanPageBinding;
+
+// Component Tagihan Page
 export 'tambah_tagihan_page/component/tambah_mobil/tambah_mobil_view.dart' show TambahMobilPageView;
 export 'tambah_tagihan_page/component/tambah_mobil/tambah_mobil_konfirmasi_view.dart' show TambahMobilKonfirmasiView;
 export 'tambah_tagihan_page/component/tambah_motor/tambah_motor_view1.dart' show TambahMotorPageView;
 export 'tambah_tagihan_page/component/tambah_motor/tambah_motor_view2.dart' show TambahMotorKonfirmasiView;
-export 'tambah_tagihan_page/tambah_tagihan_controller.dart' show TambahTagihanPageController;
-export 'tambah_tagihan_page/tambah_tagihan_binding.dart' show TambahTagihanPageBinding;
+export 'tambah_tagihan_page/component/tambah_pbb/tambah_pbb_view.dart' show TambahPbbView;
+export 'tambah_tagihan_page/component/tambah_pln/tambah_pln_view.dart' show TambahPlnView;
+export 'tambah_tagihan_page/component/tambah_pdam/tambah_pdam_view.dart' show TambahPdamView;

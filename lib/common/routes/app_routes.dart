@@ -25,6 +25,7 @@ abstract class Routes {
   static const TAMBAH_MOBIL_KONFIRMASI = _Paths.TAMBAH_MOBIL_KONFIRMASI;
   static const TAMBAH_PLN = _Paths.TAMBAH_PLN;
   static const TAMBAH_PBB = _Paths.TAMBAH_PBB;
+  static const TAMBAH_PDAM = _Paths.TAMBAH_PDAM;
 }
 
 abstract class _Paths {
@@ -52,4 +53,5 @@ abstract class _Paths {
   static const TAMBAH_MOBIL_KONFIRMASI = "/tambah-mobil-konfirmasi";
   static const TAMBAH_PLN = "/tambah-pln";
   static const TAMBAH_PBB = "/tambah-pbb";
+  static const TAMBAH_PDAM = "/tambah-pdam";
 }

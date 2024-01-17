@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class TambahPbbView extends StatelessWidget {
-  const TambahPbbView({super.key});
+class TambahPdamView extends StatelessWidget {
+  const TambahPdamView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class TambahPbbView extends StatelessWidget {
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
         title: Text(
-          "Daftarkan PBB",
+          "Daftarkan PDAM",
           style: tsBodyLargeSemiboldBlack,
         ),
         centerTitle: true,
@@ -24,17 +23,19 @@ class TambahPbbView extends StatelessWidget {
             icon: SvgPicture.asset("assets/icons/icArrowBack.svg")),
       ),
       body: Container(
-          width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 15),
-          height: double.infinity,
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        height: double.infinity,
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               SizedBox(
                 height: 15,
               ),
               TextInputWidget(
                 hintText: "Nama Tagihan",
+                keyboard: TextInputType.name,
                 height: 50,
                 padding: EdgeInsets.only(top: 10, left: 15),
               ),
@@ -42,7 +43,8 @@ class TambahPbbView extends StatelessWidget {
                 height: 10,
               ),
               TextInputWidget(
-                hintText: "Nama Kabupaten",
+                hintText: "Kabupaten/Kota",
+                keyboard: TextInputType.name,
                 height: 50,
                 padding: EdgeInsets.only(top: 10, left: 15),
               ),
@@ -50,7 +52,12 @@ class TambahPbbView extends StatelessWidget {
                 height: 10,
               ),
               TextInputWidget(
-                hintText: "Nomor Objek Pajak (NOP)",
+                hintText: "Id Pelanggan",
+                keyboard: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(12)
+                ],
                 height: 50,
                 padding: EdgeInsets.only(top: 10, left: 15),
               ),
@@ -60,12 +67,22 @@ class TambahPbbView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
-                  "*NOP berjumlah 18 digit",
+                  "*Nomor Pelanggan berjumlah 11 digit",
                   style: tsLabelRegularRed,
                 ),
               ),
               SizedBox(
                 height: 25,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 2),
+                child: Text(
+                  "Jadwalkan pembayaran untuk tagihan anda",
+                  style: tsBodySmallRegularBlueGrey,
+                ),
+              ),
+              SizedBox(
+                height: 5,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 2),
@@ -92,8 +109,10 @@ class TambahPbbView extends StatelessWidget {
                   ],
                 ),
               ),
-            ]),
-          )),
+            ],
+          ),
+        ),
+      ),
       floatingActionButton: ButtonWidget(
         onTap: () {},
         title: "Daftar",
