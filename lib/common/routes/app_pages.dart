@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/index.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/component/tambah_pbb/tambah_pbb_view.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/component/tambah_pln/tambah_pln_view.dart';
 part 'app_routes.dart';
 
@@ -8,7 +9,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.TAMBAH_PLN;
+  static const INITIAL = Routes.TAMBAH_PBB;
 
   static final routes = [
     GetPage(
@@ -130,6 +131,11 @@ class AppPages {
     GetPage(
         name: _Paths.TAMBAH_PLN,
         page: () => TambahPlnView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_PBB,
+        page: () => TambahPbbView(),
         binding: TambahTagihanPageBinding(),
         transition: Transition.noTransition),
   ];
