@@ -26,6 +26,8 @@ abstract class Routes {
   static const TAMBAH_PLN = _Paths.TAMBAH_PLN;
   static const TAMBAH_PBB = _Paths.TAMBAH_PBB;
   static const TAMBAH_PDAM = _Paths.TAMBAH_PDAM;
+  static const TAMBAH_PGN = _Paths.TAMBAH_PGN;
+  static const TAMBAH_BPJS = _Paths.TAMBAH_BPJS;
 }
 
 abstract class _Paths {
@@ -54,4 +56,6 @@ abstract class _Paths {
   static const TAMBAH_PLN = "/tambah-pln";
   static const TAMBAH_PBB = "/tambah-pbb";
   static const TAMBAH_PDAM = "/tambah-pdam";
+  static const TAMBAH_PGN = "/tambah-pgn";
+  static const TAMBAH_BPJS = "/tambah-bpjs";
 }

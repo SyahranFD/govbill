@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.TAMBAH_PDAM;
+  static const INITIAL = Routes.TAMBAH_BPJS;
 
   static final routes = [
     GetPage(
@@ -141,6 +141,15 @@ class AppPages {
         page: () => TambahPdamView(),
         binding: TambahTagihanPageBinding(),
         transition: Transition.noTransition),
-    
+    GetPage(
+        name: _Paths.TAMBAH_PGN,
+        page: () => TambahPgnView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_BPJS,
+        page: () => TambahBpjsView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
   ];
 }
