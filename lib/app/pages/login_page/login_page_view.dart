@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/authentication.dart';
+import 'package:govbill/app/pages/login_page/login_page_controller.dart';
 import 'package:govbill/app/pages/login_page/widget/login_form_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class LoginPageView extends StatelessWidget {
-  const LoginPageView({Key? key}) : super(key: key);
+  final LoginPageController loginPageController = Get.put(LoginPageController());
+  final AuthenticationController authenticationController = Get.put(AuthenticationController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +43,23 @@ class LoginPageView extends StatelessWidget {
                 iconPrefix: SvgPicture.asset("assets/icons/icEmail.svg"),
                 hintText: "Email",
                 isObsecure: false,
+                controller: loginPageController.ctrEmail,
               ),
               LoginFormWidget(
                   iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
                   hintText: "Kata Sandi",
                   isObsecure: true,
+                  controller: loginPageController.ctrPassword,
                   iconSuffix: IconButton(
                       onPressed: () {}, icon: Icon(Icons.visibility))),
 
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  await authenticationController.login(
+                    email: loginPageController.ctrEmail!.text,
+                    password: loginPageController.ctrPassword!.text,
+                  );
+                },
                 child: Container(
                     width: double.infinity,
                     height: 55,
