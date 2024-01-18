@@ -13,7 +13,7 @@ class ProfilePageView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-
+              Text("Halaman Profile"),
             ],
           ),
         ),
