@@ -5,11 +5,10 @@ import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.da
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
-class TagihanTerdaftarPBB extends StatelessWidget {
+class TagihanTerdaftarPGN extends StatelessWidget {
   final ApiTagihanTerdaftarController apiTagihanTerdaftarController =
-        Get.put(ApiTagihanTerdaftarController());
+  Get.put(ApiTagihanTerdaftarController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +16,18 @@ class TagihanTerdaftarPBB extends StatelessWidget {
     final double width = mediaQuery.width;
 
     return Obx(
-      () => apiTagihanTerdaftarController.isLoading.value
-      ? Center(
-          child: CircularProgressIndicator(),
-        )
-      : Container(
+          () => apiTagihanTerdaftarController.isLoading.value
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
         child: SingleChildScrollView(
           child: Column(
-            children: apiTagihanTerdaftarController.listTagihanTerdaftarPBB.map((tagihan) {
+            children: apiTagihanTerdaftarController.listTagihanTerdaftarPGN.map((tagihan) {
               var jenisTagihan = tagihan.jenisTagihan!;
               var tanggal = tagihan.tanggalBayar!;
-              var bulan = DateFormat.MMMM('id_ID').format(DateTime(2022, tagihan.bulanBayar!));
 
               return Container(
                 width: double.infinity,
@@ -49,7 +47,7 @@ class TagihanTerdaftarPBB extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("NOP : " + tagihan.noTagihan!, style: tsLabelRegularDarkBlue),
+                              Text("ID Pelanggan : " + tagihan.noTagihan!, style: tsLabelRegularDarkBlue),
                               SvgPicture.asset(
                                 "assets/icons/icMenu.svg",
                                 width: 16,
@@ -65,7 +63,7 @@ class TagihanTerdaftarPBB extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: categoryPBB,
+                                  color: categoryPGN,
                                   borderRadius: BorderRadius.circular(10),
                                   boxShadow: [
                                     BoxShadow(
@@ -95,7 +93,7 @@ class TagihanTerdaftarPBB extends StatelessWidget {
                                   SizedBox(height: 4),
                                   Container(
                                       width: width * 0.685,
-                                      child: Text("Terjadwal dibayar setiap tanggal $tanggal bulan $bulan", style: tsLabelRegularBlack)
+                                      child: Text("Terjadwal dibayar setiap tanggal $tanggal", style: tsLabelRegularBlack)
                                   ),
                                 ],
                               )

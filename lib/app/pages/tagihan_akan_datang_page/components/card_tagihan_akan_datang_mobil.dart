@@ -47,7 +47,7 @@ class CardTagihanAkanDatangMobil extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("No. Rangka : $noTagihan", style: tsLabelRegularDarkBlue),
+                Text("NRKB : $noTagihan", style: tsLabelRegularDarkBlue),
 
                 SizedBox(height: 10),
 
