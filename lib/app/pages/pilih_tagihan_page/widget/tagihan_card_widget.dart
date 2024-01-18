@@ -9,6 +9,8 @@ class TagihanCardWidget extends StatelessWidget {
   final String? titleRight;
   final Color? colorLeft;
   final Color? colorRight;
+  final String? routeLeft;
+  final String? routeRight;
 
   TagihanCardWidget(
       {Key? key,
@@ -17,7 +19,9 @@ class TagihanCardWidget extends StatelessWidget {
       this.titleLeft,
       this.titleRight,
       this.colorLeft,
-      this.colorRight})
+      this.colorRight,
+      this.routeLeft,
+      this.routeRight})
       : super(key: key);
 
   @override
@@ -31,7 +35,9 @@ class TagihanCardWidget extends StatelessWidget {
           Column(
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(routeLeft!);
+                },
                 child: Container(
                   height: 90,
                   width: 90,
@@ -58,7 +64,9 @@ class TagihanCardWidget extends StatelessWidget {
           Column(
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(routeRight!);
+                },
                 child: Container(
                   height: 90,
                   width: 90,
