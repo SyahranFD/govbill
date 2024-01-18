@@ -30,6 +30,7 @@ import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_binding.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_view.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_binding.dart';
 import 'package:govbill/app/pages/tambah_metode_pembayaran_page/tambah_metode_pembayaran_view.dart';
+import 'package:govbill/app/pages/index.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -136,5 +137,50 @@ class AppPages {
       binding: DetailKendaraanPageBinding(),
       transition: Transition.noTransition,
     ),
+    GetPage(
+        name: _Paths.TAMBAH_MOTOR_PAGE,
+        page: () => TambahMotorPageView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_MOTOR_KONFIRMASI,
+        page: () => TambahMotorKonfirmasiView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_MOBIL_PAGE,
+        page: () => TambahMobilPageView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_MOBIL_KONFIRMASI,
+        page: () => TambahMobilKonfirmasiView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_PLN,
+        page: () => TambahPlnView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_PBB,
+        page: () => TambahPbbView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_PDAM,
+        page: () => TambahPdamView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_PGN,
+        page: () => TambahPgnView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.TAMBAH_BPJS,
+        page: () => TambahBpjsView(),
+        binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
   ];
 }
