@@ -45,7 +45,7 @@ class RegisterPageView extends StatelessWidget {
                 style: tsBodyMediumRegularDarkGrey,
               ),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               RegisterFormWidget(
                 hintText: "Username",

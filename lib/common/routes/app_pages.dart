@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.ONBOARDING;
+  static const INITIAL = Routes.REGISTER_PAGE;
 
   static final routes = [
     GetPage(
