@@ -151,5 +151,10 @@ class AppPages {
         page: () => TambahBpjsView(),
         binding: TambahTagihanPageBinding(),
         transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.ONBOARDING,
+        page: () => OnboardingPageView(),
+        binding: OnboardingPageBinding(),
+        transition: Transition.noTransition),
   ];
 }
