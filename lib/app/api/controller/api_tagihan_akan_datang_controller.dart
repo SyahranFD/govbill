@@ -9,7 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class ApiTagihanAkanDatangController extends GetxController {
-  Rx<List<TagihanAkanDatangModel>> listTagihanAkanDatang = Rx<List<TagihanAkanDatangModel>>([]);
+  RxList<TagihanAkanDatangModel> listTagihanAkanDatang = <TagihanAkanDatangModel>[].obs;
   final isLoading = false.obs;
   final box = GetStorage();
   RxString totalNominal = "".obs;
@@ -25,7 +25,7 @@ class ApiTagihanAkanDatangController extends GetxController {
   Future fetchTagihanAkanDatang() async {
     print('fetch tagihan akan datang dijalankan');
     try {
-      listTagihanAkanDatang.value.clear();
+      listTagihanAkanDatang.clear();
       isLoading.value = true;
       var response = await http.get(Uri.parse('${url}/tagihan-tersedia/show-all'), headers: {
         'Accept': 'application/json',
@@ -35,11 +35,11 @@ class ApiTagihanAkanDatangController extends GetxController {
         isLoading.value = false;
         final content = json.decode(response.body)['data'];
         for (var item in content) {
-          listTagihanAkanDatang.value.add(TagihanAkanDatangModel.fromJson(item));
+          listTagihanAkanDatang.add(TagihanAkanDatangModel.fromJson(item));
         }
         calculateTotalNominalTagihan();
         print('berhasil fetch tagihan akan datang');
-        listTagihanAkanDatang.value.forEach((tagihan) {
+        listTagihanAkanDatang.forEach((tagihan) {
           print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation
         });
       } else {
@@ -54,10 +54,7 @@ class ApiTagihanAkanDatangController extends GetxController {
 
   void calculateTotalNominalTagihan() {
     int total = 0;
-    // for (var tagihan in listTagihanAkanDatang.value) {
-    //   total += tagihan.nominalTagihan!;
-    // }
-    listTagihanAkanDatang.value.forEach((tagihan) {
+    listTagihanAkanDatang.forEach((tagihan) {
       total += tagihan.nominalTagihan!;
     });
 

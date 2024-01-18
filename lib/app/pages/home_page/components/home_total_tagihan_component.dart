@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_profile_controller.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/home_page/home_page_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -17,9 +18,6 @@ class HomeTotalTagihanComponent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Hello,", style: tsTitleMediumSemiboldBlack),
-        Text("Radya Harbani", style: tsBodySmallRegularBlack),
-        SizedBox(height: 25),
         Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),

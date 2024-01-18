@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/home_page/components/home_category_component.dart';
+import 'package:govbill/app/pages/home_page/components/home_menyambut_user_component.dart';
 import 'package:govbill/app/pages/home_page/components/home_total_tagihan_component.dart';
 import 'package:govbill/common/helper/themes.dart';
 
@@ -33,6 +34,8 @@ class HomePageView extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      HomeMenyambutUserComponent(),
+                      SizedBox(height: 30),
                       HomeTotalTagihanComponent(),
                       SizedBox(height: 30),
                       HomeCategoryComponent(),
