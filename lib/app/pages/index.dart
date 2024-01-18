@@ -4,9 +4,9 @@ export "daftar_alamat_page/daftar_alamat_controller.dart" show DaftarAlamatPageC
 export 'daftar_alamat_page/daftar_alamat_binding.dart' show DaftarAlamatPageBinding;
 
 // Detail Kategori Page
-export 'detail_kategori_page/detail_kategori_view.dart' show DetailKategoriPageView;
-export 'detail_kategori_page/detail_kategori_controller.dart' show DetailKategoriPageController;
-export 'detail_kategori_page/detail_kategori_binding.dart' show DetailKategoriPageBinding;
+export 'tagihan_terdaftar_page/tagihan_terdaftar_view.dart' show TagihanTerdaftarPageView;
+export 'tagihan_terdaftar_page/tagihan_terdaftar_controller.dart' show TagihanTerdaftarPageController;
+export 'tagihan_terdaftar_page/tagihan_terdaftar_binding.dart' show TagihanTerdaftarPageBinding;
 
 // Detail Kendaraan Page
 export 'detail_kendaraan_page/component/detail_mobil/detail_mobil_view.dart' show DetailMobilPageView;
