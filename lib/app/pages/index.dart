@@ -88,3 +88,8 @@ export 'tambah_tagihan_page/component/tambah_pln/tambah_pln_view.dart' show Tamb
 export 'tambah_tagihan_page/component/tambah_pdam/tambah_pdam_view.dart' show TambahPdamView;
 export 'tambah_tagihan_page/component/tambah_pgn/tambah_pgn_view.dart' show TambahPgnView;
 export 'tambah_tagihan_page/component/tambah_bpjs/tambah_bpjs_view.dart' show TambahBpjsView;
+
+// Onboarding Page
+export 'onboarding_page/onboarding_page_view.dart' show OnboardingPageView;
+export 'onboarding_page/onboarding_page_controller.dart' show OnboardingPageController;
+export 'onboarding_page/onboarding_page_binding.dart' show OnboardingPageBinding;
