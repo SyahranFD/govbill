@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:govbill/app/pages/pilih_tagihan_page/widget/tagihan_card_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
@@ -37,6 +38,8 @@ class PilihTagihanPageView extends StatelessWidget {
                 iconRight: SvgPicture.asset("assets/icons/icKategoriMobil.svg"),
                 titleRight: "Pajak Mobil",
                 colorRight: categoryMobil,
+                routeLeft: "/tambah-motor",
+                routeRight: "/tambah-mobil",
               ),
               TagihanCardWidget(
                 iconLeft: SvgPicture.asset("assets/icons/icKategoriPBB.svg"),
@@ -45,6 +48,8 @@ class PilihTagihanPageView extends StatelessWidget {
                 iconRight: SvgPicture.asset("assets/icons/icKategoriPLN.svg"),
                 titleRight: "Tagihan Listrik PLN",
                 colorRight: categoryPLN,
+                routeLeft: "/tambah-pbb",
+                routeRight: "/tambah-pln",
               ),
               TagihanCardWidget(
                 iconLeft: SvgPicture.asset("assets/icons/icKategoriPDAM.svg"),
@@ -53,9 +58,13 @@ class PilihTagihanPageView extends StatelessWidget {
                 iconRight: SvgPicture.asset("assets/icons/icKategoriPGN.svg"),
                 titleRight: "Tagihan Gas PGN",
                 colorRight: categoryPGN,
+                routeLeft: "/tambah-pdam",
+                routeRight: "/tambah-pgn",
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed("/tambah-bpjs");
+                },
                 child: Container(
                   height: 90,
                   width: 90,

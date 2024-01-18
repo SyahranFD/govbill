@@ -12,6 +12,7 @@ class TextInputWidget extends StatelessWidget {
   final TextAlign? textAlign;
   final double? height;
   final double? width;
+
   TextInputWidget(
       {Key? key,
       this.hintText,
