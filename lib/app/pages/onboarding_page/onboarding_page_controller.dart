@@ -24,4 +24,6 @@ class OnboardingPageController extends GetxController {
           'Kamu bisa membayar semuanya dengan berbagai macam pilihan metode pembarayan yang tentunya aman',
     },
    ];
+
+   var currentPage = 0.obs;
 }
