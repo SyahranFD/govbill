@@ -82,7 +82,7 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
                       children: [
                         Container(
                             width: width * 0.685,
-                            child: Text("Tagihan $jenisTagihan $namaTagihan", style: tsBodySmallSemiboldBlack)
+                            child: Text("$namaTagihan", style: tsBodySmallSemiboldBlack)
                         ),
                         SizedBox(height: 4),
                         Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),

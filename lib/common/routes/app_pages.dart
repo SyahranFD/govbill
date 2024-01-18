@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_binding.dart';
 import 'package:govbill/app/pages/daftar_alamat_page/daftar_alamat_view.dart';
-import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_binding.dart';
-import 'package:govbill/app/pages/detail_kategori_page/detail_kategori_view.dart';
 import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_mobil/detail_mobil_view.dart';
 import 'package:govbill/app/pages/detail_kendaraan_page/component/detail_motor/detail_motor_view.dart';
 import 'package:govbill/app/pages/detail_kendaraan_page/detail_kendaraan_binding.dart';
@@ -24,6 +22,8 @@ import 'package:govbill/app/pages/splash_screen_page/splash_screen_binding.dart'
 import 'package:govbill/app/pages/splash_screen_page/splash_screen_view.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_binding.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/tagihan_akan_datang_view.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/tagihan_terdaftar_binding.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/tagihan_terdaftar_view.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_binding.dart';
 import 'package:govbill/app/pages/tambah_alamat_page/tambah_alamat_view.dart';
 import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_binding.dart';
@@ -37,7 +37,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.TAGIHAN_TERDAFTAR_PAGE;
 
   static final routes = [
     GetPage(
@@ -71,9 +71,9 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.DETAIL_KATEGORI_PAGE,
-      page: () => DetailKategoriPageView(),
-      binding: DetailKategoriPageBinding(),
+      name: _Paths.TAGIHAN_TERDAFTAR_PAGE,
+      page: () => TagihanTerdaftarPageView(),
+      binding: TagihanTerdaftarPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

@@ -43,8 +43,7 @@ class TagihanAkanDatangPageView extends StatelessWidget {
               )
             : Container(
                 width: double.infinity,
-                margin: EdgeInsets.only(
-                    top: 15, left: width * 0.05, right: width * 0.05),
+                margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
                 child: SingleChildScrollView(
                   child: Column(
                     children: fetchTagihanAkanDatangController.tagihanAkanDatang.value.map((tagihan) {
