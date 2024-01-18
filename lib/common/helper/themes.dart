@@ -79,6 +79,12 @@ TextStyle tsBodyMediumSemiboldBlueGrey = GoogleFonts.poppins(
   fontSize: figmaFontsize(14),
 );
 
+TextStyle tsBodyMediumSemiboldDarkGrey = GoogleFonts.poppins(
+  color: secondaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(14),
+);
+
 TextStyle tsBodyMediumRegularDarkGrey = GoogleFonts.poppins(
   color: darkGrey,
   fontWeight: FontWeight.w400,
