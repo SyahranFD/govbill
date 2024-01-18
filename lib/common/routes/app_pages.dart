@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.TAMBAH_BPJS;
+  static const INITIAL = Routes.PROFILE_PAGE;
 
   static final routes = [
     GetPage(
@@ -150,6 +150,11 @@ class AppPages {
         name: _Paths.TAMBAH_BPJS,
         page: () => TambahBpjsView(),
         binding: TambahTagihanPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.ONBOARDING,
+        page: () => OnboardingPageView(),
+        binding: OnboardingPageBinding(),
         transition: Transition.noTransition),
   ];
 }
