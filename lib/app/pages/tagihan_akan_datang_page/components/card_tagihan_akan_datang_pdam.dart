@@ -6,18 +6,18 @@ class CardTagihanAkanDatangPDAM extends StatelessWidget {
 
   CardTagihanAkanDatangPDAM(
       {Key? key,
-        required this.noPelanggan,
+        required this.noTagihan,
         required this.jenisTagihan,
-        required this.namaPelanggan,
+        required this.namaTagihan,
         required this.waktuBayar,
-        required this.hargaRupiah,
+        required this.nominalTagihan,
       });
 
-  final String noPelanggan;
-  final String jenisTagihan;
-  final String namaPelanggan;
-  final String waktuBayar;
-  final String hargaRupiah;
+  final String? noTagihan;
+  final String? jenisTagihan;
+  final String? namaTagihan;
+  final String? waktuBayar;
+  final String? nominalTagihan;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class CardTagihanAkanDatangPDAM extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("No. Pelanggan : $noPelanggan", style: tsLabelRegularDarkBlue),
+                Text("No. Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
 
                 SizedBox(height: 10),
 
@@ -82,12 +82,12 @@ class CardTagihanAkanDatangPDAM extends StatelessWidget {
                       children: [
                         Container(
                             width: width * 0.685,
-                            child: Text("Tagihan $jenisTagihan $namaPelanggan", style: tsBodySmallSemiboldBlack)
+                            child: Text("$namaTagihan", style: tsBodySmallSemiboldBlack)
                         ),
                         SizedBox(height: 4),
                         Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
                         SizedBox(height: 4),
-                        Text("$hargaRupiah", style: tsLabelRegularRed),
+                        Text("$nominalTagihan", style: tsLabelRegularRed),
                       ],
                     )
                   ],

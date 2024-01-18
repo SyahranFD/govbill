@@ -28,7 +28,7 @@ class AuthenticationController extends GetxController {
       };
 
       var response = await http.post(
-        Uri.parse('${url}users/post'),
+        Uri.parse('${url}/users/register'),
         headers: {
           'Accept': 'application/json',
         },
@@ -39,7 +39,8 @@ class AuthenticationController extends GetxController {
         isLoading.value = false;
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
-        Get.offAll('/login');
+        print(token.value);
+        Get.offAllNamed('/');
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -59,18 +60,18 @@ class AuthenticationController extends GetxController {
   }
 
   Future login({
-    required String username,
+    required String email,
     required String password,
   }) async {
     try {
       isLoading.value = true;
       var data = {
-        'username': username,
+        'email': email,
         'password': password,
       };
 
       var response = await http.post(
-        Uri.parse('${url}users/login'),
+        Uri.parse('${url}/users/login'),
         headers: {
           'Accept': 'application/json',
         },
@@ -81,7 +82,8 @@ class AuthenticationController extends GetxController {
         isLoading.value = false;
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
-        Get.offAll('/');
+        print(token.value);
+        Get.offAllNamed('/tagihan-akan-datang');
       } else {
         isLoading.value = false;
         Get.snackbar(
