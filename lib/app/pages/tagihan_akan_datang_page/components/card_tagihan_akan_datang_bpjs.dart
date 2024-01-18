@@ -6,18 +6,18 @@ class CardTagihanAkanDatangBPJS extends StatelessWidget {
 
   CardTagihanAkanDatangBPJS(
       {Key? key,
-        required this.noVA,
+        required this.noTagihan,
         required this.jenisTagihan,
-        required this.namaPelanggan,
+        required this.namaTagihan,
         required this.waktuBayar,
-        required this.hargaRupiah,
+        required this.nominalTagihan,
       });
 
-  final String noVA;
-  final String jenisTagihan;
-  final String namaPelanggan;
-  final String waktuBayar;
-  final String hargaRupiah;
+  final String? noTagihan;
+  final String? jenisTagihan;
+  final String? namaTagihan;
+  final String? waktuBayar;
+  final String? nominalTagihan;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class CardTagihanAkanDatangBPJS extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("No. VA : $noVA", style: tsLabelRegularDarkBlue),
+                Text("No. VA : $noTagihan", style: tsLabelRegularDarkBlue),
 
                 SizedBox(height: 10),
 
@@ -82,12 +82,12 @@ class CardTagihanAkanDatangBPJS extends StatelessWidget {
                       children: [
                         Container(
                             width: width * 0.685,
-                            child: Text("Tagihan BPJS $namaPelanggan", style: tsBodySmallSemiboldBlack)
+                            child: Text("$namaTagihan", style: tsBodySmallSemiboldBlack)
                         ),
                         SizedBox(height: 4),
                         Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
                         SizedBox(height: 4),
-                        Text("$hargaRupiah", style: tsLabelRegularRed),
+                        Text("$nominalTagihan", style: tsLabelRegularRed),
                       ],
                     )
                   ],

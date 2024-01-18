@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.REGISTER_PAGE;
+  static const INITIAL = Routes.ONBOARDING;
 
   static final routes = [
     GetPage(
@@ -41,9 +41,9 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.DETAIL_KATEGORI_PAGE,
-      page: () => DetailKategoriPageView(),
-      binding: DetailKategoriPageBinding(),
+      name: _Paths.TAGIHAN_TERDAFTAR_PAGE,
+      page: () => TagihanTerdaftarPageView(),
+      binding: TagihanTerdaftarPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
