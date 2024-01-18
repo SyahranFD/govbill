@@ -46,7 +46,7 @@ class TagihanAkanDatangPageView extends StatelessWidget {
                 margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
                 child: SingleChildScrollView(
                   child: Column(
-                    children: apiTagihanAkanDatangController.listTagihanAkanDatang.value.map((tagihan) {
+                    children: apiTagihanAkanDatangController.listTagihanAkanDatang.map((tagihan) {
                       var nominalTagihanFormatted =
                           NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ').format(tagihan.nominalTagihan);
                       nominalTagihanFormatted = nominalTagihanFormatted.replaceAll(",00", "");
