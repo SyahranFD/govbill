@@ -125,23 +125,6 @@ class RegisterPageView extends StatelessWidget {
                       );
                 }),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.offAllNamed('/login');
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: secondaryColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Text(
-                      "Pindah ke login",
-                      style: tsBodyMediumSemiboldWhite,
-                    ),
-                  )
-              )
             ],
           ),
         ),

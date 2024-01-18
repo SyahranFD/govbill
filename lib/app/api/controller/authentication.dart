@@ -83,7 +83,7 @@ class AuthenticationController extends GetxController {
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
         print(token.value);
-        Get.offAllNamed('/');
+        Get.offAllNamed('/tagihan-akan-datang');
       } else {
         isLoading.value = false;
         Get.snackbar(
