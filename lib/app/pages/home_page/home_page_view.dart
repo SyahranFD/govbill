@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/home_page/components/home_category_component.dart';
+import 'package:govbill/app/pages/home_page/components/home_history_component.dart';
+import 'package:govbill/app/pages/home_page/components/home_menyambut_user_component.dart';
+import 'package:govbill/app/pages/home_page/components/home_tagihan_akan_datang_component.dart';
 import 'package:govbill/app/pages/home_page/components/home_total_tagihan_component.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class HomePageView extends StatelessWidget {
-  const HomePageView({Key? key}) : super(key: key);
+  final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
+      Get.put(ApiTagihanAkanDatangController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +19,38 @@ class HomePageView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundPageColor,
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 60, left: width * 0.05, right: width * 0.05),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              HomeTotalTagihanComponent(),
+      body: Obx(() {
+        final bool isLoading = apiTagihanAkanDatangController.isLoading.value;
 
-              SizedBox(height: 30),
-
-              HomeCategoryComponent()
-            ],
-          ),
-        ),
-      ),
+        return isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(
+                  top: 60,
+                  left: width * 0.05,
+                  right: width * 0.05,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      HomeMenyambutUserComponent(),
+                      SizedBox(height: 30),
+                      HomeTotalTagihanComponent(),
+                      SizedBox(height: 30),
+                      HomeCategoryComponent(),
+                      SizedBox(height: 30),
+                      HomeTagihanAkanDatangComponent(),
+                      SizedBox(height: 30),
+                      HomeHistoryComponent(),
+                      SizedBox(height: 75),
+                    ],
+                  ),
+                ),
+              );
+      }),
     );
   }
 }

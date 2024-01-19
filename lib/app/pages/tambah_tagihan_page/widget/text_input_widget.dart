@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class TextInputWidget extends StatelessWidget {
@@ -12,6 +11,7 @@ class TextInputWidget extends StatelessWidget {
   final TextAlign? textAlign;
   final double? height;
   final double? width;
+
   TextInputWidget(
       {Key? key,
       this.hintText,

@@ -1,198 +1,172 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:intl/intl.dart';
 
 class MetodePembayaranPageView extends StatelessWidget {
-  const MetodePembayaranPageView({Key? key}) : super(key: key);
+  final ApiMetodePembayaranController apiMetodePembayaranController =
+      Get.put(ApiMetodePembayaranController());
+  final MetodePembayaranPageController metodePembayaranPageController =
+      Get.put(MetodePembayaranPageController());
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Metode Pembayaran",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
-        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        title: Text("Metode Pembayaran", style: tsBodyLargeSemiboldBlack),
       ),
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                height: 65,
-                decoration: BoxDecoration(
-                    color: categoryMobil,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/icons/icMoney.png",
-                      height: 50,
-                      width: 55,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Pembayaran Secara Otomatis",
-                          style: tsBodySmallSemiboldWhite,
-                        ),
-                        Text(
-                          "Pembayaran akan dicatat di history pembayaran",
-                          style: tsLabelRegularWhite,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                    color: warningColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/icons/icAlert.png",
-                      height: 20,
-                      width: 55,
-                    ),
-                    Text(
-                      "Tambahkan metode sebagai saldo cadangan",
-                      style: tsLabelRegularWhite,
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              ListView.builder(
-                itemCount: 5,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: index == 0 ? 160 : 110,
-                    width: double.infinity,
-                    margin: EdgeInsets.only(bottom: 15),
-                    decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        index == 0
-                            ? Container(
-                                height: 50,
-                                padding: EdgeInsets.only(top: 15),
-                                alignment: Alignment.bottomCenter,
-                                child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.only(left: 20),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                          color: smoothGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Text(
-                                        "Pembayaran Utama",
-                                        style: tsLabelSemiboldWhite,
-                                      ),
+      body: Obx(() {
+        if (apiMetodePembayaranController.isLoading.value) {
+          // Show loading indicator
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 15),
+                  ListView.builder(
+                    itemCount: apiMetodePembayaranController
+                        .listMetodePembayaran.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var data = apiMetodePembayaranController
+                          .listMetodePembayaran[index];
+                      var jenisKartu = data.jenis;
+
+                      var saldoFormatted =
+                          NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ')
+                              .format(data.saldo);
+                      saldoFormatted = saldoFormatted.replaceAll(",00", "");
+
+                      return Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: 15),
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            data.pembayaranUtama == 1
+                                ? Container(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(left: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 5),
+                                          decoration: BoxDecoration(
+                                              color: smoothGreen,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Text(
+                                            "Pembayaran Utama",
+                                            style: tsLabelSemiboldWhite,
+                                          ),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(Icons.more_vert))
+                                      ],
                                     ),
-                                    Spacer(),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(Icons.more_vert))
-                                  ],
-                                ),
-                              )
-                            : SizedBox(),
-                        Container(
-                          height: 110,
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                margin: EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/gopay2.png",
-                                  ),
-                                )),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "*********6743",
-                                    style: tsLabelMediumBlueGrey,
-                                  ),
-                                  Text(
-                                    "Gatot Supadio",
-                                    style: tsLabelMediumBlueGrey,
-                                  ),
-                                  Text(
-                                    "Saldo : Rp 320.000",
-                                    style: tsBodySmallSemiboldBlack,
                                   )
+                                : SizedBox(),
+                            Container(
+                              margin: data.pembayaranUtama == 1
+                                  ? EdgeInsets.only(top: 10, bottom: 25)
+                                  : EdgeInsets.only(top: 25, bottom: 25),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/ic$jenisKartu.svg",
+                                      width: 45,
+                                      height: 45,
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        metodePembayaranPageController
+                                            .formatCardNumber(data.nomor!),
+                                        style: tsLabelMediumBlueGrey,
+                                      ),
+                                      Text(
+                                        data.nama!,
+                                        style: tsLabelMediumBlueGrey,
+                                      ),
+                                      Text(
+                                        "Saldo : " + saldoFormatted,
+                                        style: tsBodySmallSemiboldBlack,
+                                      )
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  data.pembayaranUtama == 1
+                                      ? SizedBox()
+                                      : IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(Icons.more_vert))
                                 ],
                               ),
-                              Spacer(),
-                              index == 0
-                                  ? SizedBox()
-                                  : IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.more_vert))
-                            ],
-                          ),
-                        )
-                      ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  InkWell(
+                    onTap: () => Get.toNamed('/tambah-metode-pembayaran'),
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: secondaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        "Tambahkan Metode Pembayaran Lain",
+                        style: tsBodySmallSemiboldWhite,
+                      ),
                     ),
-                  );
-                },
-              ),
-              GestureDetector(
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
-                    "Tambahkan Metode Pembayaran Lain",
-                    style: tsBodySmallSemiboldWhite,
-                  ),
-                ),
+                  SizedBox(
+                    height: 35,
+                  )
+                ],
               ),
-              SizedBox(
-                height: 35,
-              )
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        }
+      }),
     );
   }
 }

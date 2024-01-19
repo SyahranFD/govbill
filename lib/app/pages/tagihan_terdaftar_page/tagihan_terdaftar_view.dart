@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/components/tagihan_terdaftar_pbb.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/tagihan_terdaftar_controller.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/switch_case_tagihan_terdaftar.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class TagihanTerdaftarPageView extends StatelessWidget {
@@ -11,6 +13,9 @@ class TagihanTerdaftarPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
+    final double height = mediaQuery.height;
+
+    String jenisTagihan = tagihanTerdaftarPageController.selectedTagihan.value;
 
     return Scaffold(
       backgroundColor: backgroundPageColor,
@@ -19,7 +24,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
         backgroundColor: backgroundPageColor,
         toolbarHeight: 75,
         centerTitle: true,
-        title: Text("Tagihan Terdaftar", style: tsBodyLargeSemiboldBlack),
+        title: Text("$jenisTagihan Terdaftar", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(
@@ -29,17 +34,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 5, left: width * 0.05, right: width * 0.05),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TagihanTerdaftarPBB()
-            ],
-          ),
-        ),
-      ),
+      body: switchCaseTagihanTerdaftar(context: context),
     );
   }
 }

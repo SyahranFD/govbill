@@ -6,13 +6,13 @@ import 'package:govbill/app/api/constant/url.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class AuthenticationController extends GetxController {
-  final isLoading = false.obs;
-  final token = ''.obs;
+class AuthenticationController {
+  static final isLoading = false.obs;
+  static final token = ''.obs;
 
-  final box = GetStorage();
+  static final box = GetStorage();
 
-  Future register({
+  static Future register({
     required String username,
     required String email,
     required String password,
@@ -54,12 +54,11 @@ class AuthenticationController extends GetxController {
       }
     } catch (e) {
       isLoading.value = false;
-
       print(e.toString());
     }
   }
 
-  Future login({
+  static Future login({
     required String email,
     required String password,
   }) async {
@@ -83,7 +82,7 @@ class AuthenticationController extends GetxController {
         token.value = json.decode(response.body)['token'];
         box.write('token', token.value);
         print(token.value);
-        Get.offAllNamed('/tagihan-akan-datang');
+        Get.offAllNamed('/');
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -97,7 +96,6 @@ class AuthenticationController extends GetxController {
       }
     } catch (e) {
       isLoading.value = false;
-
       print(e.toString());
     }
   }
