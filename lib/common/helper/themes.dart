@@ -7,6 +7,7 @@ const Color secondaryColor = Color(0xFF1C1D56);
 const Color blackColor = Color(0xFF141515);
 const Color backgroundPageColor = Color(0xFFF8F4F3);
 const Color successColor = Color(0xFF36D100);
+const Color lunasColor = Color(0xFF31C78A);
 const Color warningColor = Color(0xFFBE1833);
 
 const Color smoothGreen = Color(0xFF9AB068);

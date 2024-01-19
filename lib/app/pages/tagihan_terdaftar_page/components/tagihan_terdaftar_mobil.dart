@@ -92,7 +92,7 @@ class TagihanTerdaftarMobil extends StatelessWidget {
                                   SizedBox(height: 4),
                                   Container(
                                       width: width * 0.685,
-                                      child: Text("Terjadwal dibayar setiap tanggal $tanggal bulan $bulan", style: tsLabelRegularBlack)),
+                                      child: Text("Terjadwal dibayar setiap tanggal $tanggal $bulan", style: tsLabelRegularBlack)),
                                 ],
                               )
                             ],
