@@ -6,87 +6,31 @@ class MetodePembayaranPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuery = MediaQuery.of(context).size;
+    final double width = mediaQuery.width;
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Metode Pembayaran",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
-        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        title: Text("Metode Pembayaran", style: tsBodyLargeSemiboldBlack),
       ),
       body: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 15),
+        margin: EdgeInsets.symmetric(horizontal: width * 0.05),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                height: 65,
-                decoration: BoxDecoration(
-                    color: categoryMobil,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/icons/icMoney.png",
-                      height: 50,
-                      width: 55,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Pembayaran Secara Otomatis",
-                          style: tsBodySmallSemiboldWhite,
-                        ),
-                        Text(
-                          "Pembayaran akan dicatat di history pembayaran",
-                          style: tsLabelRegularWhite,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                margin: EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                    color: warningColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/icons/icAlert.png",
-                      height: 20,
-                      width: 55,
-                    ),
-                    Text(
-                      "Tambahkan metode sebagai saldo cadangan",
-                      style: tsLabelRegularWhite,
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
+              SizedBox(height: 15),
               ListView.builder(
                 itemCount: 5,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Container(
-                    height: index == 0 ? 160 : 110,
                     width: double.infinity,
                     margin: EdgeInsets.only(bottom: 15),
                     decoration: BoxDecoration(
@@ -97,16 +41,14 @@ class MetodePembayaranPageView extends StatelessWidget {
                       children: [
                         index == 0
                             ? Container(
-                                height: 50,
-                                padding: EdgeInsets.only(top: 15),
-                                alignment: Alignment.bottomCenter,
+                                padding: EdgeInsets.only(top: 10),
                                 child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(left: 20),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
+                                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                       decoration: BoxDecoration(
                                           color: smoothGreen,
                                           borderRadius:
@@ -116,7 +58,6 @@ class MetodePembayaranPageView extends StatelessWidget {
                                         style: tsLabelSemiboldWhite,
                                       ),
                                     ),
-                                    Spacer(),
                                     IconButton(
                                         onPressed: () {},
                                         icon: Icon(Icons.more_vert))
@@ -125,7 +66,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                               )
                             : SizedBox(),
                         Container(
-                          height: 110,
+                          height: 100,
                           child: Row(
                             children: [
                               Container(
@@ -171,7 +112,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                   );
                 },
               ),
-              GestureDetector(
+              InkWell(
                 child: Container(
                   height: 50,
                   width: double.infinity,
