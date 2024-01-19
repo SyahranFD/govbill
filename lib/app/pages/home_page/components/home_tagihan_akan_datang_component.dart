@@ -29,7 +29,12 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("Tagihan Akan Datang", style: tsBodyMediumSemiboldBlack),
-            Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue),
+            InkWell(
+                onTap: () {
+                  Get.toNamed("/tagihan-akan-datang");
+                },
+                child: Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue)
+            ),
           ],
         ),
         SizedBox(height: 15),

@@ -11,7 +11,7 @@ class PostMetodePembayaranController extends GetxController {
 
   final box = GetStorage();
 
-  Future tambahKartu({
+  Future postMetodePembayaranKartu({
     required String noKartu,
     required String bulanBerlaku,
     required String tahunBerlaku,
@@ -30,12 +30,13 @@ class PostMetodePembayaranController extends GetxController {
         Uri.parse('${url}/metode-pembayaran/store-kartu'),
         headers: {
           'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
         },
         body: data,
       );
 
       if (response.statusCode == 201) {
-        Get.offAllNamed('/tambah-metode-pembayaran');
+        Get.offAllNamed('/metode-pembayaran');
       } else {
         isLoading.value = false;
         Get.snackbar(
