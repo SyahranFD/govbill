@@ -55,10 +55,10 @@ class LoginPageView extends StatelessWidget {
 
               GestureDetector(
                 onTap: () async {
-                  await authenticationController.login(
-                    email: loginPageController.ctrEmail!.text,
-                    password: loginPageController.ctrPassword!.text,
-                  );
+                  // await authenticationController.login(
+                  //   email: loginPageController.ctrEmail!.text,
+                  //   password: loginPageController.ctrPassword!.text,
+                  // );
                 },
                 child: Container(
                     width: double.infinity,

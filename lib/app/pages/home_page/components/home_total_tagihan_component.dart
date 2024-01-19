@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/api_profile_controller.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
-import 'package:govbill/app/pages/home_page/home_page_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class HomeTotalTagihanComponent extends StatelessWidget {
@@ -13,7 +11,6 @@ class HomeTotalTagihanComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

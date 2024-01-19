@@ -1,21 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/app/pages/register_page/register_page_controller.dart';
 import 'package:govbill/app/pages/register_page/widget/register_form_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class RegisterPageView extends StatelessWidget {
-  final RegisterPageController registerPageController =
-      Get.put(RegisterPageController());
-  final AuthenticationController authenticationController =
-      Get.put(AuthenticationController());
-
+class RegisterPageView extends GetView<RegisterPageController> {
   @override
   Widget build(BuildContext context) {
+    final _usernameFormKey = GlobalKey<FormState>();
+    final _emailFormKey = GlobalKey<FormState>();
+    final _phoneNumberFormKey = GlobalKey<FormState>();
+    final _passwordFormKey = GlobalKey<FormState>();
+    final _passwordConfirmFormKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       body: Container(
@@ -47,65 +46,114 @@ class RegisterPageView extends StatelessWidget {
                 style: tsBodyMediumRegularDarkGrey,
               ),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               RegisterFormWidget(
                 hintText: "Username",
                 iconPrefix: SvgPicture.asset("assets/icons/icUser.svg"),
                 isObsecure: false,
-                controller: registerPageController.ctrUsername,
+                formKey: _usernameFormKey,
+                controller: controller.ctrUsername,
               ),
               RegisterFormWidget(
                 hintText: "Email",
                 iconPrefix: SvgPicture.asset("assets/icons/icEmail.svg"),
                 isObsecure: false,
-                controller: registerPageController.ctrEmail,
+                formKey: _emailFormKey,
+                validator: (value) {
+                  if (controller.validateEmail(value!) == false) {
+                    return "Masukkan Email Yang Valid";
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                keyboardType: TextInputType.emailAddress,
+                controller: controller.ctrEmail,
               ),
               RegisterFormWidget(
-                hintText: "No. Telepon",
+                hintText: "No. Telepon", 
                 iconPrefix: SvgPicture.asset("assets/icons/icPhone.svg"),
                 isObsecure: false,
-                controller: registerPageController.ctrPhoneNumber,
+                keyboardType: TextInputType.number,
+                inputFormatters: [LengthLimitingTextInputFormatter(12)],
+                formKey: _phoneNumberFormKey,
+                validator: (value) {
+                  if (controller.validatePhoneNumber(value) == false) {
+                    return "Nomor telepon berawalan 08";
+                  }
+                  return null;
+                },
+                controller: controller.ctrPhoneNumber,
               ),
-              RegisterFormWidget(
-                hintText: "Password",
-                iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
-                isObsecure: false,
-                iconSuffix: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.visibility,
-                    color: darkGrey,
-                  ),
-                ),
-                controller: registerPageController.ctrPassword,
-              ),
-              RegisterFormWidget(
-                hintText: "Password",
-                iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
-                isObsecure: false,
-                iconSuffix: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.visibility,
-                    color: darkGrey,
-                  ),
-                ),
-              ),
+              Obx(() => RegisterFormWidget(
+                    hintText: "Password",
+                    iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
+                    isObsecure: controller.isPasswordInvisible.value,
+                    formKey: _passwordFormKey,
+                    validator: (value) {
+                      if (controller.isPasswordValid(value!) == false) {
+                        return "Password harus mengandung huruf besar dan angka";
+                      }
+                      ;
+                      return null;
+                    },
+                    iconSuffix: IconButton(
+                      onPressed: () {
+                        controller.isPasswordInvisible.value =
+                            !controller.isPasswordInvisible.value;
+                      },
+                      icon: Icon(
+                        controller.isPasswordInvisible.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: darkGrey,
+                      ),
+                    ),
+                    controller: controller.ctrPassword,
+                  )),
+              Obx(() => RegisterFormWidget(
+                    hintText: "Konfirmasi Password",
+                    iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
+                    isObsecure: controller.isPasswordConfirmInvisible.value,
+                    formKey: _passwordConfirmFormKey,
+                    validator: (value) {
+                      if (controller.confirmPassword(
+                              controller.ctrPassword!.text, value!) ==
+                          false) {
+                        return "Password tidak sama";
+                      }
+                      return null;
+                    },
+                    iconSuffix: IconButton(
+                      onPressed: () {
+                        controller.isPasswordConfirmInvisible.value =
+                            !controller.isPasswordConfirmInvisible.value;
+                      },
+                      icon: Icon(
+                        controller.isPasswordConfirmInvisible.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: darkGrey,
+                      ),
+                    ),
+                  )),
               SizedBox(
                 height: 20,
               ),
               InkWell(
                 onTap: () async {
-                  await authenticationController.register(
-                    username: registerPageController.ctrUsername!.text,
-                    email: registerPageController.ctrEmail!.text,
-                    password: registerPageController.ctrPassword!.text,
-                    phoneNumber: registerPageController.ctrPhoneNumber!.text,
-                  );
+                  if (_usernameFormKey.currentState!.validate() &&
+                      _emailFormKey.currentState!.validate() &&
+                      _phoneNumberFormKey.currentState!.validate() &&
+                      _passwordFormKey.currentState!.validate() &&
+                      _passwordConfirmFormKey.currentState!.validate()) {
+                    controller.register();
+                  } else {
+                    print("kocak");
+                  }
                 },
                 child: Obx(() {
-                  return authenticationController.isLoading.value
+                  return controller.isLoading.value
                       ? const Center(
                           child: CircularProgressIndicator(
                             color: secondaryColor,
@@ -122,7 +170,7 @@ class RegisterPageView extends StatelessWidget {
                             "Daftar Sekarang ",
                             style: tsBodyMediumSemiboldWhite,
                           ),
-                      );
+                        );
                 }),
               ),
             ],

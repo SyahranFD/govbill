@@ -7,6 +7,7 @@ class AppPages {
 
   AppPages._();
   
+
   static const INITIAL = Routes.PROFILE_PAGE;
 
   static final routes = [
