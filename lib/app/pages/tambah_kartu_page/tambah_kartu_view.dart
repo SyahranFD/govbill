@@ -37,15 +37,17 @@ class TambahKartuPageView extends StatelessWidget {
     return Scaffold( 
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Tambah Kartu",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
-        leading: InkWell(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset("assets/icons/icArrowBack.svg"),
+        title: Text("Tambah Kartu", style: tsBodyLargeSemiboldBlack),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 20,
+            color: blackColor,
           ),
         ),
       ),
@@ -104,7 +106,7 @@ class TambahKartuPageView extends StatelessWidget {
                       children: [
                         Text(
                           "Bulan",
-                          style: tsLabelRegularBlueGrey,
+                          style: tsLabelMediumBlueGrey,
                         ),
                         SizedBox(
                           width: 10,
@@ -119,14 +121,14 @@ class TambahKartuPageView extends StatelessWidget {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: globalInputDecoration(
-                              "07", 60, 30, lightGrey, EdgeInsets.all(0)),
+                              "mm", 60, 30, lightGrey, EdgeInsets.all(0)),
                         ),
                         SizedBox(
                           width: 10,
                         ),
                         Text(
                           "Tahun",
-                          style: tsLabelRegularBlueGrey,
+                          style: tsLabelMediumBlueGrey,
                         ),
                         SizedBox(
                           width: 10,
@@ -141,7 +143,7 @@ class TambahKartuPageView extends StatelessWidget {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: globalInputDecoration(
-                              "26", 60, 30, lightGrey, EdgeInsets.all(0)),
+                              "yy", 60, 30, lightGrey, EdgeInsets.all(0)),
                         ),
                       ],
                     ),
@@ -185,14 +187,14 @@ class TambahKartuPageView extends StatelessWidget {
 
                 ),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: () async {
-                  // await postMetodePembayaranController.tambahKartu(
-                  //   noKartu: tambahKartuPageController.ctrNomorKartu!.text,
-                  //   bulanBerlaku: tambahKartuPageController.ctrBulan!.text,
-                  //   tahunBerlaku: tambahKartuPageController.ctrTahun!.text,
-                  //   cvv: tambahKartuPageController.ctrCvv!.text,
-                  // );
+                  await postMetodePembayaranController.postMetodePembayaranKartu(
+                    noKartu: tambahKartuPageController.ctrNomorKartu!.text,
+                    bulanBerlaku: tambahKartuPageController.ctrBulan!.text,
+                    tahunBerlaku: tambahKartuPageController.ctrTahun!.text,
+                    cvv: tambahKartuPageController.ctrCvv!.text,
+                  );
                 },
                 child: Container(
                   width: double.infinity,

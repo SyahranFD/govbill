@@ -10,6 +10,7 @@ import 'package:govbill/app/pages/history_page/components/card_history_motor.dar
 import 'package:govbill/app/pages/history_page/components/card_history_pbb.dart';
 import 'package:govbill/app/pages/history_page/components/card_history_pdam.dart';
 import 'package:govbill/app/pages/history_page/components/card_history_pln.dart';
+import 'package:govbill/app/pages/history_page/history_page_view.dart';
 import 'package:govbill/app/pages/home_page/home_page_controller.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_bpjs.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_mobil.dart';
@@ -19,6 +20,7 @@ import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagih
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pln.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomeHistoryComponent extends StatelessWidget {
   final ApiHistoryController apiHistoryController =
@@ -37,7 +39,14 @@ class HomeHistoryComponent extends StatelessWidget {
           children: [
             Text("Pembayaran Terakhir", style: tsBodyMediumSemiboldBlack),
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: HistoryPageView(),
+                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                },
                 child:
                     Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue)),
           ],

@@ -9,4 +9,6 @@ class MetodePembayaranPageController extends GetxController {
   String formatCardNumber(String cardNumber) {
     return '****${cardNumber.substring(cardNumber.length - 4)}';
   }
+
+
 }

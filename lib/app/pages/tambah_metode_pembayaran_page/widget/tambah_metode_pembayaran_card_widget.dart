@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class PembayaranCard extends StatelessWidget {
   final String? title;
   final Widget? iconPrefix;
-  PembayaranCard({Key? key, this.title, this.iconPrefix}) : super(key: key);
+  final String? route;
+  PembayaranCard({Key? key, this.title, this.iconPrefix, this.route}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {},
+    return InkWell(
+        onTap: () {
+          Get.toNamed(route!);
+        },
         child: Container(
           height: 60,
           width: double.infinity,
