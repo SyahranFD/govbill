@@ -13,23 +13,17 @@ class PostMetodePembayaranController extends GetxController {
 
   Future tambahKartu({
     required String noKartu,
-    required String jenisKartu,
     required String bulanBerlaku,
     required String tahunBerlaku,
     required String cvv,
-    required String namaPemilik,
-    required int saldo
   }) async {
     try {
       isLoading.value = true;
       var data = {
         'no_kartu': noKartu,
-        'jenis_kartu': jenisKartu,
         'bulan_berlaku': bulanBerlaku,
         'tahun_berlaku': tahunBerlaku,
         'cvv' : cvv,
-        'nama_pemilik' : namaPemilik,
-        'saldo' : saldo,
       };
 
       var response = await http.post(

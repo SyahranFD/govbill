@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:intl/intl.dart';
 
 class MetodePembayaranPageView extends StatelessWidget {
-  const MetodePembayaranPageView({Key? key}) : super(key: key);
+  final ApiMetodePembayaranController apiMetodePembayaranController =
+      Get.put(ApiMetodePembayaranController());
+  final MetodePembayaranPageController metodePembayaranPageController =
+      Get.put(MetodePembayaranPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +34,18 @@ class MetodePembayaranPageView extends StatelessWidget {
             children: [
               SizedBox(height: 15),
               ListView.builder(
-                itemCount: 5,
+                itemCount: apiMetodePembayaranController.listMetodePembayaran.length,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
+                  var data = apiMetodePembayaranController.listMetodePembayaran[index];
+                  var jenisKartu = data.jenis;
+
+                  var saldoFormatted =
+                  NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ')
+                      .format(data.saldo);
+                  saldoFormatted = saldoFormatted.replaceAll(",00", "");
+
                   return Container(
                     width: double.infinity,
                     margin: EdgeInsets.only(bottom: 15),
@@ -39,7 +55,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        index == 0
+                        data.pembayaranUtama == 1
                             ? Container(
                                 padding: EdgeInsets.only(top: 10),
                                 child: Row(
@@ -66,40 +82,39 @@ class MetodePembayaranPageView extends StatelessWidget {
                               )
                             : SizedBox(),
                         Container(
-                          height: 100,
+                          margin: data.pembayaranUtama == 1
+                              ? EdgeInsets.only(top: 10, bottom: 25)
+                              : EdgeInsets.only(top: 25, bottom: 25),
                           child: Row(
                             children: [
                               Container(
-                                height: 60,
-                                width: 60,
                                 margin: EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/gopay2.png",
-                                  ),
-                                )),
+                                child: SvgPicture.asset(
+                                  "assets/icons/ic$jenisKartu.svg",
+                                  width: 60,
+                                  height: 60,
+                                ),
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "*********6743",
+                                    metodePembayaranPageController.formatCardNumber(data.nomor!),
                                     style: tsLabelMediumBlueGrey,
                                   ),
                                   Text(
-                                    "Gatot Supadio",
+                                    data.nama!,
                                     style: tsLabelMediumBlueGrey,
                                   ),
                                   Text(
-                                    "Saldo : Rp 320.000",
+                                    "Saldo : " + saldoFormatted,
                                     style: tsBodySmallSemiboldBlack,
                                   )
                                 ],
                               ),
                               Spacer(),
-                              index == 0
+                              data.pembayaranUtama == 1
                                   ? SizedBox()
                                   : IconButton(
                                       onPressed: () {},
