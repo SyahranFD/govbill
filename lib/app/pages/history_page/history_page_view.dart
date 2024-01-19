@@ -43,8 +43,7 @@ class HistoryPageView extends StatelessWidget {
                       var nominalTagihanFormatted =
                           NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ')
                               .format(tagihan.nominalTagihan);
-                      nominalTagihanFormatted =
-                          nominalTagihanFormatted.replaceAll(",00", "");
+                      nominalTagihanFormatted = nominalTagihanFormatted.replaceAll(",00", "");
 
                       var paymentDateFormatted = tagihan.waktuBayar != null
                           ? DateFormat('dd MMMM yyyy', 'id_ID')
