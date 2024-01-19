@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/authentication.dart';
+import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/common/routes/app_pages.dart';
 
 class RegisterPageController extends GetxController {
