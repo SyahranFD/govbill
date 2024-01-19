@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class MetodePembayaranPageView extends StatelessWidget {
@@ -113,6 +114,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                 },
               ),
               InkWell(
+                onTap: () => Get.toNamed('/tambah-kartu'),
                 child: Container(
                   height: 50,
                   width: double.infinity,
