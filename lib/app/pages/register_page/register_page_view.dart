@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/authentication.dart';
+import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/app/pages/register_page/register_page_controller.dart';
 import 'package:govbill/app/pages/register_page/widget/register_form_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
