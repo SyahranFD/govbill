@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/home_page/widgets/category_rectangle.dart';
 import 'package:govbill/app/pages/index.dart';
@@ -11,8 +10,6 @@ class HomeCategoryComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQuery = MediaQuery.of(context).size;
-    final double width = mediaQuery.width;
 
     return Column(
       children: [
