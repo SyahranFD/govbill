@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:govbill/app/pages/pilih_tagihan_page/widget/tagihan_card_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
@@ -28,44 +29,53 @@ class PilihTagihanPageView extends StatelessWidget {
                 style: tsLabelRegularBlack,
               ),
               SizedBox(
-                height: 55,
+                height: 30,
               ),
               TagihanCardWidget(
-                iconLeft: SvgPicture.asset("assets/icons/icMotor.svg"),
+                iconLeft: SvgPicture.asset("assets/icons/icKategoriMotor.svg"),
                 titleLeft: "Pajak Motor",
                 colorLeft: categoryMotor,
-                iconRight: SvgPicture.asset("assets/icons/icMobil.svg"),
+                iconRight: SvgPicture.asset("assets/icons/icKategoriMobil.svg"),
                 titleRight: "Pajak Mobil",
                 colorRight: categoryMobil,
+                routeLeft: "/tambah-motor",
+                routeRight: "/tambah-mobil",
               ),
               TagihanCardWidget(
-                iconLeft: SvgPicture.asset("assets/icons/icPBB.svg"),
+                iconLeft: SvgPicture.asset("assets/icons/icKategoriPBB.svg"),
                 titleLeft: "Pajak Bumi dan Bangunan",
                 colorLeft: categoryPBB,
-                iconRight: SvgPicture.asset("assets/icons/icPLN.svg"),
+                iconRight: SvgPicture.asset("assets/icons/icKategoriPLN.svg"),
                 titleRight: "Tagihan Listrik PLN",
                 colorRight: categoryPLN,
+                routeLeft: "/tambah-pbb",
+                routeRight: "/tambah-pln",
               ),
               TagihanCardWidget(
-                iconLeft: SvgPicture.asset("assets/icons/icPDAM.svg"),
+                iconLeft: SvgPicture.asset("assets/icons/icKategoriPDAM.svg"),
                 titleLeft: "Tagihan Air PDAM",
                 colorLeft: categoryPDAM,
-                iconRight: SvgPicture.asset("assets/icons/icPGN.svg"),
+                iconRight: SvgPicture.asset("assets/icons/icKategoriPGN.svg"),
                 titleRight: "Tagihan Gas PGN",
                 colorRight: categoryPGN,
+                routeLeft: "/tambah-pdam",
+                routeRight: "/tambah-pgn",
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed("/tambah-bpjs");
+                },
                 child: Container(
-                  height: 100,
-                  width: 100,
-                  padding: EdgeInsets.all(25),
+                  height: 90,
+                  width: 90,
+                  padding: EdgeInsets.all(23),
                   decoration: BoxDecoration(
                       color: categoryBPJS,
                       borderRadius: BorderRadius.circular(10)),
-                  child: SvgPicture.asset("assets/icons/icBPJS.svg"),
+                  child: SvgPicture.asset("assets/icons/icKategoriBPJS.svg"),
                 ),
               ),
+              SizedBox(height: 10),
               Container(
                   width: 140,
                   alignment: Alignment.center,

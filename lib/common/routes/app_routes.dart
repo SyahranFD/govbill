@@ -7,7 +7,7 @@ abstract class Routes {
   static const LOGIN_PAGE  = _Paths.LOGIN_PAGE;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const TAGIHAN_AKAN_DATANG_PAGE = _Paths.TAGIHAN_AKAN_DATANG_PAGE;
-  static const DETAIL_KATEGORI_PAGE = _Paths.DETAIL_KATEGORI_PAGE;
+  static const TAGIHAN_TERDAFTAR_PAGE = _Paths.TAGIHAN_TERDAFTAR_PAGE;
   static const METODE_PEMBAYARAN_PAGE = _Paths.METODE_PEMBAYARAN_PAGE;
   static const TAMBAH_METODE_PEMBAYARAN_PAGE = _Paths.TAMBAH_METODE_PEMBAYARAN_PAGE;
   static const TAMBAH_KARTU_PAGE = _Paths.TAMBAH_KARTU_PAGE;
@@ -19,6 +19,16 @@ abstract class Routes {
   static const PROFILE_PAGE = _Paths.PROFILE_PAGE;
   static const DETAIL_MOTOR_PAGE = _Paths.DETAIL_MOTOR_PAGE;
   static const DETAIL_MOBIL_PAGE = _Paths.DETAIL_MOBIL_PAGE;
+  static const TAMBAH_MOTOR_PAGE = _Paths.TAMBAH_MOTOR_PAGE;
+  static const TAMBAH_MOTOR_KONFIRMASI = _Paths.TAMBAH_MOTOR_KONFIRMASI;
+  static const TAMBAH_MOBIL_PAGE = _Paths.TAMBAH_MOBIL_PAGE;
+  static const TAMBAH_MOBIL_KONFIRMASI = _Paths.TAMBAH_MOBIL_KONFIRMASI;
+  static const TAMBAH_PLN = _Paths.TAMBAH_PLN;
+  static const TAMBAH_PBB = _Paths.TAMBAH_PBB;
+  static const TAMBAH_PDAM = _Paths.TAMBAH_PDAM;
+  static const TAMBAH_PGN = _Paths.TAMBAH_PGN;
+  static const TAMBAH_BPJS = _Paths.TAMBAH_BPJS;
+  static const ONBOARDING = _Paths.ONBOARDING;
 }
 
 abstract class _Paths {
@@ -28,7 +38,7 @@ abstract class _Paths {
   static const LOGIN_PAGE = '/login';
   static const HOME_PAGE = '/';
   static const TAGIHAN_AKAN_DATANG_PAGE = '/tagihan-akan-datang';
-  static const DETAIL_KATEGORI_PAGE = '/detail-kategori';
+  static const TAGIHAN_TERDAFTAR_PAGE = '/tagihan-terdaftar';
   static const METODE_PEMBAYARAN_PAGE = '/metode-pembayaran';
   static const TAMBAH_METODE_PEMBAYARAN_PAGE = '/tambah-metode-pembayaran';
   static const TAMBAH_KARTU_PAGE = '/tambah-kartu';
@@ -40,4 +50,14 @@ abstract class _Paths {
   static const PROFILE_PAGE = '/profile';
   static const DETAIL_MOTOR_PAGE = '/detail-motor';
   static const DETAIL_MOBIL_PAGE = '/detail-mobil';
+  static const TAMBAH_MOTOR_PAGE = '/tambah-motor';
+  static const TAMBAH_MOTOR_KONFIRMASI = "/tambah-motor-konfirmasi";
+  static const TAMBAH_MOBIL_PAGE = '/tambah-mobil';
+  static const TAMBAH_MOBIL_KONFIRMASI = "/tambah-mobil-konfirmasi";
+  static const TAMBAH_PLN = "/tambah-pln";
+  static const TAMBAH_PBB = "/tambah-pbb";
+  static const TAMBAH_PDAM = "/tambah-pdam";
+  static const TAMBAH_PGN = "/tambah-pgn";
+  static const TAMBAH_BPJS = "/tambah-bpjs";
+  static const ONBOARDING = "/onboarding";
 }

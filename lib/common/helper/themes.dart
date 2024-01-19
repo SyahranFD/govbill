@@ -7,6 +7,7 @@ const Color secondaryColor = Color(0xFF1C1D56);
 const Color blackColor = Color(0xFF141515);
 const Color backgroundPageColor = Color(0xFFF8F4F3);
 const Color successColor = Color(0xFF36D100);
+const Color lunasColor = Color(0xFF31C78A);
 const Color warningColor = Color(0xFFBE1833);
 
 const Color smoothGreen = Color(0xFF9AB068);
@@ -39,12 +40,18 @@ TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
 
 TextStyle tsTitleMediumSemiboldBlack = GoogleFonts.poppins(
   color: blackColor,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(20),
 );
 
 TextStyle tsTitleSmallSemiboldWhite = GoogleFonts.poppins(
   color: primaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(18),
+);
+
+TextStyle tsTitleLargeSemiboldDarkBlue = GoogleFonts.poppins(
+  color: secondaryColor,
   fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(18),
 );
@@ -69,6 +76,12 @@ TextStyle tsBodyMediumSemiboldBlack = GoogleFonts.poppins(
 
 TextStyle tsBodyMediumSemiboldBlueGrey = GoogleFonts.poppins(
   color: blueGreyColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(14),
+);
+
+TextStyle tsBodyMediumSemiboldDarkGrey = GoogleFonts.poppins(
+  color: secondaryColor,
   fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(14),
 );
@@ -151,6 +164,12 @@ TextStyle tsLabelMediumBlueGrey = GoogleFonts.poppins(
   fontSize: figmaFontsize(10),
 );
 
+TextStyle tsLabelMediumWhite = GoogleFonts.poppins(
+  color: primaryColor,
+  fontWeight: FontWeight.w500,
+  fontSize: figmaFontsize(10),
+);
+
 TextStyle tsLabelRegularWhite = GoogleFonts.poppins(
   color: primaryColor,
   fontWeight: FontWeight.w400,
@@ -183,6 +202,6 @@ TextStyle tsLabelRegularDarkGrey = GoogleFonts.poppins(
 
 TextStyle tsLabelRegularRed = GoogleFonts.poppins(
   color: warningColor,
-  fontWeight: FontWeight.w400,
+  fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(10),
 );
