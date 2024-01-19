@@ -187,12 +187,12 @@ class TambahKartuPageView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async {
-                  await postMetodePembayaranController.tambahKartu(
-                    noKartu: tambahKartuPageController.ctrNomorKartu!.text,
-                    bulanBerlaku: tambahKartuPageController.ctrBulan!.text,
-                    tahunBerlaku: tambahKartuPageController.ctrTahun!.text,
-                    cvv: tambahKartuPageController.ctrCvv!.text,
-                  );
+                  // await postMetodePembayaranController.tambahKartu(
+                  //   noKartu: tambahKartuPageController.ctrNomorKartu!.text,
+                  //   bulanBerlaku: tambahKartuPageController.ctrBulan!.text,
+                  //   tahunBerlaku: tambahKartuPageController.ctrTahun!.text,
+                  //   cvv: tambahKartuPageController.ctrCvv!.text,
+                  // );
                 },
                 child: Container(
                   width: double.infinity,
