@@ -62,6 +62,7 @@ class Navbar extends StatelessWidget {
 
     return PersistentTabView(
       context,
+      margin: EdgeInsets.only(bottom: 20),
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
