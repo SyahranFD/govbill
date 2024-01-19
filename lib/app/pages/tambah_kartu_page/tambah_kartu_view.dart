@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/post_metode_pembayaran.dart';
+import 'package:govbill/app/pages/tambah_kartu_page/tambah_kartu_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class TambahKartuPageView extends StatelessWidget {
-  const TambahKartuPageView({Key? key}) : super(key: key);
+  final TambahKartuPageController tambahKartuPageController =
+      Get.put(TambahKartuPageController());
+  final PostMetodePembayaranController postMetodePembayaranController =
+      Get.put(PostMetodePembayaranController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +60,17 @@ class TambahKartuPageView extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
-                  decoration: globalInputDecoration(
-                      "Nomor Kartu Kredit/Debit",
-                      double.infinity,
-                      50,
-                      primaryColor,
-                      EdgeInsets.only(left: 15))),
+                keyboardType: TextInputType.number,
+                controller: tambahKartuPageController.ctrNomorKartu,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                decoration: globalInputDecoration(
+                    "Nomor Kartu Kredit/Debit",
+                    double.infinity,
+                    50,
+                    primaryColor,
+                    EdgeInsets.only(left: 15))),
               SizedBox(
                 height: 10,
               ),
@@ -102,12 +113,13 @@ class TambahKartuPageView extends StatelessWidget {
                           cursorWidth: 2.0,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
+                          controller: tambahKartuPageController.ctrBulan,
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(2),
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: globalInputDecoration(
-                              "07", 60, 30, lightGrey, EdgeInsets.all(10)),
+                              "07", 60, 30, lightGrey, EdgeInsets.all(0)),
                         ),
                         SizedBox(
                           width: 10,
@@ -123,12 +135,13 @@ class TambahKartuPageView extends StatelessWidget {
                           cursorWidth: 2.0,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
+                          controller: tambahKartuPageController.ctrTahun,
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(2),
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: globalInputDecoration(
-                              "26", 60, 30, lightGrey, EdgeInsets.all(10)),
+                              "26", 60, 30, lightGrey, EdgeInsets.all(0)),
                         ),
                       ],
                     ),
@@ -148,12 +161,13 @@ class TambahKartuPageView extends StatelessWidget {
                           cursorWidth: 2.0,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
+                          controller: tambahKartuPageController.ctrCvv,
                           inputFormatters: [
-                            LengthLimitingTextInputFormatter(2),
+                            LengthLimitingTextInputFormatter(3),
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           decoration: globalInputDecoration(
-                              "123", 70, 30, lightGrey, EdgeInsets.all(10)),
+                              "123", 70, 30, lightGrey, EdgeInsets.all(0)),
                         ),
                         SizedBox(
                           width: 15,
@@ -172,7 +186,14 @@ class TambahKartuPageView extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  await postMetodePembayaranController.tambahKartu(
+                    noKartu: tambahKartuPageController.ctrNomorKartu!.text,
+                    bulanBerlaku: tambahKartuPageController.ctrBulan!.text,
+                    tahunBerlaku: tambahKartuPageController.ctrTahun!.text,
+                    cvv: tambahKartuPageController.ctrCvv!.text,
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   height: 50,
