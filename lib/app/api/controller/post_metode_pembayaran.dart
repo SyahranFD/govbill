@@ -45,6 +45,10 @@ class PostMetodePembayaranController extends GetxController {
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
+        print(noKartu);
+        print(bulanBerlaku);
+        print(tahunBerlaku);
+        print(cvv);
         print(json.decode(response.body));
       }
     } catch (e) {

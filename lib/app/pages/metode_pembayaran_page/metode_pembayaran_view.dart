@@ -128,6 +128,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                 },
               ),
               InkWell(
+                onTap: () => Get.toNamed('/tambah-kartu'),
                 child: Container(
                   height: 50,
                   width: double.infinity,
