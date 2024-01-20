@@ -124,6 +124,12 @@ TextStyle tsBodySmallMediumDarkBlue = GoogleFonts.poppins(
 
 TextStyle tsBodySmallMediumRed = GoogleFonts.poppins(
   color: warningColor,
+   fontWeight: FontWeight.w500,
+  fontSize: figmaFontsize(12),
+);
+
+TextStyle tsBodySmallMediumBlack = GoogleFonts.poppins(
+  color: blackColor,
   fontWeight: FontWeight.w500,
   fontSize: figmaFontsize(12),
 );

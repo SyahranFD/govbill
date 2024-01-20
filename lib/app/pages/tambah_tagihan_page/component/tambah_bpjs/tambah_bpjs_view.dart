@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class TambahBpjsView extends StatelessWidget {
+class TambahBpjsView extends GetView<TambahTagihanPageController> {
   const TambahBpjsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final namaTagihanFormKey = GlobalKey<FormState>();
+    final noTagihanFormKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -36,8 +42,16 @@ class TambahBpjsView extends StatelessWidget {
               TextInputWidget(
                 hintText: "Nama Tagihan",
                 keyboard: TextInputType.name,
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                formKey: namaTagihanFormKey,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nama Tagihan tidak boleh kosong";
+                  } else {
+                    // controller.namaPGN.value = value;
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 height: 10,
@@ -49,8 +63,16 @@ class TambahBpjsView extends StatelessWidget {
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(11)
                 ],
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                formKey: noTagihanFormKey,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nomor Virtual Account tidak boleh kosong";
+                  } else {
+                    // controller.namaPGN.value = value;
+                  }
+                  return null;
+                },
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               ),
               SizedBox(
                 height: 5,
@@ -86,17 +108,14 @@ class TambahBpjsView extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    TextInputWidget(
-                      height: 35,
-                      width: 60,
-                      hintText: "20",
-                      keyboard: TextInputType.number,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      padding: EdgeInsets.only(top: 10, left: 15),
-                    ),
+                    DropdownDateWidget(
+                      minNumber: 1,
+                      maxNumber: 9,
+                      hintText: "02",
+                      onChanged: (value) {
+                        controller.tanggalPLN.value = value!;
+                      },
+                    )
                   ],
                 ),
               )
