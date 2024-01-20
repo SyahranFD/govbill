@@ -66,8 +66,13 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
               ),
               SearchDropdownWidget(
                 hintText: "Kota/Kabupaten",
-                onSaved: (value) {
-                  controller.kotaKabupatenPDAM.value = value!;
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Kota/Kabupaten tidak boleh kosong";
+                  } else {
+                    controller.kotaKabupatenPDAM.value = value;
+                  }
+                  return null;
                 },
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 contentPadding:

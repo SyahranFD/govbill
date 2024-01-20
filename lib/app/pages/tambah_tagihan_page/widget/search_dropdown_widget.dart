@@ -4,6 +4,7 @@ import 'package:searchfield/searchfield.dart';
 
 class SearchDropdownWidget extends StatelessWidget {
   final Key? key;
+  final Key? formKey;
   final String? hintText;
   final EdgeInsetsGeometry? contentPadding;
   final double? width;
@@ -19,11 +20,12 @@ class SearchDropdownWidget extends StatelessWidget {
     this.hintText,
     this.contentPadding,
     this.width,
+    this.formKey,
+    this.validator,
     this.height,
     this.onSaved,
     this.onChanged,
     this.onTap,
-    this.validator,
     this.suggestions,
     this.padding,
   }) : super(key: key);
@@ -35,6 +37,10 @@ class SearchDropdownWidget extends StatelessWidget {
       suggestionStyle: tsBodySmallRegularBlack,
       onSubmit: onSaved,
       onTap: onTap,
+      onSaved: onSaved,
+      key: formKey,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       searchInputDecoration: InputDecoration(
           hintText: hintText,
           hintStyle: tsBodySmallMediumDarkGrey,
@@ -44,9 +50,20 @@ class SearchDropdownWidget extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: secondaryColor, width: 2),
               borderRadius: BorderRadius.circular(10)),
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10))),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        border: OutlineInputBorder(
+            borderSide: formKey != null &&
+                    (formKey as GlobalKey<FormState>)
+                            .currentState
+                            ?.validate() ==
+                        true
+                ? BorderSide.none
+                : BorderSide(color: Colors.red, width: 2),
+            borderRadius: BorderRadius.circular(10)),
+      ),
       suggestionsDecoration: SuggestionDecoration(
         color: primaryColor,
         padding: padding ?? EdgeInsets.zero,
