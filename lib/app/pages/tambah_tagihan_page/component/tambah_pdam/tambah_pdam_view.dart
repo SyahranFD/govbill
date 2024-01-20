@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/search_dropdown_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:searchfield/searchfield.dart';
 
-class TambahPdamView extends StatelessWidget {
+class TambahPdamView extends GetView<TambahTagihanPageController> {
   const TambahPdamView({super.key});
 
   @override
@@ -36,17 +41,31 @@ class TambahPdamView extends StatelessWidget {
               TextInputWidget(
                 hintText: "Nama Tagihan",
                 keyboard: TextInputType.name,
+                validator: (p0) {
+                  if (p0!.isEmpty) {
+                    return "Nama Tagihan tidak boleh kosong";
+                  } else {
+                    controller.namaPDAM.value = p0;
+                  }
+                  return null;
+                },
                 height: 50,
                 padding: EdgeInsets.only(top: 10, left: 15),
               ),
               SizedBox(
                 height: 10,
               ),
-              TextInputWidget(
-                hintText: "Kabupaten/Kota",
-                keyboard: TextInputType.name,
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+              SearchDropdownWidget(
+                hintText: "Kota/Kabupaten",
+                onSaved: (value) {
+                  controller.kotaKabupatenPDAM.value = value!;
+                },
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                suggestions: controller.kabupatenData
+                    .map((e) => SearchFieldListItem(e))
+                    .toList(),
               ),
               SizedBox(
                 height: 10,
@@ -58,6 +77,14 @@ class TambahPdamView extends StatelessWidget {
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(12)
                 ],
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Id Pelanggan tidak boleh kosong";
+                  } else {
+                    controller.noPelangganPDAM.value = value;
+                  }
+                  return null;
+                },
                 height: 50,
                 padding: EdgeInsets.only(top: 10, left: 15),
               ),
@@ -95,16 +122,13 @@ class TambahPdamView extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    TextInputWidget(
-                      height: 35,
-                      width: 60,
-                      hintText: "20",
-                      keyboard: TextInputType.number,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      padding: EdgeInsets.only(top: 10, left: 15),
+                    DropdownDateWidget(
+                      hintText: "02",
+                      maxNumber: 20,
+                      minNumber: 5,
+                      onChanged: (value) {
+                        controller.tanggalPDAM.value = value!;
+                      },
                     ),
                   ],
                 ),

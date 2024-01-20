@@ -47,13 +47,20 @@ class TambahTagihanPageController extends GetxController {
   var kotaKabupatenPBB = "".obs;
   var noNOPPBB = "".obs;
   var tanggalPBB = 0.obs;
-
+  var bulanPBB = "".obs;
   void postTagihanPBB() async {
     await ApiTambahTagihanController.postTagihanPBB(
       namaTagihan: namaPBB.value,
       kotaKabupaten: kotaKabupatenPBB.value,
       noTagihan: noNOPPBB.value,
-      tanggalBayar: ctrTanggalBayar!.text,
+      tanggalBayar: tanggalPBB.value.toString(),
+      bulanBayar: bulanPBB.value,
     ).then((value) => isLoading.value = !isLoading.value);
   }
+
+  // Daftar PDAM
+  var namaPDAM = "".obs;
+  var kotaKabupatenPDAM = "".obs;
+  var noPelangganPDAM = "".obs;
+  var tanggalPDAM = 0.obs;
 }

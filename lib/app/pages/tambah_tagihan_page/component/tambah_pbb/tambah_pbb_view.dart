@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tambah_tagihan_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_bulan_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/search_dropdown_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
@@ -114,13 +115,40 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                       "Tanggal",
                       style: tsBodySmallSemiboldBlueGrey,
                     ),
-                    SizedBox(
+                    SizedBox(  
                       width: 10,
                     ),
                     DropdownDateWidget(
                       hintText: "02",
+                      maxNumber: 20,
+                      minNumber: 1,
                       onChanged: (value) {
                         controller.tanggalPBB.value = value!;
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      "Bulan",
+                      style: tsBodySmallSemiboldBlueGrey,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    DropdownBulanWidget(
+                      items: [
+                        "Maret",
+                        "April",
+                        "Mei",
+                        "Juni",
+                        "Juli",
+                        "Agustus",
+                        "September",
+                      ],
+                      onChanged: (value) {
+                        controller.bulanPBB.value = value!;
+          
                       },
                     )
                   ],

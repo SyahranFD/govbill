@@ -1,28 +1,28 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class DropdownDateWidget extends StatelessWidget {
-  final int? maxNumber;
+class DropdownBulanWidget extends StatelessWidget {
+  final Key? key;
   final String? hintText;
-  final void Function(int?)? onChanged;
-  final String? Function(int?)? validator;
-  final int? minNumber;
+  final void Function(String?)? onChanged;
+  final String? Function(String?)? validator;
   final Key? formKey;
-  DropdownDateWidget({
-    Key? key,
-    this.maxNumber,
+  final List<String> items;
+  DropdownBulanWidget({
+    this.key,
     this.hintText,
     this.onChanged,
-    this.minNumber,
     this.validator,
     this.formKey,
+    required this.items,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<int>(
-      items: List.generate(maxNumber!, (index) => index + minNumber!),
+    return DropdownSearch<String>(
+      items: items,
       // dropdownBuilder: (context, selectedItem) {
       //   return Container(
       //     alignment: Alignment.center,
@@ -34,7 +34,7 @@ class DropdownDateWidget extends StatelessWidget {
       validator: validator,
       dropdownDecoratorProps: DropDownDecoratorProps(
         dropdownSearchDecoration: InputDecoration(
-          constraints: BoxConstraints(maxWidth: 75, maxHeight: 40),
+          constraints: BoxConstraints(maxWidth: 130, maxHeight: 40),
           fillColor: primaryColor,
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           filled: true,
