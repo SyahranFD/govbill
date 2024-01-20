@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart';
+import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
@@ -164,6 +166,11 @@ class AppPages {
         name: _Paths.ONBOARDING,
         page: () => OnboardingPageView(),
         binding: OnboardingPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.BERHASIL_TERDAFTAR,
+        page: () => BerhasilTerdaftarPageView(),
+        binding: BerhasilTerdaftarPageBinding(),
         transition: Transition.noTransition),
   ];
 }

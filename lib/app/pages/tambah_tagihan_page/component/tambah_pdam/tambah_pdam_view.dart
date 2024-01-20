@@ -21,14 +21,19 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Daftarkan PDAM",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
+        title: Text("Daftarkan PDAM", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/icArrowBack.svg")),
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 20,
+            color: blackColor,
+          ),
+        ),
       ),
       body: Container(
         height: double.infinity,
@@ -146,7 +151,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
         onTap: () {
           if (namaTagihanFormKey.currentState!.validate() &&
               noTagihanFormKey.currentState!.validate()) {
-            print("sukses");
+            controller.postTagihanPDAM();
           }
         },
         title: "Daftar",
