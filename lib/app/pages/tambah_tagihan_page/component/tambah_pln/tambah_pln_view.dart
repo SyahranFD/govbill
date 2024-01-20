@@ -19,14 +19,18 @@ class TambahPlnView extends GetView<TambahTagihanPageController> {
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Daftarkan PLN",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
+        title: Text("Daftarkan PLN", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset("assets/icons/icArrowBack.svg"),
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 20,
+            color: blackColor,
+          ),
         ),
       ),
       body: Container(
@@ -43,7 +47,6 @@ class TambahPlnView extends GetView<TambahTagihanPageController> {
               hintText: "Nama Tagihan",
               keyboard: TextInputType.name,
               formKey: namaTagihanFormKey,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -109,7 +112,7 @@ class TambahPlnView extends GetView<TambahTagihanPageController> {
         onTap: () {
           if (namaTagihanFormKey.currentState!.validate() &&
               noTagihanFormKey.currentState!.validate()) {
-            print("hehe");
+            controller.postTagihanPLN();
           };
         },
         title: "Simpan",

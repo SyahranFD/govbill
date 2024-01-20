@@ -52,6 +52,28 @@ class ApiTagihanAkanDatangController extends GetxController {
     }
   }
 
+  Future postTagihanAkanDatang() async {
+    print('post tagihan akan datang dijalankan');
+    try {
+      isLoading.value = true;
+      var response = await http.post(Uri.parse('${url}/tagihan-tersedia/store'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil post tagihan akan datang');
+        Get.offNamed('/');
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
   void calculateTotalNominalTagihan() {
     int total = 0;
     listTagihanAkanDatang.forEach((tagihan) {
