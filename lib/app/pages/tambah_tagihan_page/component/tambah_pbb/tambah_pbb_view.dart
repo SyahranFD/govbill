@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tambah_tagihan_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_bulan_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/search_dropdown_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:searchfield/searchfield.dart';
 
-class TambahPbbView extends StatelessWidget {
-  final TambahTagihanPageController controller =
-      Get.put(TambahTagihanPageController());
+class TambahPbbView extends GetView<TambahTagihanPageController> {
   final ApiTambahTagihanController apiTambahTagihanController =
       Get.put(ApiTambahTagihanController());
 
   @override
   Widget build(BuildContext context) {
+    final namaTagihanFormKey = GlobalKey<FormState>();
+    final noTagihanFormKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -45,27 +48,50 @@ class TambahPbbView extends StatelessWidget {
               ),
               TextInputWidget(
                 hintText: "Nama Tagihan",
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
-                controller: controller.ctrNamaTagihan,
+                formKey: namaTagihanFormKey,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nama Tagihan tidak boleh kosong";
+                  } else {
+                    controller.namaPBB.value = value;
+                  }
+                  return null;
+                },
+                height: 55,
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                // controller: controller.ctrNamaTagihan,
               ),
               SizedBox(
                 height: 10,
               ),
-              TextInputWidget(
-                hintText: "Nama Kota/Kabupaten",
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
-                controller: controller.ctrKotaKabupaten,
+              SearchDropdownWidget(
+                hintText: "Kota/Kabupaten",
+                onSaved: (value) {
+                  controller.kotaKabupatenPBB.value = value!;
+                },
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                suggestions: controller.kabupatenData
+                    .map((e) => SearchFieldListItem(e))
+                    .toList(),
               ),
               SizedBox(
                 height: 10,
               ),
               TextInputWidget(
                 hintText: "Nomor Objek Pajak (NOP)",
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
-                controller: controller.ctrNoTagihan,
+                formKey: noTagihanFormKey,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nomor Objek Pajak tidak boleh kosong";
+                  } else {
+                    controller.noNOPPBB.value = value;
+                  }
+                  return null;
+                },
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                // controller: controller.ctrNoTagihan,
               ),
               SizedBox(
                 height: 5,
@@ -77,6 +103,7 @@ class TambahPbbView extends StatelessWidget {
                   style: tsLabelRegularRed,
                 ),
               ),
+            
               SizedBox(
                 height: 25,
               ),
@@ -88,51 +115,47 @@ class TambahPbbView extends StatelessWidget {
                       "Tanggal",
                       style: tsBodySmallSemiboldBlueGrey,
                     ),
+                    SizedBox(  
+                      width: 10,
+                    ),
+                    DropdownDateWidget(
+                      hintText: "02",
+                      maxNumber: 20,
+                      minNumber: 1,
+                      onChanged: (value) {
+                        controller.tanggalPBB.value = value!;
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      "Bulan",
+                      style: tsBodySmallSemiboldBlueGrey,
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    TextInputWidget(
-                      height: 35,
-                      width: 60,
-                      hintText: "20",
-                      keyboard: TextInputType.number,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
-                        FilteringTextInputFormatter.digitsOnly
+                    DropdownBulanWidget(
+                      items: [
+                        "Maret",
+                        "April",
+                        "Mei",
+                        "Juni",
+                        "Juli",
+                        "Agustus",
+                        "September",
                       ],
-                      padding: EdgeInsets.only(top: 10, left: 15),
-                      controller: controller.ctrTanggalBayar,
-                    ),
+                      onChanged: (value) {
+                        controller.bulanPBB.value = value!;
+          
+                      },
+                    )
                   ],
                 ),
               ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Bulan",
-                          style: tsBodySmallSemiboldBlueGrey,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        TextInputWidget(
-                          height: 35,
-                          width: 60,
-                          hintText: "20",
-                          keyboard: TextInputType.number,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(2),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          padding: EdgeInsets.only(top: 10, left: 15),
-                          controller: controller.ctrBulanBayar,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Obx(() => apiTambahTagihanController.isLoading.value
+                  
+                  Obx(() => controller.isLoading.value
                       ? Center(
                         child: CircularProgressIndicator(),
                   )
@@ -141,13 +164,11 @@ class TambahPbbView extends StatelessWidget {
           )),
       floatingActionButton: ButtonWidget(
         onTap: () async {
-          await apiTambahTagihanController.postTagihanPBB(
-              namaTagihan: controller.ctrNamaTagihan!.text,
-              kotaKabupaten: controller.ctrKotaKabupaten!.text,
-              noTagihan: controller.ctrNoTagihan!.text,
-              tanggalBayar: controller.ctrTanggalBayar!.text,
-              bulanBayar: controller.ctrBulanBayar!.text,
-          );
+          if (namaTagihanFormKey.currentState!.validate() &&
+              noTagihanFormKey.currentState!.validate()) {
+
+          }
+
         },
         title: "Daftar",
         height: 55,

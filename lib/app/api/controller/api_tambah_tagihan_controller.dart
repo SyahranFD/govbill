@@ -1,23 +1,24 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
-import 'package:govbill/app/pages/index.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class ApiTambahTagihanController extends GetxController {
-  final TagihanTerdaftarPageController tagihanTerdaftarPageController = Get.put(TagihanTerdaftarPageController());
-  final isLoading = false.obs;
-  final box = GetStorage();
+class ApiTambahTagihanController {
+  // static final TagihanTerdaftarPageController tagihanTerdaftarPageController =
+  //     Get.put(TagihanTerdaftarPageController());
 
-  Future postTagihanPBB({
-    required String noTagihan,
-    required String namaTagihan,
-    required String tanggalBayar,
-    required String bulanBayar,
-    required String kotaKabupaten
+
+  static final isLoading = false.obs;
+  static final box = GetStorage();
+
+  static Future postTagihanPBB({
+    String? noTagihan,
+    String? namaTagihan,
+    String? tanggalBayar,
+    String? bulanBayar,
+    String? kotaKabupaten,
   }) async {
     try {
       isLoading.value = true;

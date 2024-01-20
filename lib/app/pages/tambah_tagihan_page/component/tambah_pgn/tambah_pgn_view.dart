@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class TambahPgnView extends StatelessWidget {
+class TambahPgnView extends GetView<TambahTagihanPageController> {
   const TambahPgnView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final namaTagihanFormKey = GlobalKey<FormState>();
+    final noTagihanFormKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -36,8 +42,16 @@ class TambahPgnView extends StatelessWidget {
               TextInputWidget(
                 hintText: "Nama Tagihan",
                 keyboard: TextInputType.name,
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                formKey: namaTagihanFormKey,
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nama Tagihan tidak boleh kosong";
+                  } else {
+                    controller.namaPGN.value = value;
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 height: 10,
@@ -45,12 +59,20 @@ class TambahPgnView extends StatelessWidget {
               TextInputWidget(
                 hintText: "ID Pelanggan",
                 keyboard: TextInputType.number,
+                formKey: noTagihanFormKey,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(11)
                 ],
-                height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "ID Pelanggan tidak boleh kosong";
+                  } else {
+                    controller.idPelangganPGN.value = value;
+                  }
+                  return null;
+                },
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               ),
               SizedBox(
                 height: 5,
@@ -86,16 +108,13 @@ class TambahPgnView extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    TextInputWidget(
-                      height: 35,
-                      width: 60,
-                      hintText: "20",
-                      keyboard: TextInputType.number,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      padding: EdgeInsets.only(top: 10, left: 15),
+                    DropdownDateWidget(
+                      hintText: "02",
+                      maxNumber: 16,
+                      minNumber: 5,
+                      onChanged: (value) {
+                        controller.tanggalPGN.value = value!;
+                      },
                     ),
                   ],
                 ),
@@ -105,7 +124,12 @@ class TambahPgnView extends StatelessWidget {
         ),
       ),
       floatingActionButton: ButtonWidget(
-        onTap: () {},
+        onTap: () {
+          if (namaTagihanFormKey.currentState!.validate() &&
+              noTagihanFormKey.currentState!.validate()) {
+            print("hehe");
+          }
+        },
         title: "Daftar",
         height: 55,
         width: double.infinity,

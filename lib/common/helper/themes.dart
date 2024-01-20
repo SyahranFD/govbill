@@ -116,6 +116,12 @@ TextStyle tsBodySmallMediumDarkGrey = GoogleFonts.poppins(
   fontSize: figmaFontsize(12),
 );
 
+TextStyle tsBodySmallMediumBlack = GoogleFonts.poppins(
+  color: blackColor,
+  fontWeight: FontWeight.w500,
+  fontSize: figmaFontsize(12),
+);
+
 TextStyle tsBodySmallRegularBlack = GoogleFonts.poppins(
   color: blackColor,
   fontWeight: FontWeight.w400,
