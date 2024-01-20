@@ -58,7 +58,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 height: 55,
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
                 // controller: controller.ctrNamaTagihan,
               ),
               SizedBox(
@@ -69,6 +69,15 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                 onSaved: (value) {
                   controller.kotaKabupatenPBB.value = value!;
                 },
+                validator: (p0) {
+                  if (p0!.isEmpty) {
+                    return "Kota/Kabupaten tidak boleh kosong";
+                  } else {
+                    print(p0);
+                    controller.kotaKabupatenPBB.value = p0;
+                  }
+                  return null;
+                },                
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -90,7 +99,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                   }
                   return null;
                 },
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                 // controller: controller.ctrNoTagihan,
               ),
               SizedBox(
