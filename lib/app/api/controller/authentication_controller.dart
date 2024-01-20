@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class AuthenticationController {
-  static final isLoading = false.obs;
-  static final token = ''.obs;
+  final isLoading = false.obs;
+  final token = ''.obs;
 
-  static final box = GetStorage();
+  final box = GetStorage();
 
-  static Future register({
+  Future register({
     required String username,
     required String email,
     required String password,
@@ -58,7 +58,7 @@ class AuthenticationController {
     }
   }
 
-  static Future login({
+  Future login({
     required String email,
     required String password,
   }) async {
@@ -96,6 +96,39 @@ class AuthenticationController {
       }
     } catch (e) {
       isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
+  Future logout() async {
+    try {
+      isLoading.value = true;
+      var response = await http.delete(
+        Uri.parse('${url}/users/logout'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        box.remove('token');
+        Get.offAllNamed('/login');
+      } else {
+        isLoading.value = false;
+        Get.snackbar(
+          'Error',
+          json.decode(response.body)['message'],
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+
       print(e.toString());
     }
   }

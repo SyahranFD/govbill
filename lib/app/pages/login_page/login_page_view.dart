@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/authentication.dart';
+import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/app/pages/login_page/login_page_controller.dart';
 import 'package:govbill/app/pages/login_page/widget/login_form_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -55,10 +55,10 @@ class LoginPageView extends StatelessWidget {
 
               GestureDetector(
                 onTap: () async {
-                  // await authenticationController.login(
-                  //   email: loginPageController.ctrEmail!.text,
-                  //   password: loginPageController.ctrPassword!.text,
-                  // );
+                  await authenticationController.login(
+                    email: loginPageController.ctrEmail!.text,
+                    password: loginPageController.ctrPassword!.text,
+                  );
                 },
                 child: Container(
                     width: double.infinity,
