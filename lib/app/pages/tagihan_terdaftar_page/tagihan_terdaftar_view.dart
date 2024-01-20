@@ -15,8 +15,6 @@ class TagihanTerdaftarPageView extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    String jenisTagihan = tagihanTerdaftarPageController.selectedTagihan.value;
-
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -24,7 +22,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
         backgroundColor: backgroundPageColor,
         toolbarHeight: 75,
         centerTitle: true,
-        title: Text("$jenisTagihan Terdaftar", style: tsBodyLargeSemiboldBlack),
+        title: Text(tagihanTerdaftarPageController.selectedTagihan.value + "Terdaftar", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(
@@ -35,6 +33,11 @@ class TagihanTerdaftarPageView extends StatelessWidget {
         ),
       ),
       body: switchCaseTagihanTerdaftar(context: context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed('/tambah-tagihan-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
+        child: Icon(Icons.add, color: primaryColor,),
+        backgroundColor: secondaryColor,
+      )
     );
   }
 }

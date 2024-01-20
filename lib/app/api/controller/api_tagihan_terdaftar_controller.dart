@@ -59,6 +59,57 @@ class ApiTagihanTerdaftarController extends GetxController {
     }
   }
 
+  Future deleteTagihanTerdaftar(String id) async {
+    try {
+      isLoading.value = true;
+      var response = await http.delete(Uri.parse('${url}/tagihan-terdaftar/delete/$id'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil hapus tagihan terdaftar');
+        fetchTagihanTerdaftar();
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
+  Future updateTagihanTerdaftar({
+    String? id,
+    String? namaTagihan,
+    String? tanggalBayar,
+    String? bulanBayar
+  }) async {
+    try {
+      isLoading.value = true;
+      var response = await http.put(Uri.parse('${url}/tagihan-terdaftar/update/$id'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      }, body: {
+        'nama_tagihan': namaTagihan,
+        'tanggal_bayar': tanggalBayar,
+        'bulan_bayar': bulanBayar,
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil update tagihan terdaftar');
+        fetchTagihanTerdaftar();
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
   void syncFilterList() {
     listTagihanTerdaftarMotor.clear();
     listTagihanTerdaftarMobil.clear();

@@ -116,6 +116,18 @@ TextStyle tsBodySmallMediumDarkGrey = GoogleFonts.poppins(
   fontSize: figmaFontsize(12),
 );
 
+TextStyle tsBodySmallMediumDarkBlue = GoogleFonts.poppins(
+  color: blueGreyColor,
+  fontWeight: FontWeight.w500,
+  fontSize: figmaFontsize(12),
+);
+
+TextStyle tsBodySmallMediumRed = GoogleFonts.poppins(
+  color: warningColor,
+  fontWeight: FontWeight.w500,
+  fontSize: figmaFontsize(12),
+);
+
 TextStyle tsBodySmallRegularBlack = GoogleFonts.poppins(
   color: blackColor,
   fontWeight: FontWeight.w400,
@@ -202,6 +214,6 @@ TextStyle tsLabelRegularDarkGrey = GoogleFonts.poppins(
 
 TextStyle tsLabelRegularRed = GoogleFonts.poppins(
   color: warningColor,
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w400,
   fontSize: figmaFontsize(10),
 );

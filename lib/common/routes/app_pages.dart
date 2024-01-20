@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
+import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
 part 'app_routes.dart';
 
@@ -8,7 +10,7 @@ class AppPages {
   AppPages._();
   
 
-  static const INITIAL = Routes.PROFILE_PAGE;
+  static const INITIAL = Routes.LOGIN_PAGE;
 
   static final routes = [
     GetPage(
@@ -45,6 +47,12 @@ class AppPages {
       name: _Paths.TAGIHAN_TERDAFTAR_PAGE,
       page: () => TagihanTerdaftarPageView(),
       binding: TagihanTerdaftarPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.EDIT_TAGIHAN_TERDAFTAR_PAGE,
+      page: () => EditTagihanTerdaftarPageView(),
+      binding: EditTagihanTerdaftarPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
