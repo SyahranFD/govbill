@@ -3,12 +3,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
-import 'package:govbill/app/api/model/history_model.dart';
 import 'package:govbill/app/api/model/metode_pembayaran_model.dart';
-import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 
 class ApiMetodePembayaranController extends GetxController {
   RxList<MetodePembayaranModel> listMetodePembayaran = <MetodePembayaranModel>[].obs;
