@@ -7,7 +7,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.TAMBAH_PBB;
+  static const INITIAL = Routes.TAMBAH_PDAM;
 
   static final routes = [
     GetPage(

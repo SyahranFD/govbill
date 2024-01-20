@@ -15,6 +15,9 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
 
   @override
   Widget build(BuildContext context) {
+    final namaTagihanFormKey = GlobalKey<FormState>();
+    final noTagihanFormKey = GlobalKey<FormState>();
+    
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -41,6 +44,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
               TextInputWidget(
                 hintText: "Nama Tagihan",
                 keyboard: TextInputType.name,
+                formKey: namaTagihanFormKey,
                 validator: (p0) {
                   if (p0!.isEmpty) {
                     return "Nama Tagihan tidak boleh kosong";
@@ -50,7 +54,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               ),
               SizedBox(
                 height: 10,
@@ -73,6 +77,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
               TextInputWidget(
                 hintText: "Id Pelanggan",
                 keyboard: TextInputType.number,
+                formKey: noTagihanFormKey,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(12)
@@ -86,7 +91,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 height: 50,
-                padding: EdgeInsets.only(top: 10, left: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               ),
               SizedBox(
                 height: 5,
@@ -138,7 +143,12 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
         ),
       ),
       floatingActionButton: ButtonWidget(
-        onTap: () {},
+        onTap: () {
+          if (namaTagihanFormKey.currentState!.validate() &&
+              noTagihanFormKey.currentState!.validate()) {
+            print("sukses");
+          }
+        },
         title: "Daftar",
         height: 55,
         width: double.infinity,
