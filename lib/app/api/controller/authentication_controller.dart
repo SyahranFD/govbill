@@ -99,4 +99,37 @@ class AuthenticationController {
       print(e.toString());
     }
   }
+
+  Future logout() async {
+    try {
+      isLoading.value = true;
+      var response = await http.delete(
+        Uri.parse('${url}/users/logout'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        box.remove('token');
+        Get.offAllNamed('/login');
+      } else {
+        isLoading.value = false;
+        Get.snackbar(
+          'Error',
+          json.decode(response.body)['message'],
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+
+      print(e.toString());
+    }
+  }
 }
