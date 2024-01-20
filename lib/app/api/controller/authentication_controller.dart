@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class AuthenticationController {
-  static final isLoading = false.obs;
-  static final token = ''.obs;
+  final isLoading = false.obs;
+  final token = ''.obs;
 
-  static final box = GetStorage();
+  final box = GetStorage();
 
-  static Future register({
+  Future register({
     required String username,
     required String email,
     required String password,
@@ -58,7 +58,7 @@ class AuthenticationController {
     }
   }
 
-  static Future login({
+  Future login({
     required String email,
     required String password,
   }) async {

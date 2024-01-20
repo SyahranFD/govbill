@@ -5,6 +5,9 @@ import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/common/routes/app_pages.dart';
 
 class RegisterPageController extends GetxController {
+  final AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
+
   TextEditingController? ctrUsername = TextEditingController();
   TextEditingController? ctrEmail = TextEditingController();
   TextEditingController? ctrPassword = TextEditingController();
@@ -15,12 +18,12 @@ class RegisterPageController extends GetxController {
   var isLoading = false.obs;
 
   void register() async {
-    await AuthenticationController.register(
+    await authenticationController.register(
         username: ctrUsername!.text,
         email: ctrEmail!.text,
         password: ctrPassword!.text,
         phoneNumber: ctrPhoneNumber!.text);
-    isLoading.value = AuthenticationController.isLoading.value;
+    isLoading.value = authenticationController.isLoading.value;
     Get.offAll(Routes.TAMBAH_METODE_PEMBAYARAN_PAGE);
   }
 
