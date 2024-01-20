@@ -7,6 +7,7 @@ class SearchDropdownWidget extends StatelessWidget {
   final String? hintText;
   final EdgeInsetsGeometry? contentPadding;
   final double? width;
+  final void Function()? onTap;
   final double? height;
   final void Function(String?)? onSaved;
   final void Function(String)? onChanged;
@@ -21,6 +22,7 @@ class SearchDropdownWidget extends StatelessWidget {
     this.height,
     this.onSaved,
     this.onChanged,
+    this.onTap,
     this.validator,
     this.suggestions,
     this.padding,
@@ -29,8 +31,10 @@ class SearchDropdownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SearchField(
+
       suggestionStyle: tsBodySmallRegularBlack,
-      onSaved: onSaved,
+      onSubmit: onSaved,
+      onTap: onTap,
       searchInputDecoration: InputDecoration(
           hintText: hintText,
           hintStyle: tsBodySmallMediumDarkGrey,

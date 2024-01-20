@@ -48,7 +48,7 @@ class TambahBpjsView extends GetView<TambahTagihanPageController> {
                   if (value!.isEmpty) {
                     return "Nama Tagihan tidak boleh kosong";
                   } else {
-                    // controller.namaPGN.value = value;
+                    controller.namaBPJS.value = value;
                   }
                   return null;
                 },
@@ -68,7 +68,7 @@ class TambahBpjsView extends GetView<TambahTagihanPageController> {
                   if (value!.isEmpty) {
                     return "Nomor Virtual Account tidak boleh kosong";
                   } else {
-                    // controller.namaPGN.value = value;
+                    controller.noVABPJS.value = value;
                   }
                   return null;
                 },
@@ -113,7 +113,7 @@ class TambahBpjsView extends GetView<TambahTagihanPageController> {
                       maxNumber: 9,
                       hintText: "02",
                       onChanged: (value) {
-                        controller.tanggalPLN.value = value!;
+                        controller.tanggalBPJS.value = value!;
                       },
                     )
                   ],

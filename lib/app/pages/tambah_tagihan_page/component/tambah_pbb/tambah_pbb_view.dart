@@ -67,6 +67,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
               SearchDropdownWidget(
                 hintText: "Kota/Kabupaten",
                 onSaved: (value) {
+                  print(value);
                   controller.kotaKabupatenPBB.value = value!;
                 },
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -166,7 +167,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
         onTap: () async {
           if (namaTagihanFormKey.currentState!.validate() &&
               noTagihanFormKey.currentState!.validate()) {
-
+            controller.postTagihanPBB();
           }
 
         },
