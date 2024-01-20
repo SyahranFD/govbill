@@ -32,11 +32,11 @@ class TagihanTerdaftarBPJS extends StatelessWidget {
             top: 15, left: width * 0.05, right: width * 0.05),
         child: SingleChildScrollView(
           child: ListView.builder(
-            itemCount: apiTagihanTerdaftarController.listTagihanTerdaftarPBB.length,
+            itemCount: apiTagihanTerdaftarController.listTagihanTerdaftarBPJS.length,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarPBB[index];
+              var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarBPJS[index];
               var jenisTagihan = tagihan.jenisTagihan!;
               var tanggal = tagihan.tanggalBayar!;
               var bulan = DateFormat.MMMM('id_ID').format(DateTime(2022, tagihan.bulanBayar!));

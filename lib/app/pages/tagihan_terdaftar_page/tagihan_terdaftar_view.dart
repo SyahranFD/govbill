@@ -20,7 +20,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
         backgroundColor: backgroundPageColor,
         toolbarHeight: 75,
         centerTitle: true,
-        title: Text(tagihanTerdaftarPageController.selectedTagihan.value + "Terdaftar", style: tsBodyLargeSemiboldBlack),
+        title: Text(tagihanTerdaftarPageController.selectedTagihan.value + " Terdaftar", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(
@@ -32,7 +32,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
       ),
       body: switchCaseTagihanTerdaftar(context: context),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed('/tambah-tagihan-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
+        onPressed: () => Get.toNamed('/tambah-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
         child: Icon(Icons.add, color: primaryColor,),
         backgroundColor: secondaryColor,
       )
