@@ -129,7 +129,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                     ),
                     DropdownDateWidget(
                       hintText: "02",
-                      maxNumber: 20,
+                      maxNumber: 16,
                       minNumber: 5,
                       onChanged: (value) {
                         controller.tanggalPDAM.value = value!;

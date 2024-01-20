@@ -59,7 +59,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                 },
                 height: 55,
                 padding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-                controller: controller.ctrNamaTagihan,
+                // controller: controller.ctrNamaTagihan,
               ),
               SizedBox(
                 height: 10,
@@ -91,7 +91,7 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-                controller: controller.ctrNoTagihan,
+                // controller: controller.ctrNoTagihan,
               ),
               SizedBox(
                 height: 5,

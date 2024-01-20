@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tambah_tagihan_controller.dart';
 
 class TambahTagihanPageController extends GetxController {
-  TextEditingController? ctrNoTagihan = TextEditingController();
-  TextEditingController? ctrNamaTagihan = TextEditingController();
-  TextEditingController? ctrTanggalBayar = TextEditingController();
-  TextEditingController? ctrBulanBayar = TextEditingController();
-  TextEditingController? ctrKotaKabupaten = TextEditingController();
+  // TextEditingController? ctrNoTagihan = TextEditingController();
+  // TextEditingController? ctrNamaTagihan = TextEditingController();
+  // TextEditingController? ctrTanggalBayar = TextEditingController();
+  // TextEditingController? ctrBulanBayar = TextEditingController();
+  // TextEditingController? ctrKotaKabupaten = TextEditingController();
 
   var isLoading = false.obs;
   final kabupatenData = [
@@ -63,4 +63,16 @@ class TambahTagihanPageController extends GetxController {
   var kotaKabupatenPDAM = "".obs;
   var noPelangganPDAM = "".obs;
   var tanggalPDAM = 0.obs;
+
+  // Daftar PLN
+  var namaPLN = "".obs;
+  var kotaKabupatenPLN = "".obs;
+  var noMeterPLN = "".obs;
+  var tanggalPLN = 0.obs;
+
+  // Daftar PGN
+  var namaPGN = "".obs;
+  var idPelangganPGN = "".obs;
+  var tanggalPGN = 0.obs;
+
 }
