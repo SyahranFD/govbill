@@ -70,7 +70,7 @@ class TambahPlnView extends GetView<TambahTagihanPageController> {
                 if (value!.isEmpty) {
                   return "ID Pelanggan tidak boleh kosong";
                 } else {
-                  controller.noMeterPLN.value = value;
+                  controller.idPelangganPLN.value = value;
                 }
                 return null;
               },
@@ -110,8 +110,7 @@ class TambahPlnView extends GetView<TambahTagihanPageController> {
           if (namaTagihanFormKey.currentState!.validate() &&
               noTagihanFormKey.currentState!.validate()) {
             print("hehe");
-          }
-          ;
+          };
         },
         title: "Simpan",
         height: 55,
