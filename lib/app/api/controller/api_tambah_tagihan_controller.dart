@@ -87,7 +87,7 @@ class ApiTambahTagihanController {
 
       if (response.statusCode == 201) {
         isLoading.value = false;
-        Get.offAllNamed('/');
+        Get.offAllNamed('/berhasil-terdaftar');
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -130,7 +130,7 @@ class ApiTambahTagihanController {
 
       if (response.statusCode == 201) {
         isLoading.value = false;
-        Get.offAllNamed('/');
+        Get.offAllNamed('/berhasil-terdaftar');
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -216,7 +216,7 @@ class ApiTambahTagihanController {
 
       if (response.statusCode == 201) {
         isLoading.value = false;
-        Get.offAllNamed('/');
+        Get.offAllNamed('/berhasil-terdaftar');
       } else {
         isLoading.value = false;
         Get.snackbar(

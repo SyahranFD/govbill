@@ -33,42 +33,42 @@ class ProfilePageView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Container(
-                      //   height: 75,
-                      //   width: 75,
-                      //   margin: EdgeInsets.only(right: 15, top: 20),
-                      //   decoration: BoxDecoration(
-                      //       shape: BoxShape.circle,
-                      //       image: DecorationImage(
-                      //           image: AssetImage("assets/images/ovo.png"),
-                      //           fit: BoxFit.fill)),
-                      // ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            dataProfile.username!,
-                            style: tsBodyLargeSemiboldBlack,
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                                color: smoothGreen,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Text(dataProfile.email!,
-                                style: tsLabelMediumWhite),
-                          )
-                        ],
-                      ),
-                      Spacer(),
-                      SvgPicture.asset("assets/icons/icTableEdit.svg")
-                    ],
-                  ),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     // Container(
+                  //     //   height: 75,
+                  //     //   width: 75,
+                  //     //   margin: EdgeInsets.only(right: 15, top: 20),
+                  //     //   decoration: BoxDecoration(
+                  //     //       shape: BoxShape.circle,
+                  //     //       image: DecorationImage(
+                  //     //           image: AssetImage("assets/images/ovo.png"),
+                  //     //           fit: BoxFit.fill)),
+                  //     // ),
+                  //     Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         Text(
+                  //           dataProfile.username!,
+                  //           style: tsBodyLargeSemiboldBlack,
+                  //         ),
+                  //         Container(
+                  //           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  //           decoration: BoxDecoration(
+                  //               color: smoothGreen,
+                  //               borderRadius: BorderRadius.circular(10)),
+                  //           child: Text(dataProfile.email!,
+                  //               style: tsLabelMediumWhite),
+                  //         )
+                  //       ],
+                  //     ),
+                  //     Spacer(),
+                  //     SvgPicture.asset("assets/icons/icTableEdit.svg")
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 20,
                   ),

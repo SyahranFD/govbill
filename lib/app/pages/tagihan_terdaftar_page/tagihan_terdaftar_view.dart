@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/switch_case_tagihan_terdaftar.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class TagihanTerdaftarPageView extends StatelessWidget {
   final TagihanTerdaftarPageController tagihanTerdaftarPageController = Get.put(TagihanTerdaftarPageController());
+  final ApiTagihanTerdaftarController apiTagihanTerdaftarController =
+  Get.put(ApiTagihanTerdaftarController());
 
   @override
   Widget build(BuildContext context) {

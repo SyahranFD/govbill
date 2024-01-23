@@ -22,11 +22,7 @@ class HomePageView extends StatelessWidget {
       body: Obx(() {
         final bool isLoading = apiTagihanAkanDatangController.isLoading.value;
 
-        return isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Container(
+        return Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(
                   top: 60,

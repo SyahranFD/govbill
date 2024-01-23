@@ -21,6 +21,8 @@ class TagihanTerdaftarPGN extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
+    apiTagihanTerdaftarController.fetchTagihanTerdaftar();
+
     return Obx(
           () => apiTagihanTerdaftarController.isLoading.value
           ? Center(
@@ -39,7 +41,6 @@ class TagihanTerdaftarPGN extends StatelessWidget {
               var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarPGN[index];
               var jenisTagihan = tagihan.jenisTagihan!;
               var tanggal = tagihan.tanggalBayar!;
-              var bulan = DateFormat.MMMM('id_ID').format(DateTime(2022, tagihan.bulanBayar!));
 
               return Container(
                 width: double.infinity,
