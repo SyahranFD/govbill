@@ -18,6 +18,7 @@ class ApiTagihanAkanDatangController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     fetchTagihanAkanDatang();
+    postTagihanAkanDatang();
     initializeDateFormatting();
     super.onInit();
   }

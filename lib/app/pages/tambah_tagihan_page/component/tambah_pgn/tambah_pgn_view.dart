@@ -85,7 +85,7 @@ class TambahPgnView extends GetView<TambahTagihanPageController> {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
-                  "*ID Pelanggan Berjumlah 12 Digit",
+                  "*ID Pelanggan Berjumlah 8 Digit",
                   style: tsLabelRegularRed,
                 ),
               ),

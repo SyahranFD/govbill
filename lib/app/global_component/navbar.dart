@@ -4,7 +4,7 @@ import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-class Navbar extends StatelessWidget {
+class NavbarMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
