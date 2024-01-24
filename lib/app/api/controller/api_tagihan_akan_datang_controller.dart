@@ -32,8 +32,6 @@ class ApiTagihanAkanDatangController extends GetxController {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${box.read('token')}',
       });
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
       if (response.statusCode == 200) {
         isLoading.value = false;
         final content = json.decode(response.body)['data'];
