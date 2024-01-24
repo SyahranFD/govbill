@@ -4,14 +4,14 @@ import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
 import 'package:intl/intl.dart';
 
 class HomePageController extends GetxController {
-  final ApiTagihanAkanDatangController fetchTagihanAkanDatangController =
+  final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
 
   RxString totalNominal = "".obs;
 
   void calculateTotalNominalTagihan() {
     List<TagihanAkanDatangModel> tagihanList =
-        fetchTagihanAkanDatangController.listTagihanAkanDatang.value;
+        apiTagihanAkanDatangController.listTagihanAkanDatang.value;
 
     int total = 0;
     for (var tagihan in tagihanList) {
@@ -25,5 +25,10 @@ class HomePageController extends GetxController {
     totalNominal.value = totalNominalFormatted;
 
     print('Total Nominal Tagihan: $total');
+  }
+
+  Future<void> refreshData() async {
+    await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
+    return Future<void>.delayed(const Duration(seconds: 3));
   }
 }
