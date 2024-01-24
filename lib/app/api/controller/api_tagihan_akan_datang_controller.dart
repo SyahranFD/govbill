@@ -18,6 +18,7 @@ class ApiTagihanAkanDatangController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     fetchTagihanAkanDatang();
+    postTagihanAkanDatang();
     initializeDateFormatting();
     super.onInit();
   }
@@ -31,6 +32,8 @@ class ApiTagihanAkanDatangController extends GetxController {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${box.read('token')}',
       });
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
       if (response.statusCode == 200) {
         isLoading.value = false;
         final content = json.decode(response.body)['data'];
@@ -42,6 +45,28 @@ class ApiTagihanAkanDatangController extends GetxController {
         listTagihanAkanDatang.forEach((tagihan) {
           print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation
         });
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
+  Future postTagihanAkanDatang() async {
+    print('post tagihan akan datang dijalankan');
+    try {
+      isLoading.value = true;
+      var response = await http.post(Uri.parse('${url}/tagihan-tersedia/store'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil post tagihan akan datang');
+        Get.offNamed('/');
       } else {
         isLoading.value = false;
         print(json.decode(response.body));

@@ -36,7 +36,6 @@ class TagihanTerdaftarPLN extends StatelessWidget {
               var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarPLN[index];
               var jenisTagihan = tagihan.jenisTagihan!;
               var tanggal = tagihan.tanggalBayar!;
-              var bulan = DateFormat.MMMM('id_ID').format(DateTime(2022, tagihan.bulanBayar!));
 
               return Container(
                 width: double.infinity,

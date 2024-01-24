@@ -19,14 +19,19 @@ class TambahPgnView extends GetView<TambahTagihanPageController> {
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
-        title: Text(
-          "Daftarkan PGN",
-          style: tsBodyLargeSemiboldBlack,
-        ),
+        elevation: 0,
+        backgroundColor: backgroundPageColor,
+        toolbarHeight: 75,
         centerTitle: true,
+        title: Text("Daftarkan PGN", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/icArrowBack.svg")),
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 20,
+            color: blackColor,
+          ),
+        ),
       ),
       body: Container(
         height: double.infinity,
@@ -80,7 +85,7 @@ class TambahPgnView extends GetView<TambahTagihanPageController> {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
-                  "*ID Pelanggan Berjumlah 12 Digit",
+                  "*ID Pelanggan Berjumlah 8 Digit",
                   style: tsLabelRegularRed,
                 ),
               ),
@@ -127,7 +132,7 @@ class TambahPgnView extends GetView<TambahTagihanPageController> {
         onTap: () {
           if (namaTagihanFormKey.currentState!.validate() &&
               noTagihanFormKey.currentState!.validate()) {
-            print("hehe");
+            controller.postTagihanPGN();
           }
         },
         title: "Daftar",
