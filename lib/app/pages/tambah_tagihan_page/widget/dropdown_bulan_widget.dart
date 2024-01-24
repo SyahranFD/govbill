@@ -44,7 +44,13 @@ class DropdownBulanWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           border: OutlineInputBorder(
-            borderSide: BorderSide.none,
+            borderSide: formKey != null &&
+                    (formKey as GlobalKey<FormState>)
+                            .currentState
+                            ?.validate() ==
+                        true
+                ? BorderSide.none
+                : BorderSide(color: Colors.red, width: 2),
             borderRadius: BorderRadius.circular(10),
           ),
         ),

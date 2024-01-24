@@ -61,7 +61,7 @@ class ApiTambahTagihanController {
     }
   }
 
-  static Future postTagihanPDAM({
+  static Future<String?> postTagihanPDAM({
     String? noTagihan,
     String? namaTagihan,
     String? tanggalBayar,
@@ -86,23 +86,13 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["error"];
       }
     } catch (e) {
-      isLoading.value = false;
-
       print(e.toString());
+      return e.toString();
     }
   }
 
@@ -129,27 +119,17 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
-      isLoading.value = false;
 
       print(e.toString());
     }
   }
 
-  static Future postTagihanPGN({
+  static Future<String?> postTagihanPGN({
     String? noTagihan,
     String? namaTagihan,
     String? tanggalBayar,
@@ -172,21 +152,11 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
-      isLoading.value = false;
 
       print(e.toString());
     }

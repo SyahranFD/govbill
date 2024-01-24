@@ -7,19 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class AuthenticationController {
-  final isLoading = false.obs;
-  final token = ''.obs;
+  static final isLoading = false.obs;
+  static late String token = '';
 
-  final box = GetStorage();
+  static final box = GetStorage();
 
-  Future register({
+  static Future register({
     required String username,
     required String email,
     required String password,
     required String phoneNumber,
   }) async {
     try {
-      isLoading.value = true;
+
       var data = {
         'username': username,
         'email': email,
@@ -36,13 +36,13 @@ class AuthenticationController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        token.value = json.decode(response.body)['token'];
-        box.write('token', token.value);
-        print(token.value);
+
+        token = json.decode(response.body)['token'];
+        box.write('token', token);
+        print(token);
         Get.offAllNamed('/');
       } else {
-        isLoading.value = false;
+
         Get.snackbar(
           'Error',
           json.decode(response.body)['message'],
@@ -58,12 +58,12 @@ class AuthenticationController {
     }
   }
 
-  Future login({
+  static Future<String?> login({
     required String email,
     required String password,
   }) async {
     try {
-      isLoading.value = true;
+
       var data = {
         'email': email,
         'password': password,
@@ -78,31 +78,24 @@ class AuthenticationController {
       );
 
       if (response.statusCode == 200) {
-        isLoading.value = false;
-        token.value = json.decode(response.body)['token'];
-        box.write('token', token.value);
-        print(token.value);
-        Get.offAllNamed('/');
+
+        token = json.decode(response.body)['token'];
+        box.write('token', token);
+        print(token);
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)['message'];
       }
     } catch (e) {
       isLoading.value = false;
       print(e.toString());
     }
+    return null;
   }
 
-  Future logout() async {
+  static Future logout() async {
     try {
-      isLoading.value = true;
+
       var response = await http.delete(
         Uri.parse('${url}/users/logout'),
         headers: {
@@ -112,11 +105,11 @@ class AuthenticationController {
       );
 
       if (response.statusCode == 200) {
-        isLoading.value = false;
+
         box.remove('token');
         Get.offAllNamed('/login');
       } else {
-        isLoading.value = false;
+
         Get.snackbar(
           'Error',
           json.decode(response.body)['message'],

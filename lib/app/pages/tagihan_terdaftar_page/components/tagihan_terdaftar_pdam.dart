@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
-import 'package:intl/intl.dart';
 
 class TagihanTerdaftarPDAM extends StatelessWidget {
   final ApiTagihanTerdaftarController apiTagihanTerdaftarController =

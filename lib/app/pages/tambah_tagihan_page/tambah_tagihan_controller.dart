@@ -1,12 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tambah_tagihan_controller.dart';
+import 'package:govbill/common/helper/themes.dart';
+import 'package:govbill/common/routes/app_pages.dart';
 
 class TambahTagihanPageController extends GetxController {
-  // TextEditingController? ctrNoTagihan = TextEditingController();
-  // TextEditingController? ctrNamaTagihan = TextEditingController();
-  // TextEditingController? ctrTanggalBayar = TextEditingController();
-  // TextEditingController? ctrBulanBayar = TextEditingController();
-  // TextEditingController? ctrKotaKabupaten = TextEditingController();
+
+  static void snackbar(
+      {required String title,
+      required String message,
+      required Color backgroundColor}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: backgroundColor,
+      colorText: Colors.white,
+    );
+  }
 
   var isLoading = false.obs;
   final kabupatenData = [
@@ -64,12 +75,37 @@ class TambahTagihanPageController extends GetxController {
   var noPelangganPDAM = "".obs;
   var tanggalPDAM = 0.obs;
   void postTagihanPDAM() async {
+    isLoading.value = true;
     await ApiTambahTagihanController.postTagihanPDAM(
       namaTagihan: namaPDAM.value,
       kotaKabupaten: kotaKabupatenPDAM.value,
       noTagihan: noPelangganPDAM.value,
       tanggalBayar: tanggalPDAM.value.toString(),
-    ).then((value) => isLoading.value = !isLoading.value);
+    ).then((value) {
+      if (value == "success") {
+        snackbar(
+            title: "Success",
+            message: "Berhasil Menambahkan Tagihan PDAM",
+            backgroundColor: successColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.HOME_PAGE);
+      } else if (value == "Unauthenticated") {
+        snackbar(
+            title: "Error",
+            message: "Maaf Sesi Login Anda SUdah Habis, Silahkan Login Kembali",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.LOGIN_PAGE);
+      } else if (value == "ID Pelanggan Tidak Ditemukan") {
+        snackbar(
+            title: "Terjadi Kesalahan",
+            message: "Data Yang Anda Input Salah",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+      }
+    });
+
+
   }
 
   // Daftar PLN
@@ -95,6 +131,13 @@ class TambahTagihanPageController extends GetxController {
       noTagihan: idPelangganPGN.value,
       tanggalBayar: tanggalPGN.value.toString(),
     ).then((value) => isLoading.value = !isLoading.value);
+    Get.snackbar(
+      'Success',
+      "Berhasil Menambahkan Tagihan PGN",
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: successColor,
+      colorText: Colors.white,
+    );
   }
 
   // Daftar BPJS

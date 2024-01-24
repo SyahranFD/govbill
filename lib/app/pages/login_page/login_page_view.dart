@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/authentication_controller.dart';
 import 'package:govbill/app/pages/login_page/login_page_controller.dart';
 import 'package:govbill/app/pages/login_page/widget/login_form_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:govbill/common/routes/app_pages.dart';
 
-class LoginPageView extends StatelessWidget {
-  final LoginPageController loginPageController = Get.put(LoginPageController());
-  final AuthenticationController authenticationController = Get.put(AuthenticationController());
+class LoginPageView extends GetView<LoginPageController> {
+  LoginPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final _emailFormKey = GlobalKey<FormState>();
+    final _passwordFormKey = GlobalKey<FormState>();
+    
     return Scaffold(
       backgroundColor: backgroundPageColor,
       body: Container(
@@ -20,7 +22,7 @@ class LoginPageView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [ 
+            children: [
               SizedBox(
                 height: 50,
               ),
@@ -43,22 +45,48 @@ class LoginPageView extends StatelessWidget {
                 iconPrefix: SvgPicture.asset("assets/icons/icEmail.svg"),
                 hintText: "Email",
                 isObsecure: false,
-                controller: loginPageController.ctrEmail,
+                formKey: _emailFormKey,
+                validator: (value) {
+                  if (controller.validateEmail(value) == false) {
+                    return "Email Tidak Valid";
+                  }
+                  return null;
+                },
+                controller: controller.ctrEmail,
               ),
-              LoginFormWidget(
+              Obx(() => LoginFormWidget(
                   iconPrefix: SvgPicture.asset("assets/icons/icLock.svg"),
                   hintText: "Kata Sandi",
-                  isObsecure: true,
-                  controller: loginPageController.ctrPassword,
+                  isObsecure: controller.isObsecure.value,
+                  controller: controller.ctrPassword,
+                  formKey: _passwordFormKey,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Password Harus Diisi";
+                    }
+                    return null;
+                  },
                   iconSuffix: IconButton(
-                      onPressed: () {}, icon: Icon(Icons.visibility))),
-
+                      onPressed: () {
+                        controller.isObsecure.value =
+                            !controller.isObsecure.value;
+                      },
+                      icon: controller.isObsecure.value
+                          ? Icon(
+                              Icons.visibility_off,
+                              size: 25,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              size: 25,
+                            )))),
               GestureDetector(
                 onTap: () async {
-                  await authenticationController.login(
-                    email: loginPageController.ctrEmail!.text,
-                    password: loginPageController.ctrPassword!.text,
-                  );
+                  _emailFormKey.currentState!.validate();
+                  if (_emailFormKey.currentState!.validate() &&
+                      _passwordFormKey.currentState!.validate()) {
+                    await controller.login();
+                  }
                 },
                 child: Container(
                     width: double.infinity,
@@ -81,7 +109,9 @@ class LoginPageView extends StatelessWidget {
                     style: tsLabelRegularDarkGrey,
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.REGISTER_PAGE);
+                      },
                       child: Text(
                         "Daftar Sekarang!",
                         style: tsLabelRegularDarkBlue,
