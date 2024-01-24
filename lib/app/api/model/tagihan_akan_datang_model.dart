@@ -10,8 +10,8 @@ String tagihanAkanDatangModelToJson(TagihanAkanDatangModel data) => json.encode(
 
 class TagihanAkanDatangModel {
   int? id;
-  String? idUser;
-  String? idTagihanTerdaftar;
+  int? idUser;
+  int? idTagihanTerdaftar;
   String? jenisTagihan;
   String? noTagihan;
   String? namaTagihan;
