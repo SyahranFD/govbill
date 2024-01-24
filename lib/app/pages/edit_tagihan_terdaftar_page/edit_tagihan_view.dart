@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_controller.dart';
-import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/switch_case_tagihan_terdaftar.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
