@@ -33,12 +33,12 @@ class ApiTagihanAkanDatangController extends GetxController {
         'Authorization': 'Bearer ${box.read('token')}',
       });
       if (response.statusCode == 200) {
-        isLoading.value = false;
         final content = json.decode(response.body)['data'];
         for (var item in content) {
           listTagihanAkanDatang.add(TagihanAkanDatangModel.fromJson(item));
         }
         calculateTotalNominalTagihan();
+        isLoading.value = false;
         print('berhasil fetch tagihan akan datang');
         listTagihanAkanDatang.forEach((tagihan) {
           print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation

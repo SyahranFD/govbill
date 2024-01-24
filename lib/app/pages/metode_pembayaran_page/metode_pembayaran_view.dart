@@ -28,7 +28,6 @@ class MetodePembayaranPageView extends StatelessWidget {
       ),
       body: Obx(() {
         if (apiMetodePembayaranController.isLoading.value) {
-          // Show loading indicator
           return Center(
             child: CircularProgressIndicator(),
           );

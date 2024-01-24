@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class CardTagihanAkanDatangMobil extends StatelessWidget {
+class CardTagihanAkanDatangPGN extends StatelessWidget {
 
-  CardTagihanAkanDatangMobil(
+  CardTagihanAkanDatangPGN(
       {Key? key,
         required this.noTagihan,
         required this.jenisTagihan,
@@ -47,7 +47,7 @@ class CardTagihanAkanDatangMobil extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("NRKB : $noTagihan", style: tsLabelRegularDarkBlue),
+                Text("ID Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
 
                 SizedBox(height: 10),
 
@@ -57,7 +57,7 @@ class CardTagihanAkanDatangMobil extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: categoryMobil,
+                        color: categoryPGN,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
@@ -76,7 +76,7 @@ class CardTagihanAkanDatangMobil extends StatelessWidget {
                         width: 24,
                       ),
                     ),
-                    SizedBox(width: width * 0.04),
+                    SizedBox(width: width * 0.02),
                     Container(
                       width: width * 0.7,
                       child: Column(

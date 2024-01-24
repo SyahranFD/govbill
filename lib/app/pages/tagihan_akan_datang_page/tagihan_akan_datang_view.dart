@@ -6,6 +6,7 @@ import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagih
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_motor.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pbb.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pdam.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pgn.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pln.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
@@ -70,47 +71,54 @@ class TagihanAkanDatangPageView extends StatelessWidget {
                                   children: [
                                     tagihan.jenisTagihan == "BPJS"
                                         ? CardTagihanAkanDatangBPJS(
-                                            noTagihan: tagihan.noTagihan,
-                                            jenisTagihan: tagihan.jenisTagihan,
-                                            namaTagihan: tagihan.namaTagihan,
-                                            waktuBayar: paymentDateFormatted,
-                                            nominalTagihan: nominalTagihanFormatted)
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
                                         : tagihan.jenisTagihan == "PDAM"
-                                            ? CardTagihanAkanDatangPDAM(
-                                                noTagihan: tagihan.noTagihan,
-                                                jenisTagihan: tagihan.jenisTagihan,
-                                                namaTagihan: tagihan.namaTagihan,
-                                                waktuBayar: paymentDateFormatted,
-                                                nominalTagihan: nominalTagihanFormatted)
-                                            : tagihan.jenisTagihan == "PLN"
-                                                ? CardTagihanAkanDatangPLN(
-                                                    noTagihan: tagihan.noTagihan,
-                                                    jenisTagihan: tagihan.jenisTagihan,
-                                                    namaTagihan: tagihan.namaTagihan,
-                                                    waktuBayar: paymentDateFormatted,
-                                                    nominalTagihan: nominalTagihanFormatted)
-                                                : tagihan.jenisTagihan == "PBB"
-                                                    ? CardTagihanAkanDatangPBB(
-                                                        noTagihan: tagihan.noTagihan,
-                                                        jenisTagihan: tagihan.jenisTagihan,
-                                                        namaTagihan: tagihan.namaTagihan,
-                                                        waktuBayar: paymentDateFormatted,
-                                                        nominalTagihan: nominalTagihanFormatted)
-                                                    : tagihan.jenisTagihan == "Mobil"
-                                                        ? CardTagihanAkanDatangMobil(
-                                                            noTagihan: tagihan.noTagihan,
-                                                            jenisTagihan: tagihan.jenisTagihan,
-                                                            namaTagihan: tagihan.namaTagihan,
-                                                            waktuBayar: paymentDateFormatted,
-                                                            nominalTagihan: nominalTagihanFormatted)
-                                                        : tagihan.jenisTagihan == "Motor"
-                                                            ? CardTagihanAkanDatangMotor(
-                                                                noTagihan: tagihan.noTagihan,
-                                                                jenisTagihan: tagihan.jenisTagihan,
-                                                                namaTagihan: tagihan.namaTagihan,
-                                                                waktuBayar: paymentDateFormatted,
-                                                                nominalTagihan: nominalTagihanFormatted)
-                                                            : Container(),
+                                        ? CardTagihanAkanDatangPDAM(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : tagihan.jenisTagihan == "PLN"
+                                        ? CardTagihanAkanDatangPLN(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : tagihan.jenisTagihan == "PBB"
+                                        ? CardTagihanAkanDatangPBB(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : tagihan.jenisTagihan == "Mobil"
+                                        ? CardTagihanAkanDatangMobil(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : tagihan.jenisTagihan == "Motor"
+                                        ? CardTagihanAkanDatangMotor(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : tagihan.jenisTagihan == "PGN"
+                                        ? CardTagihanAkanDatangPGN(
+                                        noTagihan: tagihan.noTagihan,
+                                        jenisTagihan: tagihan.jenisTagihan,
+                                        namaTagihan: tagihan.namaTagihan,
+                                        waktuBayar: paymentDateFormatted,
+                                        nominalTagihan: nominalTagihanFormatted)
+                                        : Container(),
                                   ],
                                 ),
                               ),

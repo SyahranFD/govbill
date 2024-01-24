@@ -16,7 +16,6 @@ class ApiHistoryController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     fetchHistory();
-    initializeDateFormatting();
     super.onInit();
   }
 
@@ -37,7 +36,7 @@ class ApiHistoryController extends GetxController {
         }
         print('berhasil fetch history');
         listHistory.forEach((tagihan) {
-          print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation
+          print(tagihan.toJson());
         });
       } else {
         isLoading.value = false;

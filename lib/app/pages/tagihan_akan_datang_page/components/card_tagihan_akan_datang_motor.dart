@@ -42,7 +42,7 @@ class CardTagihanAkanDatangMotor extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 15, bottom: 20, left: 15, right: 15),
+            margin: EdgeInsets.only(top: 15, bottom: 20, left: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,19 +77,19 @@ class CardTagihanAkanDatangMotor extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: width * 0.04),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            width: width * 0.685,
-                            child: Text("$namaTagihan", style: tsBodySmallSemiboldBlack)
-                        ),
-                        SizedBox(height: 4),
-                        Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
-                        SizedBox(height: 4),
-                        Text("$nominalTagihan", style: tsLabelRegularRed),
-                      ],
-                    )
+                    Container(
+                      width: width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("$namaTagihan", style: tsBodySmallSemiboldBlack),
+                          SizedBox(height: 4),
+                          Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
+                          SizedBox(height: 4),
+                          Text("$nominalTagihan", style: tsLabelRegularRed),
+                        ],
+                      ),
+                    ),
                   ],
                 )
               ],
