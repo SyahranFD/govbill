@@ -21,8 +21,6 @@ class TagihanTerdaftarPGN extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    apiTagihanTerdaftarController.fetchTagihanTerdaftar();
-
     return Obx(
           () => apiTagihanTerdaftarController.isLoading.value
           ? Center(

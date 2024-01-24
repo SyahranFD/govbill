@@ -9,9 +9,10 @@ import 'package:govbill/app/pages/home_page/components/home_total_tagihan_compon
 import 'package:govbill/app/pages/home_page/home_page_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class HomePageView extends GetView<HomePageController> {
+class HomePageView extends StatelessWidget {
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
-  Get.put(ApiTagihanAkanDatangController());
+      Get.put(ApiTagihanAkanDatangController());
+  final HomePageController controller = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,7 @@ class HomePageView extends GetView<HomePageController> {
                 children: [
                   HomeMenyambutUserComponent(),
                   SizedBox(height: 30),
-                  isLoading
-                      ? CircularProgressIndicator()  // Show loading indicator
-                      : HomeTotalTagihanComponent(),  // Show data when not loading
+                  HomeTotalTagihanComponent(),
                   SizedBox(height: 30),
                   HomeCategoryComponent(),
                   SizedBox(height: 30),

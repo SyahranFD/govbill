@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_history_controller.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
 import 'package:intl/intl.dart';
@@ -6,6 +7,8 @@ import 'package:intl/intl.dart';
 class HomePageController extends GetxController {
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
+  final ApiHistoryController apiHistoryController =
+      Get.put(ApiHistoryController());
 
   RxString totalNominal = "".obs;
 
@@ -28,7 +31,10 @@ class HomePageController extends GetxController {
   }
 
   Future<void> refreshData() async {
+    apiHistoryController.fetchHistory();
+    apiTagihanAkanDatangController.listTagihanAkanDatang.forEach((tagihan) {
+      print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation
+    });
     await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
-    return Future<void>.delayed(const Duration(seconds: 3));
   }
 }

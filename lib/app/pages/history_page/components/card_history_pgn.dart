@@ -42,7 +42,7 @@ class CardHistoryPGN extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 15),
+            margin: EdgeInsets.only(top: 20, bottom: 20, left: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,16 +73,16 @@ class CardHistoryPGN extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: width * 0.04),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("ID Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
-                        Container(
-                            width: width * 0.685,
-                            child: Text("$namaTagihan", style: tsBodySmallSemiboldBlack)
-                        ),
-                      ],
-                    )
+                    Container(
+                      width: width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("ID Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
+                          Text("$namaTagihan", style: tsBodySmallSemiboldBlack),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
 
@@ -96,7 +96,7 @@ class CardHistoryPGN extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Dibayar pada tanggal $waktuBayar", style: tsLabelRegularBlack),
+                        Text("Dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
                         Text("$nominalTagihan", style: tsLabelSemiboldDarkBlue),
                       ],
                     ),

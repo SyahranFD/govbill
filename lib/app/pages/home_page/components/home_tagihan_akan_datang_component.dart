@@ -7,6 +7,7 @@ import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagih
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_motor.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pbb.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pdam.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pgn.dart';
 import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pln.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
@@ -24,18 +25,18 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text("Tagihan Akan Datang", style: tsBodyMediumSemiboldBlack),
             InkWell(
               onTap: () {
                 Get.toNamed("/tagihan-akan-datang");
               },
-              child: Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue),
+              child: Text("Selengkapnya", style: tsLabelMediumDarkBlue),
             ),
           ],
         ),
-        SizedBox(height: 15),
+        // SizedBox(height: 15),
         Obx(
           () => apiTagihanAkanDatangController.isLoading.value
               ? Center(
@@ -49,109 +50,91 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
                       child: Text("Tidak Ada Tagihan",
                           style: tsBodyMediumRegularDarkGrey),
                     )
-                  : Column(
-                      children: apiTagihanAkanDatangController
-                          .listTagihanAkanDatang
-                          .map((tagihan) {
-                        var nominalTagihanFormatted = NumberFormat.currency(
-                          locale: 'id_ID',
-                          symbol: 'Rp ',
-                        ).format(tagihan.nominalTagihan);
-                        nominalTagihanFormatted =
-                            nominalTagihanFormatted.replaceAll(",00", "");
+                  : ListView.builder(
+                    itemCount: 2,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var tagihan = apiTagihanAkanDatangController
+                          .listTagihanAkanDatang[index];
+                      var nominalTagihanFormatted = NumberFormat.currency(
+                        locale: 'id_ID',
+                        symbol: 'Rp ',
+                      ).format(tagihan.nominalTagihan);
+                      nominalTagihanFormatted =
+                          nominalTagihanFormatted.replaceAll(",00", "");
 
-                        var paymentDateFormatted = tagihan.waktuBayar != null
-                            ? DateFormat('dd MMMM yyyy', 'id_ID')
-                                .format(tagihan.waktuBayar!)
-                            : 'N/A';
+                      var paymentDateFormatted = tagihan.waktuBayar != null
+                          ? DateFormat('dd MMMM yyyy', 'id_ID')
+                              .format(tagihan.waktuBayar!)
+                          : 'N/A';
 
-                        return Container(
-                          margin: EdgeInsets.only(bottom: 0),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                child: Column(
-                                  children: [
-                                    tagihan.jenisTagihan == "BPJS"
-                                        ? CardTagihanAkanDatangBPJS(
-                                            noTagihan: tagihan.noTagihan,
-                                            jenisTagihan: tagihan.jenisTagihan,
-                                            namaTagihan: tagihan.namaTagihan,
-                                            waktuBayar: paymentDateFormatted,
-                                            nominalTagihan:
-                                                nominalTagihanFormatted)
-                                        : tagihan.jenisTagihan == "PDAM"
-                                            ? CardTagihanAkanDatangPDAM(
-                                                noTagihan: tagihan.noTagihan,
-                                                jenisTagihan:
-                                                    tagihan.jenisTagihan,
-                                                namaTagihan:
-                                                    tagihan.namaTagihan,
-                                                waktuBayar:
-                                                    paymentDateFormatted,
-                                                nominalTagihan:
-                                                    nominalTagihanFormatted)
-                                            : tagihan.jenisTagihan == "PLN"
-                                                ? CardTagihanAkanDatangPLN(
-                                                    noTagihan:
-                                                        tagihan.noTagihan,
-                                                    jenisTagihan:
-                                                        tagihan.jenisTagihan,
-                                                    namaTagihan:
-                                                        tagihan.namaTagihan,
-                                                    waktuBayar:
-                                                        paymentDateFormatted,
-                                                    nominalTagihan:
-                                                        nominalTagihanFormatted)
-                                                : tagihan.jenisTagihan == "PBB"
-                                                    ? CardTagihanAkanDatangPBB(
-                                                        noTagihan:
-                                                            tagihan.noTagihan,
-                                                        jenisTagihan: tagihan
-                                                            .jenisTagihan,
-                                                        namaTagihan:
-                                                            tagihan.namaTagihan,
-                                                        waktuBayar:
-                                                            paymentDateFormatted,
-                                                        nominalTagihan:
-                                                            nominalTagihanFormatted)
-                                                    : tagihan.jenisTagihan ==
-                                                            "Mobil"
-                                                        ? CardTagihanAkanDatangMobil(
-                                                            noTagihan: tagihan
-                                                                .noTagihan,
-                                                            jenisTagihan: tagihan
-                                                                .jenisTagihan,
-                                                            namaTagihan: tagihan
-                                                                .namaTagihan,
-                                                            waktuBayar:
-                                                                paymentDateFormatted,
-                                                            nominalTagihan:
-                                                                nominalTagihanFormatted)
-                                                        : tagihan.jenisTagihan ==
-                                                                "Motor"
-                                                            ? CardTagihanAkanDatangMotor(
-                                                                noTagihan: tagihan
-                                                                    .noTagihan,
-                                                                jenisTagihan:
-                                                                    tagihan
-                                                                        .jenisTagihan,
-                                                                namaTagihan: tagihan
-                                                                    .namaTagihan,
-                                                                waktuBayar:
-                                                                    paymentDateFormatted,
-                                                                nominalTagihan:
-                                                                    nominalTagihanFormatted)
-                                                            : Container(),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ),
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 0),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              child: Column(
+                                children: [
+                                  tagihan.jenisTagihan == "BPJS"
+                                      ? CardTagihanAkanDatangBPJS(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "PDAM"
+                                      ? CardTagihanAkanDatangPDAM(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "PLN"
+                                      ? CardTagihanAkanDatangPLN(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "PBB"
+                                      ? CardTagihanAkanDatangPBB(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "Mobil"
+                                      ? CardTagihanAkanDatangMobil(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "Motor"
+                                      ? CardTagihanAkanDatangMotor(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan == "PGN"
+                                      ? CardTagihanAkanDatangPGN(
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted)
+                                      : Container(),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
         ),
       ],
     );

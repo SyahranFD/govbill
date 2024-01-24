@@ -26,6 +26,7 @@ class HistoryPageView extends StatelessWidget {
         backgroundColor: backgroundPageColor,
         toolbarHeight: 75,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text("History", style: tsBodyLargeSemiboldBlack),
       ),
       body: Obx(

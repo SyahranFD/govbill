@@ -26,7 +26,7 @@ class HomeHistoryComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text("Pembayaran Terakhir", style: tsBodyMediumSemiboldBlack),
             InkWell(
@@ -34,12 +34,12 @@ class HomeHistoryComponent extends StatelessWidget {
                 PersistentNavBarNavigator.pushNewScreen(
                   context,
                   screen: HistoryPageView(),
-                  withNavBar: true, // OPTIONAL VALUE. True by default.
+                  withNavBar: true,
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
               },
               child:
-              Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue),
+              Text("Selengkapnya", style: tsLabelMediumDarkBlue),
             ),
           ],
         ),
