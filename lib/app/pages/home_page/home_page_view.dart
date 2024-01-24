@@ -6,11 +6,12 @@ import 'package:govbill/app/pages/home_page/components/home_history_component.da
 import 'package:govbill/app/pages/home_page/components/home_menyambut_user_component.dart';
 import 'package:govbill/app/pages/home_page/components/home_tagihan_akan_datang_component.dart';
 import 'package:govbill/app/pages/home_page/components/home_total_tagihan_component.dart';
+import 'package:govbill/app/pages/home_page/home_page_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class HomePageView extends StatelessWidget {
+class HomePageView extends GetView<HomePageController> {
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
-      Get.put(ApiTagihanAkanDatangController());
+  Get.put(ApiTagihanAkanDatangController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,30 +23,36 @@ class HomePageView extends StatelessWidget {
       body: Obx(() {
         final bool isLoading = apiTagihanAkanDatangController.isLoading.value;
 
-        return Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(
-                  top: 60,
-                  left: width * 0.05,
-                  right: width * 0.05,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      HomeMenyambutUserComponent(),
-                      SizedBox(height: 30),
-                      HomeTotalTagihanComponent(),
-                      SizedBox(height: 30),
-                      HomeCategoryComponent(),
-                      SizedBox(height: 30),
-                      HomeTagihanAkanDatangComponent(),
-                      SizedBox(height: 30),
-                      HomeHistoryComponent(),
-                      SizedBox(height: 75),
-                    ],
-                  ),
-                ),
-              );
+        return RefreshIndicator(
+          onRefresh: () => controller.refreshData(),
+          child: Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(
+              top: 60,
+              left: width * 0.05,
+              right: width * 0.05,
+            ),
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  HomeMenyambutUserComponent(),
+                  SizedBox(height: 30),
+                  isLoading
+                      ? CircularProgressIndicator()  // Show loading indicator
+                      : HomeTotalTagihanComponent(),  // Show data when not loading
+                  SizedBox(height: 30),
+                  HomeCategoryComponent(),
+                  SizedBox(height: 30),
+                  HomeTagihanAkanDatangComponent(),
+                  SizedBox(height: 30),
+                  HomeHistoryComponent(),
+                  SizedBox(height: 75),
+                ],
+              ),
+            ),
+          ),
+        );
       }),
     );
   }
