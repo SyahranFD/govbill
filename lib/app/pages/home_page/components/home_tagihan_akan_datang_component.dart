@@ -27,7 +27,7 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text("Tagihan Akan Datang", style: tsBodyMediumSemiboldBlack),
+            Text("Tagihan Tersedia", style: tsBodyMediumSemiboldBlack),
             InkWell(
               onTap: () {
                 Get.toNamed("/tagihan-akan-datang");
@@ -36,12 +36,16 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
             ),
           ],
         ),
-        // SizedBox(height: 15),
+        SizedBox(height: 15),
         Obx(
           () => apiTagihanAkanDatangController.isLoading.value
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? Container(
+                width: double.infinity,
+                height: 100,
+                child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+              )
               : apiTagihanAkanDatangController.listTagihanAkanDatang.isEmpty
                   ? Container(
                       alignment: Alignment.center,
@@ -52,6 +56,7 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
                     )
                   : ListView.builder(
                     itemCount: 2,
+                    padding: EdgeInsets.zero,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
