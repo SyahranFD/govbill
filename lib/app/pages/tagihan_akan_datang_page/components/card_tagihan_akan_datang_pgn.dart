@@ -76,7 +76,7 @@ class CardTagihanAkanDatangPGN extends StatelessWidget {
                         width: 24,
                       ),
                     ),
-                    SizedBox(width: width * 0.02),
+                    SizedBox(width: width * 0.04),
                     Container(
                       width: width * 0.7,
                       child: Column(

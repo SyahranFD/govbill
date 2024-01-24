@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/index.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/bottom_sheet_tagihan_terdaftar.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/modal_text_input_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -62,50 +63,12 @@ class TagihanTerdaftarPBB extends StatelessWidget {
                               //** Ubah ini
                               Text("NOP : " + tagihan.noTagihan!,
                                   style: tsLabelRegularDarkBlue),
-                              IconButton(
-                                  onPressed: () {
-                                    showModalBottomSheet(
-                                        context: context,
-                                        backgroundColor: backgroundPageColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                        builder: (context) {
-                                          return Container(
-                                            padding: EdgeInsets.symmetric(vertical: 15),
-                                            height: 200,
-                                            child: Column(
-                                              children: [
-                                                ListTile(
-                                                  leading: Icon(Icons.edit_outlined, color: darkGrey),
-                                                  title: Text("Edit Tagihan", style: tsBodySmallMediumDarkGrey),
-                                                  onTap: () {
-                                                    Get.back();
-                                                    tagihanTerdaftarPageController.updateControllerValuesWithBulanBayar(index);
-                                                    Get.toNamed('/edit-tagihan-terdaftar');
-                                                  },
-                                                ),
-                                                ListTile(
-                                                  leading: Icon(
-                                                    Icons.delete_outline,
-                                                    color: warningColor,
-                                                  ),
-                                                  title: Text("Hapus Tagihan", style: tsBodySmallMediumRed),
-                                                  onTap: () {
-                                                    apiTagihanTerdaftarController.deleteTagihanTerdaftar(tagihan.id.toString());
-                                                    Get.back();
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }
-                                    );
-                                  },
-                                  icon: Icon(Icons.more_vert, color: secondaryColor, size: 24,))
+                              bottomSheetTagihanTerdaftar(
+                                  context: context,
+                                  index: index,
+                                  idTagihan: tagihan.id.toString(),
+                                  list: apiTagihanTerdaftarController.listTagihanTerdaftarPBB
+                              ),
                             ],
                           ),
                           Row(

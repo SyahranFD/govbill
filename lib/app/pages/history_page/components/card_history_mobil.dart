@@ -103,6 +103,7 @@ class CardHistoryMobil extends StatelessWidget {
                     Column(
                       children: [
                         Container(
+                          margin: EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(
                             color: lunasColor,
                             borderRadius: BorderRadius.circular(5),
