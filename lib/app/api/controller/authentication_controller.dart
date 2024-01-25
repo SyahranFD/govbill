@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class AuthenticationController {
   final isLoading = false.obs;
   final token = ''.obs;
+  final errorLogin = 0.obs;
 
   final box = GetStorage();
 
@@ -85,6 +86,14 @@ class AuthenticationController {
         Get.offAllNamed('/');
       } else {
         isLoading.value = false;
+        errorLogin.value = errorLogin.value + 1;
+        print(errorLogin.value);
+        if (errorLogin.value == 3) {
+          Future.delayed(
+            Duration(seconds: 5),
+            () => errorLogin.value = 0,
+          );
+        }
         Get.snackbar(
           'Error',
           json.decode(response.body)['message'],
