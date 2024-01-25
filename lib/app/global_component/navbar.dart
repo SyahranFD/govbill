@@ -37,12 +37,10 @@ class NavbarMain extends StatelessWidget {
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(
-            Icons.add,
-            color: primaryColor,
-          ),
+          icon: Icon(Icons.add),
+          title: ("Tambah"),
           activeColorPrimary: secondaryColor,
-          inactiveColorPrimary: secondaryColor,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
           icon: Icon(Icons.history_edu),
@@ -61,7 +59,7 @@ class NavbarMain extends StatelessWidget {
 
     return PersistentTabView(
       context,
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 10),
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
@@ -86,7 +84,7 @@ class NavbarMain extends StatelessWidget {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style15, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/metode_pembayaran_page/widgets/bottom_sheet_metode_pembayaran.dart';
+import 'package:govbill/app/pages/metode_pembayaran_page/widgets/popup_menu_metode_pembayaran.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 
@@ -86,7 +87,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                                             style: tsLabelSemiboldWhite,
                                           ),
                                         ),
-                                        bottomSheetMetodePembayaran(context: context, id: data.id.toString(), index: index)
+                                        popupMenuMetodePembayaran(context: context, id: data.id.toString(), index: index),
                                       ],
                                     ),
                                   )
@@ -129,7 +130,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                                   Spacer(),
                                   data.pembayaranUtama == 1
                                       ? SizedBox()
-                                      : bottomSheetMetodePembayaran(context: context, id: data.id.toString(), index: index)
+                                      : popupMenuMetodePembayaran(context: context, id: data.id.toString(), index: index),
                                 ],
                               ),
                             )

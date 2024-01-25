@@ -5,6 +5,7 @@ import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/bottom_sheet_tagihan_terdaftar.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/modal_text_input_widget.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/popup_menu_tagihan_terdaftar.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
@@ -61,11 +62,10 @@ class TagihanTerdaftarPLN extends StatelessWidget {
                           //** Ubah ini
                           Text("ID Pelanggan : " + tagihan.noTagihan!,
                               style: tsLabelRegularDarkBlue),
-                          bottomSheetTagihanTerdaftar(
-                              context: context,
+                          popupMenuTagihanTerdaftar(
                               index: index,
-                              idTagihan: tagihan.id.toString(),
-                              list: apiTagihanTerdaftarController.listTagihanTerdaftarPLN
+                              list: apiTagihanTerdaftarController.listTagihanTerdaftarPLN,
+                              idTagihan: tagihan.id.toString()
                           ),
                         ],
                       ),
