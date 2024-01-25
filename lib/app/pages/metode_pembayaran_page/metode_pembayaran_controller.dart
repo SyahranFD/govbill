@@ -9,5 +9,6 @@ class MetodePembayaranPageController extends GetxController {
     return '****${cardNumber.substring(cardNumber.length - 4)}';
   }
 
+  RxInt selectedMenu = 0.obs;
 
 }

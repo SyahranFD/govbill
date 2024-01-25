@@ -15,6 +15,8 @@ class TagihanTerdaftarPageController extends GetxController {
   TextEditingController? ctrTanggalBayar;
   TextEditingController? ctrBulanBayar;
 
+  RxInt selectedMenu = 0.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -30,5 +32,6 @@ class TagihanTerdaftarPageController extends GetxController {
     ctrNamaTagihan!.text = tagihan.namaTagihan!;
     ctrTanggalBayar!.text = tagihan.tanggalBayar.toString();
     ctrBulanBayar!.text = tagihan.bulanBayar.toString();
+    print(ctrBulanBayar!.text);
   }
 }
