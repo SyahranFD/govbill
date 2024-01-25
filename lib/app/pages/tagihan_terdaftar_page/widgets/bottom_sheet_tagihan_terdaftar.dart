@@ -43,6 +43,7 @@ Widget bottomSheetTagihanTerdaftar ({required BuildContext context, required int
                       title: Text("Hapus Tagihan", style: tsBodySmallMediumRed),
                       onTap: () {
                         apiTagihanTerdaftarController.deleteTagihanTerdaftar(idTagihan);
+                        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
                         Get.back();
                       },
                     ),
