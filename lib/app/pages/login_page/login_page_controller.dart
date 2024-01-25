@@ -11,8 +11,12 @@ class LoginPageController extends GetxController {
   // Icon Visibility
   var isObsecure = true.obs;
 
+  // Loading
+  var isLoading = false.obs;
+
   // Login
   Future<void> login() async {
+    isLoading.value = true;
     await AuthenticationController.login(
       email: ctrEmail!.text,
       password: ctrPassword!.text,
@@ -21,11 +25,12 @@ class LoginPageController extends GetxController {
         Get.offAllNamed(Routes.HOME_PAGE);
         Get.snackbar(
           'Sukses Login',
-          "Selamat Datang $ctrEmail.text",
+          "Selamat Datang ${ctrEmail!.text}",
           snackPosition: SnackPosition.TOP,
-          backgroundColor: successColor,
+          backgroundColor: lunasColor,
           colorText: Colors.white,
         );
+        isLoading.value = false;
         Get.offAllNamed(Routes.HOME_PAGE);
       } else {
         Get.snackbar(
@@ -35,6 +40,7 @@ class LoginPageController extends GetxController {
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
+        isLoading.value = false;
       }
     });
   }

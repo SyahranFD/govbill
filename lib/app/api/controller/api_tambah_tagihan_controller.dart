@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class ApiTambahTagihanController {
   // static final TagihanTerdaftarPageController tagihanTerdaftarPageController =
@@ -40,19 +39,9 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/');
+        return "success";
       } else {
-        isLoading.value = false;
-        print(data);
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
       isLoading.value = false;
@@ -88,7 +77,7 @@ class ApiTambahTagihanController {
       if (response.statusCode == 201) {
         return "success";
       } else {
-        return json.decode(response.body)["error"];
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
       print(e.toString());
@@ -157,9 +146,9 @@ class ApiTambahTagihanController {
         return json.decode(response.body)["message"];
       }
     } catch (e) {
-
       print(e.toString());
     }
+    return null;
   }
 
   static Future postTagihanBPJS({
@@ -185,18 +174,9 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
       isLoading.value = false;

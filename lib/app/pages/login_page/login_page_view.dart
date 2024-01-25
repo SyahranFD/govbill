@@ -13,7 +13,7 @@ class LoginPageView extends GetView<LoginPageController> {
   Widget build(BuildContext context) {
     final _emailFormKey = GlobalKey<FormState>();
     final _passwordFormKey = GlobalKey<FormState>();
-    
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       body: Container(
@@ -96,10 +96,18 @@ class LoginPageView extends GetView<LoginPageController> {
                     decoration: BoxDecoration(
                         color: secondaryColor,
                         borderRadius: BorderRadius.circular(10)),
-                    child: Text(
-                      "Login",
-                      style: tsBodyMediumSemiboldWhite,
-                    )),
+                    child: Obx(() => controller.isLoading.value == true
+                        ? Transform.scale(
+                            scale: 0.5,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 4,
+                              color: primaryColor,
+                            ),
+                          )
+                        : Text(
+                            "Login",
+                            style: tsBodyMediumSemiboldWhite,
+                          ))),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -35,7 +35,6 @@ class DropdownDateWidget extends StatelessWidget {
         // },
 
         validator: validator,
-
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
             isDense: true,

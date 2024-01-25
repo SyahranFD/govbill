@@ -20,6 +20,15 @@ class TambahTagihanPageController extends GetxController {
   }
 
   var isLoading = false.obs;
+  final bulanDropdownPbb = [
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+  ];
   final kabupatenData = [
     "Semarang",
     "Surakarta",
@@ -60,13 +69,36 @@ class TambahTagihanPageController extends GetxController {
   var bulanPBB = "".obs;
   void postTagihanPBB() async {
     print(kotaKabupatenPBB.value.toString());
+    isLoading.value = true;
     await ApiTambahTagihanController.postTagihanPBB(
       namaTagihan: namaPBB.value,
       kotaKabupaten: kotaKabupatenPBB.value.toString(),
       noTagihan: noNOPPBB.value,
       tanggalBayar: tanggalPBB.value.toString(),
       bulanBayar: bulanPBB.value,
-    ).then((value) => isLoading.value = !isLoading.value);
+    ).then((value) {
+      if (value == "success") {
+        snackbar(
+            title: "Success",
+            message: "Berhasil Menambahkan Tagihan PBB",
+            backgroundColor: lunasColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.HOME_PAGE);
+      } else if (value == "Unauthenticated") {
+        snackbar(
+            title: "Error",
+            message: "Maaf Sesi Login Anda SUdah Habis, Silahkan Login Kembali",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.LOGIN_PAGE);
+      } else if (value == "ID Pelanggan Tidak Ditemukan") {
+        snackbar(
+            title: "Terjadi Kesalahan",
+            message: "Data Yang Anda Input Salah",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+      }
+    });
   }
 
   // Daftar PDAM
@@ -86,7 +118,7 @@ class TambahTagihanPageController extends GetxController {
         snackbar(
             title: "Success",
             message: "Berhasil Menambahkan Tagihan PDAM",
-            backgroundColor: successColor);
+            backgroundColor: lunasColor);
         isLoading.value = false;
         Get.toNamed(Routes.HOME_PAGE);
       } else if (value == "Unauthenticated") {
@@ -118,7 +150,29 @@ class TambahTagihanPageController extends GetxController {
       namaTagihan: namaPLN.value,
       noTagihan: idPelangganPLN.value,
       tanggalBayar: tanggalPLN.value.toString(),
-    ).then((value) => isLoading.value = !isLoading.value);
+    ).then((value) {
+      if (value == "success") {
+        snackbar(
+            title: "Success",
+            message: "Berhasil Menambahkan Tagihan PLN",
+            backgroundColor: lunasColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.HOME_PAGE);
+      } else if (value == "Unauthenticated") {
+        snackbar(
+            title: "Error",
+            message: "Maaf Sesi Login Anda SUdah Habis, Silahkan Login Kembali",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+        Get.toNamed(Routes.LOGIN_PAGE);
+      } else if (value == "ID Pelanggan Tidak Ditemukan") {
+        snackbar(
+            title: "Terjadi Kesalahan",
+            message: "Data Yang Anda Input Salah",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+      }
+    });
   }
 
   // Daftar PGN
@@ -126,18 +180,36 @@ class TambahTagihanPageController extends GetxController {
   var idPelangganPGN = "".obs;
   var tanggalPGN = 0.obs;
   void postTagihanPGN() async {
+    isLoading.value = true;
     await ApiTambahTagihanController.postTagihanPGN(
       namaTagihan: namaPGN.value,
       noTagihan: idPelangganPGN.value,
       tanggalBayar: tanggalPGN.value.toString(),
-    ).then((value) => isLoading.value = !isLoading.value);
-    Get.snackbar(
-      'Success',
-      "Berhasil Menambahkan Tagihan PGN",
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: successColor,
-      colorText: Colors.white,
-    );
+    ).then((value) {
+      print(value);
+      if (value == "success") {
+        snackbar(
+            title: "Success",
+            message: "Berhasil Menambahkan Tagihan PGN",
+            backgroundColor: lunasColor);
+        isLoading.value = false;
+        Get.offAllNamed(Routes.HOME_PAGE);
+      } else if (value == "Unauthenticated") {
+        snackbar(
+            title: "Error",
+            message: "Sesi Login Kamu Sudah Berakhir, Silahkan Login Kembali",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+        Get.offAllNamed(Routes.LOGIN_PAGE);
+      } else if (value == "ID Pelanggan Tidak Ditemukan") {
+        snackbar(
+            title: "Terjadi Kesalahan",
+            message: "Data Yang Anda Input Salah",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+      }
+    });
+   
   }
 
   // Daftar BPJS
@@ -145,11 +217,34 @@ class TambahTagihanPageController extends GetxController {
   var noVABPJS = "".obs;
   var tanggalBPJS = 0.obs;
   void postTagihanBPJS() async {
+    isLoading.value = true;
     await ApiTambahTagihanController.postTagihanBPJS(
       namaTagihan: namaBPJS.value,
       noTagihan: noVABPJS.value,
       tanggalBayar: tanggalBPJS.value.toString(),
-    ).then((value) => isLoading.value = !isLoading.value);
+    ).then((value) {
+      if (value == "success") {
+        snackbar(
+            title: "Success",
+            message: "Berhasil Menambahkan Tagihan BPJS",
+            backgroundColor: lunasColor);
+        isLoading.value = false;
+        Get.offAllNamed(Routes.HOME_PAGE);
+      } else if (value == "Unauthenticated") {
+        snackbar(
+            title: "Error",
+            message: "Sesi Login Kamu Sudah Berakhir, Silahkan Login Kembali",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+        Get.offAllNamed(Routes.LOGIN_PAGE);
+      } else if (value == "ID Pelanggan Tidak Ditemukan") {
+        snackbar(
+            title: "Terjadi Kesalahan",
+            message: "Data Yang Anda Input Salah",
+            backgroundColor: warningColor);
+        isLoading.value = false;
+      }
+    });
   }
 
 }

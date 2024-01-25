@@ -37,7 +37,7 @@ class TambahMotorPageView extends StatelessWidget {
               keyboard: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               height: 50,
-              padding: EdgeInsets.only(top: 10, left: 15),
+              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
             ),
             SizedBox(
               height: 10,
@@ -45,7 +45,7 @@ class TambahMotorPageView extends StatelessWidget {
             TextInputWidget(
               hintText: "NRKB",
               height: 50,
-              padding: EdgeInsets.only(top: 10, left: 15),
+              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
             ),
             SizedBox(
               height: 10,
@@ -53,7 +53,7 @@ class TambahMotorPageView extends StatelessWidget {
             TextInputWidget(
               hintText: "No. Rangka",
               height: 50,
-              padding: EdgeInsets.only(top: 10, left: 15),
+              padding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
             ),
           ],
         )),
