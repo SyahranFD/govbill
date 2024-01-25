@@ -7,6 +7,7 @@ class LoginFormWidget extends StatelessWidget {
   final bool? isObsecure;
   final Widget? iconSuffix;
   final TextEditingController? controller;
+  final bool? readOnly;
 
   LoginFormWidget({
     Key? key,
@@ -15,6 +16,7 @@ class LoginFormWidget extends StatelessWidget {
     this.isObsecure,
     this.iconSuffix,
     this.controller,
+    this.readOnly
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class LoginFormWidget extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: isObsecure ?? false,
+        readOnly: readOnly ?? false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: secondaryColor, width: 1.5),
