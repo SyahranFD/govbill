@@ -25,7 +25,7 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("Tagihan Tersedia", style: tsBodyMediumSemiboldBlack),
             InkWell(

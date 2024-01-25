@@ -49,4 +49,48 @@ class ApiMetodePembayaranController extends GetxController {
     }
   }
 
+  Future changePembayaranUtama(String id) async {
+    try {
+      isLoading.value = true;
+      var response = await http.put(
+        Uri.parse('${url}/metode-pembayaran/change-pembayaran-utama/$id'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+      );
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        fetchMetodePembayaran();
+        print('berhasil change pembayaran utama');
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
+  Future deleteMetodePembayaran(String id) async {
+    try {
+      isLoading.value = true;
+      var response = await http.delete(Uri.parse('${url}/metode-pembayaran/delete/$id'), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      });
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil hapus metode pembayaran');
+        fetchMetodePembayaran();
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
 }

@@ -26,7 +26,7 @@ class HomeHistoryComponent extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("Pembayaran Terakhir", style: tsBodyMediumSemiboldBlack),
             InkWell(
