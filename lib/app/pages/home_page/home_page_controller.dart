@@ -32,9 +32,6 @@ class HomePageController extends GetxController {
 
   Future<void> refreshData() async {
     apiHistoryController.fetchHistory();
-    apiTagihanAkanDatangController.listTagihanAkanDatang.forEach((tagihan) {
-      print(tagihan.toJson()); // Assuming toJson() provides a meaningful representation
-    });
     await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
   }
 }

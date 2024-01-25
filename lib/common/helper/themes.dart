@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 //COLOR
 const Color primaryColor = Color(0xFFFFFFFF);
-const Color secondaryColor = Color(0xFF1C1D56);
+const Color secondaryColor = Color(0xFF202D37);
 const Color blackColor = Color(0xFF141515);
 const Color backgroundPageColor = Color(0xFFF8F4F3);
 const Color successColor = Color(0xFF36D100);
 const Color lunasColor = Color(0xFF31C78A);
 const Color warningColor = Color(0xFFBE1833);
 
-const Color smoothGreen = Color(0xFF9AB068);
+const Color smoothGreen = Color(0xFF3EB67B);
 const Color darkGreen = Color(0xFF357959);
 
 const Color grey = Color(0xFFD0D5DD);
@@ -31,6 +31,12 @@ const Color categoryPDAM = Color(0xFF4CABDB);
 figmaFontsize(int fontSize) {
   return fontSize * 1.2;
 }
+
+TextStyle tsHeadlineLargeBoldWhite = GoogleFonts.poppins(
+  color: primaryColor,
+  fontWeight: FontWeight.w700,
+  fontSize: figmaFontsize(28),
+);
 
 TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
   color: secondaryColor,
@@ -88,6 +94,12 @@ TextStyle tsBodyMediumSemiboldDarkGrey = GoogleFonts.poppins(
 
 TextStyle tsBodyMediumRegularDarkGrey = GoogleFonts.poppins(
   color: darkGrey,
+  fontWeight: FontWeight.w400,
+  fontSize: figmaFontsize(14),
+);
+
+TextStyle tsBodyMediumRegularWhite = GoogleFonts.poppins(
+  color: primaryColor,
   fontWeight: FontWeight.w400,
   fontSize: figmaFontsize(14),
 );

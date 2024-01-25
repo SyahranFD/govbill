@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_profile_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class HomeMenyambutUserComponent extends StatelessWidget {
+class OldHomeMenyambutUserComponent extends StatelessWidget {
   final ApiProfileController apiProfileController =
   Get.put(ApiProfileController());
 
