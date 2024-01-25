@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_profile_controller.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
+import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class HomeTotalTagihanComponent extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomeTotalTagihanComponent extends StatelessWidget {
       Get.put(ApiProfileController());
   final ApiTagihanAkanDatangController fetchTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
+  final CartPageController cartPageController = Get.put(CartPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,9 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
+                              onTap: () {
+                                Get.toNamed("/tagihan-akan-datang");
+                              },
                               child: Container(
                                 height: 33,
                                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -92,6 +97,11 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                             ),
                             SizedBox(width: width * 0.04),
                             InkWell(
+                              onTap: () {
+                                cartPageController.addAllToSelectedId();
+                                print(cartPageController.selectedId);
+                                Get.toNamed("/cart");
+                              },
                               child: Container(
                                 height: 33,
                                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
