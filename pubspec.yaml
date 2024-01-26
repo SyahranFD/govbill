@@ -7,25 +7,26 @@ environment:
   sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
+  cupertino_icons: ^1.0.2
+  dotted_border: ^2.1.0
+  dropdown_search: ^5.0.6
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  get: ^4.6.6
-  persistent_bottom_nav_bar: ^5.0.2
-  shared_preferences: ^2.0.12
   flutter_svg: ^2.0.7
-  google_fonts: ^6.0.0
-  intl: ^0.19.0
-  http:
+  get: ^4.6.6
   get_storage: ^2.1.1
-  dropdown_search: ^5.0.6
+  google_fonts: ^6.0.0
+  http: null
+  intl: ^0.19.0
+  persistent_bottom_nav_bar: ^5.0.2
   searchfield: ^0.9.0
+  shared_preferences: ^2.0.12
   shimmer: ^3.0.0
 
 dev_dependencies:
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true

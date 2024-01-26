@@ -9,15 +9,15 @@ void main() async {
   await GetStorage.init();
   runApp(
     GetMaterialApp(
-      title: "Application",
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          iconTheme: IconThemeData(color: blackColor),
+        debugShowCheckedModeBanner: false,
+        title: "Application",
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            iconTheme: IconThemeData(color: blackColor),
+          ),
         ),
-      ),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      home: NavbarMain()
-    ),
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+        home: NavbarMain()),
   );
 }

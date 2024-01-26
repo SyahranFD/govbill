@@ -5,13 +5,14 @@ import 'package:govbill/app/api/model/history_model.dart';
 import 'package:govbill/app/global_component/defineTagihan.dart';
 import 'package:govbill/app/pages/history_page/components/card_history.dart';
 import 'package:govbill/app/pages/history_page/history_page_view.dart';
+import 'package:govbill/app/global_component/no_bill_indicator.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomeHistoryComponent extends StatelessWidget {
   final ApiHistoryController apiHistoryController =
-  Get.put(ApiHistoryController());
+      Get.put(ApiHistoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class HomeHistoryComponent extends StatelessWidget {
         ),
         SizedBox(height: 15),
         Obx(
-              () {
+          () {
             if (apiHistoryController.isLoading.value) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -50,14 +51,9 @@ class HomeHistoryComponent extends StatelessWidget {
                   apiHistoryController.listHistory;
 
               if (historyList.isEmpty) {
-                return Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 100,
-                  child: Text(
-                    "Tidak Ada Riwayat",
-                    style: tsBodyMediumRegularDarkGrey,
-                  ),
+                return noBillIndicator(
+                  context: context,
+                  textIndicator: 'Tidak Ada Tagihan',
                 );
               }
 
@@ -77,11 +73,13 @@ class HomeHistoryComponent extends StatelessWidget {
 
                   var paymentDateFormatted = tagihan.waktuBayar != null
                       ? DateFormat('dd MMMM yyyy', 'id_ID')
-                      .format(tagihan.waktuBayar!)
+                          .format(tagihan.waktuBayar!)
                       : 'N/A';
 
-                  String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
-                  Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
+                  String namaNoTagihan =
+                      defineNamaNoTagihan(tagihan.jenisTagihan!);
+                  Color colorTagihan =
+                      defineColorTagihan(tagihan.jenisTagihan!);
 
                   return Container(
                     width: double.infinity,

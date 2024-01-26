@@ -1,7 +1,10 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/global_component/defineTagihan.dart';
+import 'package:govbill/app/global_component/no_bill_indicator.dart';
 import 'package:govbill/app/pages/tagihan_tersedia_page/components/card_tagihan_tersedia.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
@@ -34,68 +37,67 @@ class HomeTagihanTersediaComponent extends StatelessWidget {
         Obx(
           () => apiTagihanAkanDatangController.isLoading.value
               ? Container(
-                width: double.infinity,
-                height: 100,
-                child: Center(
+                  width: double.infinity,
+                  height: 100,
+                  child: Center(
                     child: CircularProgressIndicator(),
                   ),
-              )
+                )
               : apiTagihanAkanDatangController.listTagihanAkanDatang.isEmpty
-                  ? Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 100,
-                      child: Text("Tidak Ada Tagihan",
-                          style: tsBodyMediumRegularDarkGrey),
+                  ? noBillIndicator(
+                      context: context,
+                      textIndicator: 'Tidak Ada Tagihan',
                     )
                   : ListView.builder(
-                    itemCount: 2,
-                    padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      var tagihan = apiTagihanAkanDatangController
-                          .listTagihanAkanDatang[index];
-                      var nominalTagihanFormatted = NumberFormat.currency(
-                        locale: 'id_ID',
-                        symbol: 'Rp ',
-                      ).format(tagihan.nominalTagihan);
-                      nominalTagihanFormatted =
-                          nominalTagihanFormatted.replaceAll(",00", "");
+                      itemCount: 2,
+                      padding: EdgeInsets.zero,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        var tagihan = apiTagihanAkanDatangController
+                            .listTagihanAkanDatang[index];
+                        var nominalTagihanFormatted = NumberFormat.currency(
+                          locale: 'id_ID',
+                          symbol: 'Rp ',
+                        ).format(tagihan.nominalTagihan);
+                        nominalTagihanFormatted =
+                            nominalTagihanFormatted.replaceAll(",00", "");
 
-                      var paymentDateFormatted = tagihan.waktuBayar != null
-                          ? DateFormat('dd MMMM yyyy', 'id_ID')
-                              .format(tagihan.waktuBayar!)
-                          : 'N/A';
+                        var paymentDateFormatted = tagihan.waktuBayar != null
+                            ? DateFormat('dd MMMM yyyy', 'id_ID')
+                                .format(tagihan.waktuBayar!)
+                            : 'N/A';
 
-                      String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
-                      Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
+                        String namaNoTagihan =
+                            defineNamaNoTagihan(tagihan.jenisTagihan!);
+                        Color colorTagihan =
+                            defineColorTagihan(tagihan.jenisTagihan!);
 
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 0),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              child: Column(
-                                children: [
-                                  CardTagihanTersedia(
-                                    namaNoTagihan: namaNoTagihan,
-                                    colorTagihan: colorTagihan,
-                                    noTagihan: tagihan.noTagihan,
-                                    jenisTagihan: tagihan.jenisTagihan,
-                                    namaTagihan: tagihan.namaTagihan,
-                                    waktuBayar: paymentDateFormatted,
-                                    nominalTagihan: nominalTagihanFormatted,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 0),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                child: Column(
+                                  children: [
+                                    CardTagihanTersedia(
+                                      namaNoTagihan: namaNoTagihan,
+                                      colorTagihan: colorTagihan,
+                                      noTagihan: tagihan.noTagihan,
+                                      jenisTagihan: tagihan.jenisTagihan,
+                                      namaTagihan: tagihan.namaTagihan,
+                                      waktuBayar: paymentDateFormatted,
+                                      nominalTagihan: nominalTagihanFormatted,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
         ),
       ],
     );
