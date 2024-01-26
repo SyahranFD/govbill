@@ -58,6 +58,7 @@ class CartListViewTagihan extends StatelessWidget {
                         return InkWell(
                             onTap: () {
                               cartPageController.addToSelectedId(tagihan.id!);
+                              cartPageController.calculateTotalSelectedNominal();
                               print(cartPageController.selectedId);
                             },
                             child: Container(

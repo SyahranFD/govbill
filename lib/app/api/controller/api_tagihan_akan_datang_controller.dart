@@ -90,29 +90,4 @@ class ApiTagihanAkanDatangController extends GetxController {
 
     print('Total Nominal Tagihan: $total');
   }
-
-  // !!! Tidak Terpakai
-  void defineNamaNoTagihan() {
-    listTagihanAkanDatang.forEach((tagihan) {
-      switch (tagihan.jenisTagihan) {
-        case 'PBB':
-          namaNoTagihan.value = 'NOP';
-          break;
-        case 'PLN':
-          namaNoTagihan.value = 'ID Pelanggan';
-          break;
-        case 'PGN':
-          namaNoTagihan.value = 'ID Pelanggan';
-          break;
-        case 'BPJS':
-          namaNoTagihan.value = 'No. VA';
-          break;
-        case 'PDAM':
-          namaNoTagihan.value = 'No. Pelanggan';
-          break;
-        default:
-          namaNoTagihan.value = '';
-      }
-    });
-  }
 }

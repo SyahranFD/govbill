@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
-import 'package:govbill/app/pages/cart-tagihan-page/components/cart_listview_tagihan.dart';
+import 'package:govbill/app/global_component/container_total_tagihan.dart';
+import 'package:govbill/app/pages/cart-metode-pembayaran-page/components/cart_listview_metode_pembayaran.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class CartMetodePembayaranPageView extends StatelessWidget {
-  final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
-  Get.put(ApiTagihanAkanDatangController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class CartMetodePembayaranPageView extends StatelessWidget {
         backgroundColor: backgroundPageColor,
         toolbarHeight: 75,
         centerTitle: true,
-        title: Text("List Tagihan", style: tsBodyLargeSemiboldBlack),
+        title: Text("Pilih Metode Pembayaran", style: tsBodyLargeSemiboldBlack),
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(
@@ -33,7 +31,13 @@ class CartMetodePembayaranPageView extends StatelessWidget {
       ),
       body: Container(
         width: double.infinity,
-        child: CartListViewTagihan(),
+        height: height,
+        child: Stack(
+          children: [
+            CartListViewMetodePembayaran(),
+            ContainerTotalTagihan(context: context, route: '/', isListTagihan: false)
+          ],
+        ),
       ),
     );
   }
