@@ -44,8 +44,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TAGIHAN_AKAN_DATANG_PAGE,
-      page: () => TagihanAkanDatangPageView(),
-      binding: TagihanAkanDatangPageBinding(),
+      page: () => TagihanTersediaPageView(),
+      binding: TagihanTersediaPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

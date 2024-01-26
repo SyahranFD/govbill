@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/global_component/defineTagihan.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_tersedia.dart';
+import 'package:govbill/app/pages/tagihan_tersedia_page/components/card_tagihan_tersedia.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 
-class HomeTagihanAkanDatangComponent extends StatelessWidget {
+class HomeTagihanTersediaComponent extends StatelessWidget {
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
 

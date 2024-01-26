@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
-import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class CardTagihanTersedia extends GetView<TagihanAkanDatangPageController> {
+class CardTagihanTersedia extends StatelessWidget {
   CardTagihanTersedia({
     Key? key,
     required this.namaNoTagihan,
