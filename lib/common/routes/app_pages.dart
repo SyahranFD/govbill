@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart';
+import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_binding.dart';
+import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_view.dart';
+import 'package:govbill/app/pages/cart-tagihan-page/cart_binding.dart';
+import 'package:govbill/app/pages/cart-tagihan-page/cart_view.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
@@ -11,7 +15,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -170,6 +174,16 @@ class AppPages {
         name: _Paths.BERHASIL_TERDAFTAR,
         page: () => BerhasilTerdaftarPageView(),
         binding: BerhasilTerdaftarPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.CART_PAGE,
+        page: () => CartPageView(),
+        binding: CartPageBinding(),
+        transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.CART_METODE_PEMBAYARAN_PAGE,
+        page: () => CartMetodePembayaranPageView(),
+        binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
   ];
 }

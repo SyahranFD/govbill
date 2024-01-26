@@ -59,15 +59,19 @@ class EditTagihanTerdaftarPageView extends StatelessWidget {
                 controller: tagihanTerdaftarPageController.ctrTanggalBayar,
               ),
               SizedBox(height: 10),
-              Text("Bulan Bayar", style: tsLabelRegularDarkGrey),
-              SizedBox(height: 3),
-              tagihanTerdaftarPageController.ctrBulanBayar != null
-                  ? TextInputWidget(
-                hintText: "Bulan Bayar",
-                height: 40,
-                padding: EdgeInsets.only(top: 15, left: 15),
-                controller: tagihanTerdaftarPageController.ctrBulanBayar,
-              )
+              tagihanTerdaftarPageController.ctrBulanBayar?.text != "0"
+                  ? Column(
+                    children: [
+                      Text("Bulan Bayar", style: tsLabelRegularDarkGrey),
+                      SizedBox(height: 3),
+                      TextInputWidget(
+                        hintText: "Bulan Bayar",
+                        height: 40,
+                        padding: EdgeInsets.only(top: 15, left: 15),
+                        controller: tagihanTerdaftarPageController.ctrBulanBayar,
+                      )
+                    ],
+                  )
                   : Container(),
             ]
           ),

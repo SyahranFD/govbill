@@ -23,6 +23,7 @@ class TagihanTerdaftarMotor extends StatelessWidget {
               width: double.infinity,
               margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
               child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: apiTagihanTerdaftarController.listTagihanTerdaftarMotor.map((tagihan) {
                     var jenisTagihan = tagihan.jenisTagihan!;

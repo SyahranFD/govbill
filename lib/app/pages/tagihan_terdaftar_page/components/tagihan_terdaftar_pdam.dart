@@ -4,6 +4,12 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/bottom_sheet_tagihan_terdaftar.dart';
+<<<<<<< HEAD
+=======
+import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/modal_text_input_widget.dart';
+import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/popup_menu_tagihan_terdaftar.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
+>>>>>>> c4a4a9fdc3e3a2bdadf0efe2234c33da2084d7b5
 import 'package:govbill/common/helper/themes.dart';
 
 class TagihanTerdaftarPDAM extends StatelessWidget {
@@ -28,6 +34,7 @@ class TagihanTerdaftarPDAM extends StatelessWidget {
         margin: EdgeInsets.only(
             top: 15, left: width * 0.05, right: width * 0.05),
         child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
           child: ListView.builder(
             itemCount: apiTagihanTerdaftarController.listTagihanTerdaftarPDAM.length,
             physics: NeverScrollableScrollPhysics(),
@@ -59,11 +66,10 @@ class TagihanTerdaftarPDAM extends StatelessWidget {
                               //** Ubah ini
                               Text("No. Pelanggan : " + tagihan.noTagihan!,
                                   style: tsLabelRegularDarkBlue),
-                              bottomSheetTagihanTerdaftar(
-                                  context: context,
+                              popupMenuTagihanTerdaftar(
                                   index: index,
-                                  idTagihan: tagihan.id.toString(),
-                                  list: apiTagihanTerdaftarController.listTagihanTerdaftarPDAM
+                                  list: apiTagihanTerdaftarController.listTagihanTerdaftarPDAM,
+                                  idTagihan: tagihan.id.toString()
                               ),
                             ],
                           ),
