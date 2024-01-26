@@ -34,12 +34,11 @@ class HomeHistoryComponent extends StatelessWidget {
                 PersistentNavBarNavigator.pushNewScreen(
                   context,
                   screen: HistoryPageView(),
-                  withNavBar: true, // OPTIONAL VALUE. True by default.
+                  withNavBar: true,
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                 );
               },
-              child:
-              Text("Lihat Selengkapnya", style: tsLabelMediumDarkBlue),
+              child: Text("Selengkapnya", style: tsLabelMediumDarkBlue),
             ),
           ],
         ),
@@ -56,15 +55,23 @@ class HomeHistoryComponent extends StatelessWidget {
 
               if (historyList.isEmpty) {
                 return Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: 100,
-                    child: Text("Tidak Ada Riwayat", style: tsBodyMediumRegularDarkGrey,)
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 100,
+                  child: Text(
+                    "Tidak Ada Riwayat",
+                    style: tsBodyMediumRegularDarkGrey,
+                  ),
                 );
               }
 
-              return Column(
-                children: historyList.take(2).map((tagihan) {
+              return ListView.builder(
+                itemCount: 2,
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  var tagihan = historyList[index];
                   var nominalTagihanFormatted = NumberFormat.currency(
                     locale: 'id_ID',
                     symbol: 'Rp ',
@@ -78,89 +85,80 @@ class HomeHistoryComponent extends StatelessWidget {
                       : 'N/A';
 
                   return Container(
-                    margin: EdgeInsets.only(bottom: 0),
+                    width: double.infinity,
                     child: Column(
                       children: [
-                        Container(
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              tagihan.jenisTagihan == "BPJS"
-                                  ? CardHistoryBPJS(
-                                  noTagihan: tagihan.noTagihan,
-                                  jenisTagihan: tagihan.jenisTagihan,
-                                  namaTagihan: tagihan.namaTagihan,
-                                  waktuBayar: paymentDateFormatted,
-                                  nominalTagihan: nominalTagihanFormatted)
-                                  : tagihan.jenisTagihan == "PDAM"
-                                  ? CardHistoryPDAM(
-                                  noTagihan: tagihan.noTagihan,
-                                  jenisTagihan: tagihan.jenisTagihan,
-                                  namaTagihan: tagihan.namaTagihan,
-                                  waktuBayar: paymentDateFormatted,
-                                  nominalTagihan:
-                                  nominalTagihanFormatted)
-                                  : tagihan.jenisTagihan == "PLN"
-                                  ? CardHistoryPLN(
-                                  noTagihan:
-                                  tagihan.noTagihan,
-                                  jenisTagihan:
-                                  tagihan.jenisTagihan,
-                                  namaTagihan:
-                                  tagihan.namaTagihan,
-                                  waktuBayar:
-                                  paymentDateFormatted,
-                                  nominalTagihan:
-                                  nominalTagihanFormatted)
-                                  : tagihan.jenisTagihan ==
-                                  "PBB"
-                                  ? CardHistoryPBB(
-                                  noTagihan:
-                                  tagihan.noTagihan,
-                                  jenisTagihan: tagihan
-                                      .jenisTagihan,
-                                  namaTagihan: tagihan
-                                      .namaTagihan,
-                                  waktuBayar:
-                                  paymentDateFormatted,
-                                  nominalTagihan:
-                                  nominalTagihanFormatted)
-                                  : tagihan.jenisTagihan ==
-                                  "Mobil"
-                                  ? CardHistoryMobil(
-                                  noTagihan:
-                                  tagihan.noTagihan,
-                                  jenisTagihan: tagihan
-                                      .jenisTagihan,
-                                  namaTagihan: tagihan
-                                      .namaTagihan,
-                                  waktuBayar:
-                                  paymentDateFormatted,
-                                  nominalTagihan:
-                                  nominalTagihanFormatted)
-                                  : tagihan.jenisTagihan ==
-                                  "Motor"
-                                  ? CardHistoryMotor(
-                                  noTagihan:
-                                  tagihan.noTagihan,
-                                  jenisTagihan:
-                                  tagihan
-                                      .jenisTagihan,
-                                  namaTagihan:
-                                  tagihan
-                                      .namaTagihan,
-                                  waktuBayar:
-                                  paymentDateFormatted,
-                                  nominalTagihan:
-                                  nominalTagihanFormatted)
-                                  : Container(),
-                            ],
-                          ),
-                        )
+                        tagihan.jenisTagihan == "BPJS"
+                            ? CardHistoryBPJS(
+                            noTagihan: tagihan.noTagihan,
+                            jenisTagihan: tagihan.jenisTagihan,
+                            namaTagihan: tagihan.namaTagihan,
+                            waktuBayar: paymentDateFormatted,
+                            nominalTagihan: nominalTagihanFormatted)
+                            : tagihan.jenisTagihan == "PDAM"
+                            ? CardHistoryPDAM(
+                            noTagihan: tagihan.noTagihan,
+                            jenisTagihan: tagihan.jenisTagihan,
+                            namaTagihan: tagihan.namaTagihan,
+                            waktuBayar: paymentDateFormatted,
+                            nominalTagihan:
+                            nominalTagihanFormatted)
+                            : tagihan.jenisTagihan == "PLN"
+                            ? CardHistoryPLN(
+                            noTagihan: tagihan.noTagihan,
+                            jenisTagihan:
+                            tagihan.jenisTagihan,
+                            namaTagihan:
+                            tagihan.namaTagihan,
+                            waktuBayar:
+                            paymentDateFormatted,
+                            nominalTagihan:
+                            nominalTagihanFormatted)
+                            : tagihan.jenisTagihan == "PBB"
+                            ? CardHistoryPBB(
+                            noTagihan:
+                            tagihan.noTagihan,
+                            jenisTagihan:
+                            tagihan.jenisTagihan,
+                            namaTagihan:
+                            tagihan.namaTagihan,
+                            waktuBayar:
+                            paymentDateFormatted,
+                            nominalTagihan:
+                            nominalTagihanFormatted)
+                            : tagihan.jenisTagihan ==
+                            "Mobil"
+                            ? CardHistoryMobil(
+                            noTagihan:
+                            tagihan.noTagihan,
+                            jenisTagihan:
+                            tagihan.jenisTagihan,
+                            namaTagihan:
+                            tagihan.namaTagihan,
+                            waktuBayar:
+                            paymentDateFormatted,
+                            nominalTagihan:
+                            nominalTagihanFormatted)
+                            : tagihan.jenisTagihan ==
+                            "Motor"
+                            ? CardHistoryMotor(
+                            noTagihan: tagihan
+                                .noTagihan,
+                            jenisTagihan:
+                            tagihan
+                                .jenisTagihan,
+                            namaTagihan:
+                            tagihan
+                                .namaTagihan,
+                            waktuBayar:
+                            paymentDateFormatted,
+                            nominalTagihan:
+                            nominalTagihanFormatted)
+                            : Container(),
                       ],
                     ),
                   );
-                }).toList(),
+                },
               );
             }
           },

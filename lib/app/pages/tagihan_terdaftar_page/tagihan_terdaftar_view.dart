@@ -34,6 +34,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
         ),
       ),
       body: switchCaseTagihanTerdaftar(context: context),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed('/tambah-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
         child: Icon(Icons.add, color: primaryColor,),

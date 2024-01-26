@@ -184,4 +184,66 @@ class ApiTambahTagihanController {
       print(e.toString());
     }
   }
+
+  static Future checkNik({
+    required String nik,
+    required String nrkb,
+  }) async {
+    try {
+      var data = {
+        "nik": nik,
+        "nrkb": nrkb,
+      };
+      var response = await http.post(
+        Uri.parse("${url}/tagihan-terdaftar/verifikasi-kendaraan"),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+        body: data,
+      );
+      if (response.statusCode == 200) {
+        return "success";
+      } else {
+        return json.decode(response.body)["message"];
+      }
+    } catch (e) {
+      print(e.toString());
+      return "error";
+    }
+  }
+
+  static Future postTagihanMotor(
+      {required String namaTagihan,
+      required String tanggalBayar,
+      required String bulanBayar,
+      required String nik,
+      required String nrkb,
+      required String jenisTagihan}) async {
+    var data = {
+      'nama_tagihan': namaTagihan,
+      'tanggal_bayar': tanggalBayar,
+      'bulan_bayar': bulanBayar,
+      'nik': nik,
+      'nrkb': nrkb,
+    };
+    var response = await http.post(
+      Uri.parse(jenisTagihan == "motor"
+          ? "${url}/tagihan-terdaftar/store-motor"
+          : "${url}/tagihan-terdaftar/store-mobil"),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      },
+      body: data,
+    );
+    print(response.body);
+    if (response.statusCode == 201) {
+      print("suskess");
+      return "success";
+    } else {
+      print("gagall");
+      return json.decode(response.body)["message"];
+    }
+  }
 }

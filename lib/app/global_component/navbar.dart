@@ -41,7 +41,6 @@ class NavbarMain extends StatelessWidget {
             Icons.add,
             color: primaryColor,
           ),
-          title: ("Tambah"),
           activeColorPrimary: secondaryColor,
           inactiveColorPrimary: secondaryColor,
         ),

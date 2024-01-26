@@ -22,17 +22,11 @@ class TagihanTerdaftarPageController extends GetxController {
     ctrBulanBayar = TextEditingController();
   }
 
-  void updateControllerValuesWithBulanBayar(int index) {
-    var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarPBB[index];
+  void updateTextEditingController({required int index, required list}) {
+    var tagihan = list[index];
     selectedIdTagihan.value = tagihan.id.toString();
     ctrNamaTagihan!.text = tagihan.namaTagihan!;
     ctrTanggalBayar!.text = tagihan.tanggalBayar.toString();
     ctrBulanBayar!.text = tagihan.bulanBayar.toString();
-  }
-
-  void updateControllerValues(int index) {
-    var tagihan = apiTagihanTerdaftarController.listTagihanTerdaftarPBB[index];
-    ctrNamaTagihan!.text = tagihan.namaTagihan!;
-    ctrTanggalBayar!.text = tagihan.tanggalBayar.toString();
   }
 }
