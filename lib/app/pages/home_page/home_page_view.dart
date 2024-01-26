@@ -30,7 +30,6 @@ class HomePageView extends StatelessWidget {
             child: Stack(
               children: [
                 HomeTotalTagihanComponent(),
-
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 275),

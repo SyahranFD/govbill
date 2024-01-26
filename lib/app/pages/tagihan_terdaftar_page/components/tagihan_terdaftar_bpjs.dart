@@ -3,16 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/pages/index.dart';
-<<<<<<< HEAD
-=======
-import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/bottom_sheet_tagihan_terdaftar.dart';
-import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/modal_text_input_widget.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/popup_menu_tagihan_terdaftar.dart';
-import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
->>>>>>> c4a4a9fdc3e3a2bdadf0efe2234c33da2084d7b5
 import 'package:govbill/common/helper/themes.dart';
 
-import '../widgets/bottom_sheet_tagihan_terdaftar.dart';
 
 class TagihanTerdaftarBPJS extends StatelessWidget {
   final ApiTagihanTerdaftarController apiTagihanTerdaftarController =

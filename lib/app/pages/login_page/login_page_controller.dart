@@ -22,7 +22,6 @@ class LoginPageController extends GetxController {
       password: ctrPassword!.text,
     ).then((value) {
       if (value == "success") {
-        Get.offAllNamed(Routes.HOME_PAGE);
         Get.snackbar(
           'Sukses Login',
           "Selamat Datang ${ctrEmail!.text}",

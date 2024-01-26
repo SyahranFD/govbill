@@ -86,30 +86,9 @@ class AuthenticationController {
         print(token);
         return "success";
       } else {
-<<<<<<< HEAD
         return json.decode(response.body)['message'];
-=======
-        isLoading.value = false;
-        errorLogin.value = errorLogin.value + 1;
-        print(errorLogin.value);
-        if (errorLogin.value == 3) {
-          Future.delayed(
-            Duration(seconds: 5),
-            () => errorLogin.value = 0,
-          );
-        }
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
->>>>>>> c4a4a9fdc3e3a2bdadf0efe2234c33da2084d7b5
       }
     } catch (e) {
-      isLoading.value = false;
       print(e.toString());
     }
     return null;

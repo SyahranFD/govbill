@@ -78,21 +78,11 @@ class ProfilePageView extends StatelessWidget {
                         SvgPicture.asset("assets/icons/icTableEdit.svg")
                       ],
                     ),
-<<<<<<< HEAD
-                  ),
-
-                  GestureDetector(
-                    onTap: () async{
-                      // authenticationController.logout();
-                    },
-                    child: Container(
-=======
                     SizedBox(
                       height: 20,
                     ),
                     Container(
                       height: 200,
->>>>>>> c4a4a9fdc3e3a2bdadf0efe2234c33da2084d7b5
                       width: double.infinity,
                       padding: EdgeInsets.all(20),
                       alignment: Alignment.centerLeft,
@@ -139,7 +129,7 @@ class ProfilePageView extends StatelessWidget {
 
                     GestureDetector(
                       onTap: () async{
-                        authenticationController.logout();
+                        // authenticationController.logout();
                       },
                       child: Container(
                         width: double.infinity,

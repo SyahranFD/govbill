@@ -27,7 +27,6 @@ class LoginFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
-<<<<<<< HEAD
       child: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -51,23 +50,6 @@ class LoginFormWidget extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               prefixIcon: iconPrefix,
               suffixIcon: Container(
-=======
-      child: TextFormField(
-        controller: controller,
-        obscureText: isObsecure ?? false,
-        readOnly: readOnly ?? false,
-        decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: secondaryColor, width: 1.5),
-                borderRadius: BorderRadius.circular(10)),
-            constraints: BoxConstraints(maxHeight: 55),
-            prefixIconConstraints: BoxConstraints(
-              minWidth: 60,
-              minHeight: 30,
-            ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            prefixIcon: Container(
->>>>>>> c4a4a9fdc3e3a2bdadf0efe2234c33da2084d7b5
                 height: 20,
                 width: 20,
                 alignment: Alignment.center,
