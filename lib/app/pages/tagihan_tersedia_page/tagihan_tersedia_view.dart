@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/global_component/defineTagihan.dart';
+import 'package:govbill/app/global_component/no_bill_indicator.dart';
 import 'package:govbill/app/pages/tagihan_tersedia_page/components/card_tagihan_tersedia.dart';
 import 'package:govbill/app/pages/tagihan_tersedia_page/tagihan_tersedia_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -43,19 +44,17 @@ class TagihanTersediaPageView extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : apiTagihanAkanDatangController.listTagihanAkanDatang.isEmpty
-                  ? Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 100,
-                      child: Text("Tidak Ada Tagihan",
-                          style: tsBodyMediumRegularDarkGrey),
+                  ? noBillIndicator(
+                      context: context,
+                      textIndicator: 'Tidak Ada Tagihan',
                     )
                   : Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
-                    child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      child: ListView.builder(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(
+                          top: 15, left: width * 0.05, right: width * 0.05),
+                      child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        child: ListView.builder(
                           itemCount: apiTagihanAkanDatangController
                               .listTagihanAkanDatang.length,
                           padding: EdgeInsets.zero,
@@ -68,15 +67,19 @@ class TagihanTersediaPageView extends StatelessWidget {
                               locale: 'id_ID',
                               symbol: 'Rp ',
                             ).format(tagihan.nominalTagihan);
-                            nominalTagihanFormatted = nominalTagihanFormatted.replaceAll(",00", "");
+                            nominalTagihanFormatted =
+                                nominalTagihanFormatted.replaceAll(",00", "");
 
-                            var paymentDateFormatted = tagihan.waktuBayar != null
-                                ? DateFormat('dd MMMM yyyy', 'id_ID')
-                                    .format(tagihan.waktuBayar!)
-                                : 'N/A';
+                            var paymentDateFormatted =
+                                tagihan.waktuBayar != null
+                                    ? DateFormat('dd MMMM yyyy', 'id_ID')
+                                        .format(tagihan.waktuBayar!)
+                                    : 'N/A';
 
-                            String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
-                            Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
+                            String namaNoTagihan =
+                                defineNamaNoTagihan(tagihan.jenisTagihan!);
+                            Color colorTagihan =
+                                defineColorTagihan(tagihan.jenisTagihan!);
 
                             return InkWell(
                               onTap: () {
@@ -97,8 +100,8 @@ class TagihanTersediaPageView extends StatelessWidget {
                             );
                           },
                         ),
+                      ),
                     ),
-                  ),
         ),
       ),
     );
