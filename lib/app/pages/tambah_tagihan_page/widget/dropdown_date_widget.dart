@@ -21,36 +21,53 @@ class DropdownDateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<int>(
-      items: List.generate(maxNumber!, (index) => index + minNumber!),
-      // dropdownBuilder: (context, selectedItem) {
-      //   return Container(
-      //     alignment: Alignment.center,
-      //     padding: EdgeInsets.symmetric(horizontal: 16),
-      //     child: Text(selectedItem ?? ''),
-      //   );
-      // },
+    return Form(
       key: formKey,
-      validator: validator,
-      dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
-          constraints: BoxConstraints(maxWidth: 75, maxHeight: 40),
-          fillColor: primaryColor,
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          filled: true,
-          hintText: hintText ?? "",
-          hintStyle: tsBodySmallMediumDarkGrey,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: secondaryColor, width: 2),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(10),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: DropdownSearch<int>(
+        items: List.generate(maxNumber!, (index) => index + minNumber!),
+        // dropdownBuilder: (context, selectedItem) {
+        //   return Container(
+        //     alignment: Alignment.center,
+        //     padding: EdgeInsets.symmetric(horizontal: 16),
+        //     child: Text(selectedItem ?? ''),
+        //   );
+        // },
+
+        validator: validator,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: InputDecoration(
+            isDense: true,
+            constraints: BoxConstraints(
+              maxWidth: 75,
+            ),
+            fillColor: primaryColor,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            filled: true,
+            hintText: hintText ?? "",
+            hintStyle: tsBodySmallMediumDarkGrey,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: secondaryColor, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            border: OutlineInputBorder(
+              borderSide: formKey != null &&
+                      (formKey as GlobalKey<FormState>)
+                              .currentState
+                              ?.validate() ==
+                          true
+                  ? BorderSide.none
+                  : BorderSide(color: Colors.red, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
+        onChanged: onChanged,
       ),
-      onChanged: onChanged,
     );
   }
 }

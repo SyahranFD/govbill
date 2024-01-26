@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
@@ -17,7 +16,9 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
   Widget build(BuildContext context) {
     final namaTagihanFormKey = GlobalKey<FormState>();
     final noTagihanFormKey = GlobalKey<FormState>();
-    
+    final tanggalTagihanFormKey = GlobalKey<FormState>();
+    final kotaKabupatenFormKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: backgroundPageColor,
       appBar: AppBar(
@@ -59,16 +60,19 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 13),
               ),
               SizedBox(
                 height: 10,
               ),
               SearchDropdownWidget(
                 hintText: "Kota/Kabupaten",
+                formKey: kotaKabupatenFormKey,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Kota/Kabupaten tidak boleh kosong";
+                  } else if (!controller.kabupatenData.contains(value)) {
+                    return "Kota/Kabupaten tidak ditemukan";
                   } else {
                     controller.kotaKabupatenPDAM.value = value;
                   }
@@ -101,7 +105,7 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                   return null;
                 },
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 13),
               ),
               SizedBox(
                 height: 5,
@@ -129,10 +133,15 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
               Padding(
                 padding: const EdgeInsets.only(left: 2),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Tanggal",
-                      style: tsBodySmallSemiboldBlueGrey,
+                    Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Tanggal",
+                        style: tsBodySmallSemiboldBlueGrey,
+                      ),
                     ),
                     SizedBox(
                       width: 10,
@@ -141,8 +150,14 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
                       hintText: "02",
                       maxNumber: 16,
                       minNumber: 5,
-                      onChanged: (value) {
-                        controller.tanggalPDAM.value = value!;
+                      formKey: tanggalTagihanFormKey,
+                      validator: (value) {
+                        if (value == null) {
+                          return "";
+                        } else {
+                          controller.tanggalPDAM.value = value;
+                        }
+                        return null;
                       },
                     ),
                   ],
@@ -152,19 +167,22 @@ class TambahPdamView extends GetView<TambahTagihanPageController> {
           ),
         ),
       ),
-      floatingActionButton: ButtonWidget(
-        onTap: () {
-          if (namaTagihanFormKey.currentState!.validate() &&
-              noTagihanFormKey.currentState!.validate()) {
-            controller.postTagihanPDAM();
-          }
-        },
-        title: "Daftar",
-        height: 55,
-        width: double.infinity,
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(15),
-      ),
+      floatingActionButton: Obx(() => ButtonWidget(
+            onTap: () {
+              if (namaTagihanFormKey.currentState!.validate() &&
+                  noTagihanFormKey.currentState!.validate() &&
+                  kotaKabupatenFormKey.currentState!.validate() &&
+                  tanggalTagihanFormKey.currentState!.validate()) {
+                controller.postTagihanPDAM();
+              }
+            },
+            title: "Daftar",
+            height: 55,
+            isLoading: controller.isLoading.value,
+            width: double.infinity,
+            alignment: Alignment.center,
+            margin: EdgeInsets.all(15),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

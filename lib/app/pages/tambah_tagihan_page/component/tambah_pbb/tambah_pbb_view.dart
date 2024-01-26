@@ -18,6 +18,9 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
   Widget build(BuildContext context) {
     final namaTagihanFormKey = GlobalKey<FormState>();
     final noTagihanFormKey = GlobalKey<FormState>();
+    final kotaKabupatenFormKey = GlobalKey<FormState>();
+    final tanggalTagihanFormKey = GlobalKey<FormState>();
+    final bulanTagihanFormKey = GlobalKey<FormState>();
 
     return Scaffold(
       backgroundColor: backgroundPageColor,
@@ -66,19 +69,17 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
               ),
               SearchDropdownWidget(
                 hintText: "Kota/Kabupaten",
-                onSaved: (value) {
-                  print(value);
-                  controller.kotaKabupatenPBB.value = value!;
-                },
-                validator: (p0) {
-                  if (p0!.isEmpty) {
+                formKey: kotaKabupatenFormKey,
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Kota/Kabupaten tidak boleh kosong";
+                  } else if (!controller.kabupatenData.contains(value)) {
+                    return "Kota/Kabupaten tidak ditemukan";
                   } else {
-                    print(p0);
-                    controller.kotaKabupatenPBB.value = p0;
+                    controller.kotaKabupatenPDAM.value = value;
                   }
                   return null;
-                },                
+                },
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -113,79 +114,87 @@ class TambahPbbView extends GetView<TambahTagihanPageController> {
                   style: tsLabelRegularRed,
                 ),
               ),
-            
               SizedBox(
                 height: 25,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 2),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Tanggal",
-                      style: tsBodySmallSemiboldBlueGrey,
+                    Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Tanggal",
+                        style: tsBodySmallSemiboldBlueGrey,
+                      ),
                     ),
-                    SizedBox(  
+                    SizedBox(
                       width: 10,
                     ),
                     DropdownDateWidget(
                       hintText: "02",
-                      maxNumber: 20,
-                      minNumber: 1,
-                      onChanged: (value) {
-                        controller.tanggalPBB.value = value!;
+                      maxNumber: 16,
+                      minNumber: 5,
+                      formKey: tanggalTagihanFormKey,
+                      validator: (value) {
+                        if (value == null) {
+                          return "";
+                        } else {
+                          controller.tanggalPDAM.value = value;
+                        }
+                        return null;
                       },
                     ),
                     SizedBox(
                       width: 15,
                     ),
-                    Text(
-                      "Bulan",
-                      style: tsBodySmallSemiboldBlueGrey,
+                    Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Bulan",
+                        style: tsBodySmallSemiboldBlueGrey,
+                      ),
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     DropdownBulanWidget(
-                      items: [
-                        "Maret",
-                        "April",
-                        "Mei",
-                        "Juni",
-                        "Juli",
-                        "Agustus",
-                        "September",
-                      ],
-                      onChanged: (value) {
-                        controller.bulanPBB.value = value!;
-          
+                      formKey: bulanTagihanFormKey,
+                      items: controller.bulanDropdownPbb,
+                      validator: (value) {
+                        if (value == null) {
+                          return "";
+                        } else {
+                          controller.bulanPBB.value = value;
+                        }
+                        return null;
                       },
                     )
                   ],
                 ),
               ),
-                  
-                  Obx(() => controller.isLoading.value
-                      ? Center(
-                        child: CircularProgressIndicator(),
-                  )
-                      : Container()),
             ]),
           )),
-      floatingActionButton: ButtonWidget(
-        onTap: () async {
-          if (namaTagihanFormKey.currentState!.validate() &&
-              noTagihanFormKey.currentState!.validate()) {
-            controller.postTagihanPBB();
-          }
-
-        },
-        title: "Daftar",
-        height: 55,
-        width: double.infinity,
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(15),
-      ),
+      floatingActionButton: Obx(() => ButtonWidget(
+            onTap: () {
+              if (namaTagihanFormKey.currentState!.validate() &&
+                  kotaKabupatenFormKey.currentState!.validate() &&
+                  tanggalTagihanFormKey.currentState!.validate() &&
+                  bulanTagihanFormKey.currentState!.validate() &&
+                  noTagihanFormKey.currentState!.validate()) {
+                controller.postTagihanPBB();
+              }
+            },
+            isLoading: controller.isLoading.value,
+            title: "Daftar",
+            height: 55,
+            width: double.infinity,
+            alignment: Alignment.center,
+            margin: EdgeInsets.all(15),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class ApiTambahTagihanController {
   // static final TagihanTerdaftarPageController tagihanTerdaftarPageController =
@@ -40,19 +39,9 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/');
+        return "success";
       } else {
-        isLoading.value = false;
-        print(data);
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
       isLoading.value = false;
@@ -61,7 +50,7 @@ class ApiTambahTagihanController {
     }
   }
 
-  static Future postTagihanPDAM({
+  static Future<String?> postTagihanPDAM({
     String? noTagihan,
     String? namaTagihan,
     String? tanggalBayar,
@@ -86,23 +75,13 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
-      isLoading.value = false;
-
       print(e.toString());
+      return e.toString();
     }
   }
 
@@ -129,27 +108,17 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
-      isLoading.value = false;
 
       print(e.toString());
     }
   }
 
-  static Future postTagihanPGN({
+  static Future<String?> postTagihanPGN({
     String? noTagihan,
     String? namaTagihan,
     String? tanggalBayar,
@@ -172,24 +141,14 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
-      isLoading.value = false;
-
       print(e.toString());
     }
+    return null;
   }
 
   static Future postTagihanBPJS({
@@ -215,23 +174,76 @@ class ApiTambahTagihanController {
       );
 
       if (response.statusCode == 201) {
-        isLoading.value = false;
-        Get.offAllNamed('/berhasil-terdaftar');
+        return "success";
       } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          json.decode(response.body)['message'],
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-        print(json.decode(response.body));
+        return json.decode(response.body)["message"];
       }
     } catch (e) {
       isLoading.value = false;
 
       print(e.toString());
+    }
+  }
+
+  static Future checkNik({
+    required String nik,
+    required String nrkb,
+  }) async {
+    try {
+      var data = {
+        "nik": nik,
+        "nrkb": nrkb,
+      };
+      var response = await http.post(
+        Uri.parse("${url}/tagihan-terdaftar/verifikasi-kendaraan"),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+        body: data,
+      );
+      if (response.statusCode == 200) {
+        return "success";
+      } else {
+        return json.decode(response.body)["message"];
+      }
+    } catch (e) {
+      print(e.toString());
+      return "error";
+    }
+  }
+
+  static Future postTagihanMotor(
+      {required String namaTagihan,
+      required String tanggalBayar,
+      required String bulanBayar,
+      required String nik,
+      required String nrkb,
+      required String jenisTagihan}) async {
+    var data = {
+      'nama_tagihan': namaTagihan,
+      'tanggal_bayar': tanggalBayar,
+      'bulan_bayar': bulanBayar,
+      'nik': nik,
+      'nrkb': nrkb,
+    };
+    var response = await http.post(
+      Uri.parse(jenisTagihan == "motor"
+          ? "${url}/tagihan-terdaftar/store-motor"
+          : "${url}/tagihan-terdaftar/store-mobil"),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${box.read('token')}',
+      },
+      body: data,
+    );
+    print(response.body);
+    if (response.statusCode == 201) {
+      print("suskess");
+      return "success";
+    } else {
+      print("gagall");
+      return json.decode(response.body)["message"];
     }
   }
 }

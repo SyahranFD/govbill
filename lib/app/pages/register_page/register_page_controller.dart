@@ -18,12 +18,11 @@ class RegisterPageController extends GetxController {
   var isLoading = false.obs;
 
   void register() async {
-    await authenticationController.register(
+    await AuthenticationController.register(
         username: ctrUsername!.text,
         email: ctrEmail!.text,
         password: ctrPassword!.text,
         phoneNumber: ctrPhoneNumber!.text);
-    isLoading.value = authenticationController.isLoading.value;
     Get.offAll(Routes.TAMBAH_METODE_PEMBAYARAN_PAGE);
   }
 
