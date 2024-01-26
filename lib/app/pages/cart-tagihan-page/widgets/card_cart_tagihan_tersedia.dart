@@ -5,15 +5,16 @@ import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class CardCartTagihanTersedia extends GetView<CartPageController> {
-  CardCartTagihanTersedia(
-      {Key? key,
-      required this.namaNoTagihan,
-      required this.colorTagihan,
-      required this.noTagihan,
-      required this.jenisTagihan,
-      required this.namaTagihan,
-      required this.nominalTagihan,
-      required this.isSelectedIdEmpty});
+  CardCartTagihanTersedia({
+    Key? key,
+    required this.namaNoTagihan,
+    required this.colorTagihan,
+    required this.noTagihan,
+    required this.jenisTagihan,
+    required this.namaTagihan,
+    required this.nominalTagihan,
+    required this.id,
+  });
 
   final String? namaNoTagihan;
   final Color? colorTagihan;
@@ -21,7 +22,7 @@ class CardCartTagihanTersedia extends GetView<CartPageController> {
   final String? jenisTagihan;
   final String? namaTagihan;
   final String? nominalTagihan;
-  final bool? isSelectedIdEmpty;
+  final int? id;
 
   @override
   Widget build(BuildContext context) {
@@ -82,29 +83,32 @@ class CardCartTagihanTersedia extends GetView<CartPageController> {
               ],
             ),
             Container(
-                width: width * 0.05,
-                height: width * 0.05,
-                decoration: BoxDecoration(
-                  color: grey,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                        isSelectedIdEmpty != null
-                            ? Container(
-                          width: width * 0.036,
-                          height: width * 0.036,
-                          decoration: BoxDecoration(
-                            color: successColor,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        )
-                            : Container()
-                    ],
-                  ),
-                ),
+              width: width * 0.05,
+              height: width * 0.05,
+              decoration: BoxDecoration(
+                color: grey,
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Obx(() {
+                    bool isSelected = controller.isIdSelected(id!);
+                    return isSelected
+                        ? Container(
+                            width: width * 0.036,
+                            height: width * 0.036,
+                            decoration: BoxDecoration(
+                              color: successColor,
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                          )
+                        : Container();
+                  }),
+                ],
+              ),
+            ),
           ],
         ),
       ),
