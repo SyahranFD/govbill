@@ -6,7 +6,7 @@ abstract class Routes {
   static const REGISTER_PAGE = _Paths.REGISTER_PAGE;
   static const LOGIN_PAGE  = _Paths.LOGIN_PAGE;
   static const HOME_PAGE = _Paths.HOME_PAGE;
-  static const TAGIHAN_AKAN_DATANG_PAGE = _Paths.TAGIHAN_AKAN_DATANG_PAGE;
+  static const TAGIHAN_TERSEDIA_PAGE = _Paths.TAGIHAN_TERSEDIA_PAGE;
   static const TAGIHAN_TERDAFTAR_PAGE = _Paths.TAGIHAN_TERDAFTAR_PAGE;
   static const EDIT_TAGIHAN_TERDAFTAR_PAGE = _Paths.EDIT_TAGIHAN_TERDAFTAR_PAGE;
   static const METODE_PEMBAYARAN_PAGE = _Paths.METODE_PEMBAYARAN_PAGE;
@@ -41,7 +41,7 @@ abstract class _Paths {
   static const REGISTER_PAGE = '/register';
   static const LOGIN_PAGE = '/login';
   static const HOME_PAGE = '/';
-  static const TAGIHAN_AKAN_DATANG_PAGE = '/tagihan-akan-datang';
+  static const TAGIHAN_TERSEDIA_PAGE = '/tagihan-tersedia';
   static const TAGIHAN_TERDAFTAR_PAGE = '/tagihan-terdaftar';
   static const EDIT_TAGIHAN_TERDAFTAR_PAGE = '/edit-tagihan-terdaftar';
   static const METODE_PEMBAYARAN_PAGE = '/metode-pembayaran';

@@ -43,7 +43,7 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.TAGIHAN_AKAN_DATANG_PAGE,
+      name: _Paths.TAGIHAN_TERSEDIA_PAGE,
       page: () => TagihanTersediaPageView(),
       binding: TagihanTersediaPageBinding(),
       transition: Transition.noTransition,
