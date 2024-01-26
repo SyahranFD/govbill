@@ -24,7 +24,7 @@ class HomeTagihanTersediaComponent extends StatelessWidget {
             Text("Tagihan Tersedia", style: tsBodyMediumSemiboldBlack),
             InkWell(
               onTap: () {
-                Get.toNamed("/tagihan-akan-datang");
+                Get.toNamed("/tagihan-tersedia");
               },
               child: Text("Selengkapnya", style: tsLabelMediumDarkBlue),
             ),

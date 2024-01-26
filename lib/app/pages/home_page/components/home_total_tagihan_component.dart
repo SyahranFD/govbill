@@ -82,7 +82,7 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: () {
-                                Get.toNamed("/tagihan-akan-datang");
+                                Get.toNamed("/tagihan-tersedia");
                               },
                               child: Container(
                                 height: 33,
