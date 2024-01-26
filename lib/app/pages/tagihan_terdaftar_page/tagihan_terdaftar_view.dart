@@ -16,30 +16,33 @@ class TagihanTerdaftarPageView extends StatelessWidget {
     final double width = mediaQuery.width;
     final double height = mediaQuery.height;
 
-    return Scaffold(
-      backgroundColor: backgroundPageColor,
-      appBar: AppBar(
-        elevation: 0,
+    return RefreshIndicator(
+      onRefresh: () => tagihanTerdaftarPageController.refreshData(),
+      child: Scaffold(
         backgroundColor: backgroundPageColor,
-        toolbarHeight: 75,
-        centerTitle: true,
-        title: Text(tagihanTerdaftarPageController.selectedTagihan.value + " Terdaftar", style: tsBodyLargeSemiboldBlack),
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 20,
-            color: blackColor,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: backgroundPageColor,
+          toolbarHeight: 75,
+          centerTitle: true,
+          title: Text(tagihanTerdaftarPageController.selectedTagihan.value + " Terdaftar", style: tsBodyLargeSemiboldBlack),
+          leading: IconButton(
+            onPressed: () => Get.back(),
+            icon: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 20,
+              color: blackColor,
+            ),
           ),
         ),
-      ),
-      body: switchCaseTagihanTerdaftar(context: context),
+        body: switchCaseTagihanTerdaftar(context: context),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed('/tambah-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
-        child: Icon(Icons.add, color: primaryColor,),
-        backgroundColor: secondaryColor,
-      )
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Get.toNamed('/tambah-' + tagihanTerdaftarPageController.selectedTagihan.value.toLowerCase()),
+          child: Icon(Icons.add, color: primaryColor,),
+          backgroundColor: secondaryColor,
+        )
+      ),
     );
   }
 }

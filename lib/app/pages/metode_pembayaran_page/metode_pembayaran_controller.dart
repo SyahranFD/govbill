@@ -11,4 +11,8 @@ class MetodePembayaranPageController extends GetxController {
 
   RxInt selectedMenu = 0.obs;
 
+  Future<void> refreshData() async {
+    await apiMetodePembayaranController.fetchMetodePembayaran();
+  }
+
 }
