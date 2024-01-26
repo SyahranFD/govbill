@@ -99,7 +99,7 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 cartPageController.addAllToSelectedId();
-                                print(cartPageController.selectedId);
+                                cartPageController.calculateTotalSelectedNominal();
                                 Get.toNamed("/cart");
                               },
                               child: Container(

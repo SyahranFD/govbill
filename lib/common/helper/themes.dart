@@ -44,6 +44,12 @@ TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
   fontSize: figmaFontsize(24),
 );
 
+TextStyle tsTitleLargeSemiboldDarkBlue = GoogleFonts.poppins(
+  color: secondaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(18),
+);
+
 TextStyle tsTitleMediumSemiboldBlack = GoogleFonts.poppins(
   color: blackColor,
   fontWeight: FontWeight.w600,
@@ -56,8 +62,8 @@ TextStyle tsTitleSmallSemiboldWhite = GoogleFonts.poppins(
   fontSize: figmaFontsize(18),
 );
 
-TextStyle tsTitleLargeSemiboldDarkBlue = GoogleFonts.poppins(
-  color: secondaryColor,
+TextStyle tsTitleSmallSemiboldBlack = GoogleFonts.poppins(
+  color: blackColor,
   fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(18),
 );
