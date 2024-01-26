@@ -129,7 +129,7 @@ class ProfilePageView extends StatelessWidget {
 
                     GestureDetector(
                       onTap: () async{
-                        authenticationController.logout();
+                        // authenticationController.logout();
                       },
                       child: Container(
                         width: double.infinity,

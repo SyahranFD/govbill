@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
@@ -15,6 +14,7 @@ class TambahBpjsView extends GetView<TambahTagihanPageController> {
   Widget build(BuildContext context) {
     final namaTagihanFormKey = GlobalKey<FormState>();
     final noTagihanFormKey = GlobalKey<FormState>();
+    final tanggalTagihanFormKey = GlobalKey<FormState>();
 
     return Scaffold(
       backgroundColor: backgroundPageColor,
@@ -103,44 +103,56 @@ class TambahBpjsView extends GetView<TambahTagihanPageController> {
                 height: 5,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 2),
-                child: Row(
-                  children: [
-                    Text(
-                      "Tanggal",
-                      style: tsBodySmallSemiboldBlueGrey,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    DropdownDateWidget(
-                      minNumber: 1,
-                      maxNumber: 9,
-                      hintText: "02",
-                      onChanged: (value) {
-                        controller.tanggalBPJS.value = value!;
-                      },
-                    )
-                  ],
-                ),
-              )
+                  padding: const EdgeInsets.only(left: 2),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Tanggal",
+                          style: tsBodySmallSemiboldBlueGrey,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      DropdownDateWidget(
+                        hintText: "02",
+                        maxNumber: 16,
+                        minNumber: 5,
+                        formKey: tanggalTagihanFormKey,
+                        validator: (value) {
+                          if (value == null) {
+                            return "";
+                          } else {
+                            controller.tanggalBPJS.value = value;
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
       ),
-      floatingActionButton: ButtonWidget(
-        onTap: () {
-          if (namaTagihanFormKey.currentState!.validate() &&
-              noTagihanFormKey.currentState!.validate()) {
-            controller.postTagihanBPJS();
-          }
-        },
-        title: "Daftar",
-        height: 55,
-        width: double.infinity,
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(15),
-      ),
+      floatingActionButton: Obx(() => ButtonWidget(
+            onTap: () {
+              if (namaTagihanFormKey.currentState!.validate() &&
+                  tanggalTagihanFormKey.currentState!.validate() &&
+                  noTagihanFormKey.currentState!.validate()) {
+                controller.postTagihanBPJS();
+              }
+            },
+            isLoading: controller.isLoading.value,
+            title: "Daftar",
+            height: 55,
+            width: double.infinity,
+            alignment: Alignment.center,
+            margin: EdgeInsets.all(15),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

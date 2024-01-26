@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
-import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 class TagihanTerdaftarPageController extends GetxController {
   final ApiTagihanTerdaftarController apiTagihanTerdaftarController =

@@ -32,16 +32,16 @@ class SearchDropdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchField(
-
-      suggestionStyle: tsBodySmallRegularBlack,
-      onSubmit: onSaved,
-      onTap: onTap,
-      onSaved: onSaved,
+    return Form(
       key: formKey,
-      validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      searchInputDecoration: InputDecoration(
+      child: SearchField(
+        suggestionStyle: tsBodySmallRegularBlack,
+        onSubmit: onSaved,
+        onTap: onTap,
+        onSaved: onSaved,
+        validator: validator,
+        searchInputDecoration: InputDecoration(
           hintText: hintText,
           hintStyle: tsBodySmallMediumDarkGrey,
           fillColor: primaryColor,
@@ -50,27 +50,28 @@ class SearchDropdownWidget extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: secondaryColor, width: 2),
               borderRadius: BorderRadius.circular(10)),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          border: OutlineInputBorder(
+              borderSide: formKey != null &&
+                      (formKey as GlobalKey<FormState>)
+                              .currentState
+                              ?.validate() ==
+                          true
+                  ? BorderSide.none
+                  : BorderSide(color: Colors.red, width: 2),
+              borderRadius: BorderRadius.circular(10)),
         ),
-        border: OutlineInputBorder(
-            borderSide: formKey != null &&
-                    (formKey as GlobalKey<FormState>)
-                            .currentState
-                            ?.validate() ==
-                        true
-                ? BorderSide.none
-                : BorderSide(color: Colors.red, width: 2),
-            borderRadius: BorderRadius.circular(10)),
+        suggestionsDecoration: SuggestionDecoration(
+          color: primaryColor,
+          padding: padding ?? EdgeInsets.zero,
+        ),
+        suggestionItemDecoration:
+            BoxDecoration(border: Border(bottom: BorderSide.none)),
+        suggestions: suggestions!,
       ),
-      suggestionsDecoration: SuggestionDecoration(
-        color: primaryColor,
-        padding: padding ?? EdgeInsets.zero,
-      ),
-      suggestionItemDecoration:
-          BoxDecoration(border: Border(bottom: BorderSide.none)),
-      suggestions: suggestions!,
     );
   }
 }

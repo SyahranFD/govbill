@@ -1,9 +1,10 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:govbill/common/helper/themes.dart';
 
 class ButtonWidget extends StatelessWidget {
   final void Function()? onTap;
   final String? title;
+  final bool? isLoading;
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
   final Alignment? alignment;
@@ -14,6 +15,7 @@ class ButtonWidget extends StatelessWidget {
       this.onTap,
       this.alignment,
       this.title,
+      this.isLoading,
       this.margin,
       this.padding,
       this.width,
@@ -33,7 +35,15 @@ class ButtonWidget extends StatelessWidget {
           color: secondaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(
+        child: isLoading == true
+            ? Transform.scale(
+                scale: 0.5,
+                child: CircularProgressIndicator(
+                  strokeWidth: 4,
+                  color: primaryColor,
+                ),
+              )
+            : Text(
           title!,
           style: tsBodyMediumSemiboldWhite,
         ),
