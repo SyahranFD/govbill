@@ -34,4 +34,8 @@ class TagihanTerdaftarPageController extends GetxController {
     ctrBulanBayar!.text = tagihan.bulanBayar.toString();
     print(ctrBulanBayar!.text);
   }
+
+  Future<void> refreshData() async {
+    await apiTagihanTerdaftarController.fetchTagihanTerdaftar();
+  }
 }

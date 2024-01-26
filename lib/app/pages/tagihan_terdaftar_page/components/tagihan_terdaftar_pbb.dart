@@ -32,6 +32,7 @@ class TagihanTerdaftarPBB extends StatelessWidget {
         margin: EdgeInsets.only(
             top: 15, left: width * 0.05, right: width * 0.05),
         child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
           child: ListView.builder(
             itemCount: apiTagihanTerdaftarController.listTagihanTerdaftarPBB.length,
             physics: NeverScrollableScrollPhysics(),
