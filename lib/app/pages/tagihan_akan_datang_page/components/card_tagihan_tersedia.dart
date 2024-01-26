@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class CardTagihanAkanDatangPLN extends StatelessWidget {
+class CardTagihanTersedia extends GetView<TagihanAkanDatangPageController> {
+  CardTagihanTersedia({
+    Key? key,
+    required this.namaNoTagihan,
+    required this.colorTagihan,
+    required this.noTagihan,
+    required this.jenisTagihan,
+    required this.namaTagihan,
+    required this.waktuBayar,
+    required this.nominalTagihan,
+  });
 
-  CardTagihanAkanDatangPLN(
-      {Key? key,
-        required this.noTagihan,
-        required this.jenisTagihan,
-        required this.namaTagihan,
-        required this.waktuBayar,
-        required this.nominalTagihan,
-      });
-
+  final String? namaNoTagihan;
+  final Color? colorTagihan;
   final String? noTagihan;
   final String? jenisTagihan;
   final String? namaTagihan;
@@ -47,7 +53,7 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("ID Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
+                Text("$namaNoTagihan : $noTagihan", style: tsLabelRegularDarkBlue),
 
                 SizedBox(height: 10),
 
@@ -57,7 +63,7 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: categoryPLN,
+                        color: colorTagihan,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(

@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
-import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_bpjs.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_mobil.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_motor.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pbb.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pdam.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pgn.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pln.dart';
+import 'package:govbill/app/global_component/defineTagihan.dart';
+import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_tersedia.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 
@@ -74,6 +68,9 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
                               .format(tagihan.waktuBayar!)
                           : 'N/A';
 
+                      String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
+                      Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
+
                       return Container(
                         margin: EdgeInsets.only(bottom: 0),
                         child: Column(
@@ -82,56 +79,15 @@ class HomeTagihanAkanDatangComponent extends StatelessWidget {
                               width: double.infinity,
                               child: Column(
                                 children: [
-                                  tagihan.jenisTagihan == "BPJS"
-                                      ? CardTagihanAkanDatangBPJS(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "PDAM"
-                                      ? CardTagihanAkanDatangPDAM(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "PLN"
-                                      ? CardTagihanAkanDatangPLN(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "PBB"
-                                      ? CardTagihanAkanDatangPBB(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "Mobil"
-                                      ? CardTagihanAkanDatangMobil(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "Motor"
-                                      ? CardTagihanAkanDatangMotor(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : tagihan.jenisTagihan == "PGN"
-                                      ? CardTagihanAkanDatangPGN(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
-                                      : Container(),
+                                  CardTagihanTersedia(
+                                    namaNoTagihan: namaNoTagihan,
+                                    colorTagihan: colorTagihan,
+                                    noTagihan: tagihan.noTagihan,
+                                    jenisTagihan: tagihan.jenisTagihan,
+                                    namaTagihan: tagihan.namaTagihan,
+                                    waktuBayar: paymentDateFormatted,
+                                    nominalTagihan: nominalTagihanFormatted,
+                                  ),
                                 ],
                               ),
                             )
