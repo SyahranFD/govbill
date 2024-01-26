@@ -7,6 +7,7 @@ import 'package:govbill/app/pages/history_page/components/card_history_mobil.dar
 import 'package:govbill/app/pages/history_page/components/card_history_motor.dart';
 import 'package:govbill/app/pages/history_page/components/card_history_pbb.dart';
 import 'package:govbill/app/pages/history_page/components/card_history_pdam.dart';
+import 'package:govbill/app/pages/history_page/components/card_history_pgn.dart';
 import 'package:govbill/app/pages/history_page/components/card_history_pln.dart';
 import 'package:govbill/app/pages/history_page/history_page_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -143,6 +144,21 @@ class HistoryPageView extends StatelessWidget {
                                       : tagihan.jenisTagihan ==
                                       "Motor"
                                       ? CardHistoryMotor(
+                                      noTagihan: tagihan
+                                          .noTagihan,
+                                      jenisTagihan:
+                                      tagihan
+                                          .jenisTagihan,
+                                      namaTagihan:
+                                      tagihan
+                                          .namaTagihan,
+                                      waktuBayar:
+                                      paymentDateFormatted,
+                                      nominalTagihan:
+                                      nominalTagihanFormatted)
+                                      : tagihan.jenisTagihan ==
+                                      "PGN"
+                                      ? CardHistoryPGN(
                                       noTagihan: tagihan
                                           .noTagihan,
                                       jenisTagihan:

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tagihan_terdaftar_page/widgets/switch_case_tagihan_terdaftar.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/button_widget.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/text_input_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 
@@ -45,31 +46,41 @@ class EditTagihanTerdaftarPageView extends StatelessWidget {
               SizedBox(height: 3),
               TextInputWidget(
                 hintText: "Nama Tagihan",
-                height: 40,
-                padding: EdgeInsets.only(top: 15, left: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 controller: tagihanTerdaftarPageController.ctrNamaTagihan,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Nama Tagihan tidak boleh kosong";
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 10),
               Text("Tanggal Bayar", style: tsLabelRegularDarkGrey),
               SizedBox(height: 3),
-              TextInputWidget(
-                hintText: "Tanggal Bayar",
-                height: 40,
-                padding: EdgeInsets.only(top: 15, left: 15),
-                controller: tagihanTerdaftarPageController.ctrTanggalBayar,
+              DropdownDateWidget(
+                minNumber: 2,
+                maxNumber: 18,
+                onChanged: (value) {
+                  tagihanTerdaftarPageController.ctrTanggalBayar?.text = value.toString();
+                },
+                hintText: tagihanTerdaftarPageController.ctrTanggalBayar?.text,
               ),
+
               SizedBox(height: 10),
               tagihanTerdaftarPageController.ctrBulanBayar?.text != "0"
                   ? Column(
                     children: [
                       Text("Bulan Bayar", style: tsLabelRegularDarkGrey),
                       SizedBox(height: 3),
-                      TextInputWidget(
-                        hintText: "Bulan Bayar",
-                        height: 40,
-                        padding: EdgeInsets.only(top: 15, left: 15),
-                        controller: tagihanTerdaftarPageController.ctrBulanBayar,
-                      )
+                      DropdownDateWidget(
+                        minNumber: 2,
+                        maxNumber: 18,
+                        onChanged: (value) {
+                          tagihanTerdaftarPageController.ctrBulanBayar?.text = value.toString();
+                        },
+                        hintText: tagihanTerdaftarPageController.ctrBulanBayar?.text,
+                      ),
                     ],
                   )
                   : Container(),
