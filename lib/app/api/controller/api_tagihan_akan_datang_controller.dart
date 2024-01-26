@@ -13,6 +13,7 @@ class ApiTagihanAkanDatangController extends GetxController {
   final isLoading = false.obs;
   final box = GetStorage();
   RxString totalNominal = "".obs;
+  RxString namaNoTagihan = "".obs;
 
   @override
   void onInit() {
@@ -88,5 +89,30 @@ class ApiTagihanAkanDatangController extends GetxController {
     totalNominal.value = totalNominalFormatted;
 
     print('Total Nominal Tagihan: $total');
+  }
+
+  // !!! Tidak Terpakai
+  void defineNamaNoTagihan() {
+    listTagihanAkanDatang.forEach((tagihan) {
+      switch (tagihan.jenisTagihan) {
+        case 'PBB':
+          namaNoTagihan.value = 'NOP';
+          break;
+        case 'PLN':
+          namaNoTagihan.value = 'ID Pelanggan';
+          break;
+        case 'PGN':
+          namaNoTagihan.value = 'ID Pelanggan';
+          break;
+        case 'BPJS':
+          namaNoTagihan.value = 'No. VA';
+          break;
+        case 'PDAM':
+          namaNoTagihan.value = 'No. Pelanggan';
+          break;
+        default:
+          namaNoTagihan.value = '';
+      }
+    });
   }
 }
