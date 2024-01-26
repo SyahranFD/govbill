@@ -3,13 +3,6 @@ import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/widgets/card_cart_tagihan_tersedia.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_bpjs.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_mobil.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_motor.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pbb.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pdam.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pgn.dart';
-import 'package:govbill/app/pages/tagihan_akan_datang_page/components/card_tagihan_akan_datang_pln.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 
@@ -57,11 +50,11 @@ class CartListViewTagihan extends StatelessWidget {
                         nominalTagihanFormatted =
                             nominalTagihanFormatted.replaceAll(",00", "");
 
-                        bool isSelected = cartPageController.isIdSelected(tagihan.id!);
 
                         return InkWell(
                             onTap: () {
                               cartPageController.addToSelectedId(tagihan.id!);
+                              print(cartPageController.selectedId);
                             },
                             child: Container(
                               width: double.infinity,
@@ -73,7 +66,7 @@ class CartListViewTagihan extends StatelessWidget {
                                       jenisTagihan: tagihan.jenisTagihan,
                                       namaTagihan: tagihan.namaTagihan,
                                       nominalTagihan: nominalTagihanFormatted,
-                                      isSelectedIdEmpty: isSelected,
+                                      id: tagihan.id,
                                     )
                                   : tagihan.jenisTagihan == "PDAM"
                                       ? CardCartTagihanTersedia(
@@ -83,7 +76,7 @@ class CartListViewTagihan extends StatelessWidget {
                                           jenisTagihan: tagihan.jenisTagihan,
                                           namaTagihan: tagihan.namaTagihan,
                                           nominalTagihan: nominalTagihanFormatted,
-                                          isSelectedIdEmpty: isSelected,
+                                          id: tagihan.id,
                                         )
                                       : tagihan.jenisTagihan == "PLN"
                                           ? CardCartTagihanTersedia(
@@ -94,7 +87,7 @@ class CartListViewTagihan extends StatelessWidget {
                                               namaTagihan: tagihan.namaTagihan,
                                               nominalTagihan:
                                                   nominalTagihanFormatted,
-                                              isSelectedIdEmpty: isSelected,
+                                              id: tagihan.id,
                                             )
                                           : tagihan.jenisTagihan == "PBB"
                                               ? CardCartTagihanTersedia(
@@ -107,7 +100,7 @@ class CartListViewTagihan extends StatelessWidget {
                                                       tagihan.namaTagihan,
                                                   nominalTagihan:
                                                       nominalTagihanFormatted,
-                                                  isSelectedIdEmpty: isSelected,
+                                                  id: tagihan.id,
                                                 )
                                               : tagihan.jenisTagihan == "Mobil"
                                                   ? CardCartTagihanTersedia(
@@ -121,8 +114,7 @@ class CartListViewTagihan extends StatelessWidget {
                                                           tagihan.namaTagihan,
                                                       nominalTagihan:
                                                           nominalTagihanFormatted,
-                                                      isSelectedIdEmpty:
-                                                          isSelected,
+                                                      id: tagihan.id,
                                                     )
                                                   : tagihan.jenisTagihan ==
                                                           "Motor"
@@ -138,8 +130,7 @@ class CartListViewTagihan extends StatelessWidget {
                                                               tagihan.namaTagihan,
                                                           nominalTagihan:
                                                               nominalTagihanFormatted,
-                                                          isSelectedIdEmpty:
-                                                              isSelected,
+                                                          id: tagihan.id,
                                                         )
                                                       : tagihan.jenisTagihan ==
                                                               "PGN"
@@ -156,8 +147,7 @@ class CartListViewTagihan extends StatelessWidget {
                                                                   .namaTagihan,
                                                               nominalTagihan:
                                                                   nominalTagihanFormatted,
-                                                              isSelectedIdEmpty:
-                                                                  isSelected,
+                                                              id: tagihan.id,
                                                             )
                                                           : Container(),
                             ),
