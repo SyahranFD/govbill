@@ -49,7 +49,9 @@ class HomeTagihanTersediaComponent extends StatelessWidget {
                       textIndicator: 'Tidak Ada Tagihan',
                     )
                   : ListView.builder(
-                      itemCount: 2,
+                      itemCount: apiTagihanAkanDatangController.listTagihanAkanDatang.length > 2
+                                  ? 2
+                                  : apiTagihanAkanDatangController.listTagihanAkanDatang.length,
                       padding: EdgeInsets.zero,
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -89,6 +91,7 @@ class HomeTagihanTersediaComponent extends StatelessWidget {
                                       namaTagihan: tagihan.namaTagihan,
                                       waktuBayar: paymentDateFormatted,
                                       nominalTagihan: nominalTagihanFormatted,
+                                      isGagal: isStatusGagal(tagihan.status!),
                                     ),
                                   ],
                                 ),

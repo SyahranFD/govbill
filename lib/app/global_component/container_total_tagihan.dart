@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_controller.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-Widget ContainerTotalTagihan({required context, required String route, required bool isListTagihan}) {
+Widget ContainerTotalTagihan(
+    {required context, required String route, required bool isListTagihan}) {
   final CartPageController cartController = Get.put(CartPageController());
   final CartMetodePembayaranPageController cartMetodePembayaranPageController =
       Get.put(CartMetodePembayaranPageController());
+  final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
+      Get.put(ApiTagihanAkanDatangController());
 
   final Size mediaQuery = MediaQuery.of(context).size;
   final double height = mediaQuery.height;
   final double width = mediaQuery.height;
+
+  Future<void> processPayments() async {
+    List<Future<void>> paymentFutures = [];
+
+    cartController.selectedId.forEach((element) {
+      paymentFutures.add(apiTagihanAkanDatangController.bayarLangsung(element, cartMetodePembayaranPageController.selectedId[0]));
+    });
+
+    await Future.wait(paymentFutures);
+
+    await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
+
+    Get.offAllNamed('/');
+  }
 
   return Positioned(
     left: 0,
@@ -31,16 +49,20 @@ Widget ContainerTotalTagihan({required context, required String route, required 
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Total Tagihan', style: tsBodySmallRegularBlack),
-                  Text(cartController.totalSelectedNominal.value, style: tsTitleSmallSemiboldBlack),
+                  Text(cartController.totalSelectedNominal.value,
+                      style: tsTitleSmallSemiboldBlack),
                 ],
               ),
               ElevatedButton(
                 onPressed: () {
                   Get.toNamed(route);
-                  isListTagihan ? cartMetodePembayaranPageController.addDefaultToSelectedId() : null;
+                  isListTagihan
+                      ? cartMetodePembayaranPageController.addDefaultToSelectedId()
+                      : processPayments();
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04, vertical: height * 0.015),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.04, vertical: height * 0.015),
                   backgroundColor: secondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

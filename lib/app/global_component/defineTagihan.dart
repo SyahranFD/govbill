@@ -48,3 +48,7 @@ Color defineColorTagihan(String jenisTagihan) {
   }
   return colorTagihan;
 }
+
+bool isStatusGagal(String status) {
+  return status == 'Gagal';
+}

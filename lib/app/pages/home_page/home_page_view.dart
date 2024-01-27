@@ -32,7 +32,7 @@ class HomePageView extends StatelessWidget {
                 HomeTotalTagihanComponent(),
                 Container(
                   width: double.infinity,
-                  margin: EdgeInsets.only(top: 275),
+                  margin: EdgeInsets.only(top: 285),
                   padding: EdgeInsets.only(top: 35, left: width * 0.05, right: width * 0.05),
                   decoration: BoxDecoration(
                     color: backgroundPageColor,

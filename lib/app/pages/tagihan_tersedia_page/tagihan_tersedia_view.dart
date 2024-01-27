@@ -95,6 +95,7 @@ class TagihanTersediaPageView extends StatelessWidget {
                                   namaTagihan: tagihan.namaTagihan,
                                   waktuBayar: paymentDateFormatted,
                                   nominalTagihan: nominalTagihanFormatted,
+                                  isGagal: isStatusGagal(tagihan.status!),
                                 ),
                               ),
                             );

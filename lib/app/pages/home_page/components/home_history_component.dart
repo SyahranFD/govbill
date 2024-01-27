@@ -58,7 +58,9 @@ class HomeHistoryComponent extends StatelessWidget {
               }
 
               return ListView.builder(
-                itemCount: 2,
+                itemCount: apiHistoryController.listHistory.length > 2
+                    ? 2
+                    : apiHistoryController.listHistory.length,
                 padding: EdgeInsets.zero,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
