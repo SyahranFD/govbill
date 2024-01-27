@@ -33,6 +33,7 @@ abstract class Routes {
   static const BERHASIL_TERDAFTAR = _Paths.BERHASIL_TERDAFTAR;
   static const CART_PAGE = _Paths.CART_PAGE;
   static const CART_METODE_PEMBAYARAN_PAGE = _Paths.CART_METODE_PEMBAYARAN_PAGE;
+    static const RINCIAN_PEMBAYARAN_PAGE = _Paths.RINCIAN_PEMBAYARAN_PAGE;
 }
 
 abstract class _Paths {
@@ -68,4 +69,5 @@ abstract class _Paths {
   static const BERHASIL_TERDAFTAR = "/berhasil-terdaftar";
   static const CART_PAGE = "/cart";
   static const CART_METODE_PEMBAYARAN_PAGE = "/cart-metode-pembayaran";
+  static const RINCIAN_PEMBAYARAN_PAGE = "/rincian-pembayaran";
 }
