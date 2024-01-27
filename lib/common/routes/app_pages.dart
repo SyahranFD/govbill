@@ -8,6 +8,8 @@ import 'package:govbill/app/pages/cart-tagihan-page/cart_view.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
+import 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_binding.dart';
+import 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -184,6 +186,11 @@ class AppPages {
         name: _Paths.CART_METODE_PEMBAYARAN_PAGE,
         page: () => CartMetodePembayaranPageView(),
         binding: CartMetodePembayaranPageBinding(),
+        transition: Transition.noTransition),
+        GetPage(
+        name: _Paths.RINCIAN_PEMBAYARAN_PAGE,
+        page: () => RincianPembayaranPageView(),
+        binding: RincianPembayaranBinding(),
         transition: Transition.noTransition),
   ];
 }
