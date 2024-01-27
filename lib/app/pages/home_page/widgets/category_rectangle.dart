@@ -8,7 +8,6 @@ Widget categoryRectangle({required context, required colorCategory, required Str
   final double height = mediaQuery.height;
 
   return Container(
-    width: width * 0.225,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,

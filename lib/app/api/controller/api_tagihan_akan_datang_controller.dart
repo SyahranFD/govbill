@@ -14,6 +14,7 @@ class ApiTagihanAkanDatangController extends GetxController {
   final box = GetStorage();
   RxString totalNominal = "".obs;
   RxString namaNoTagihan = "".obs;
+  RxInt totalGagal = 0.obs;
 
   @override
   void onInit() {
@@ -39,6 +40,7 @@ class ApiTagihanAkanDatangController extends GetxController {
           listTagihanAkanDatang.add(TagihanAkanDatangModel.fromJson(item));
         }
         calculateTotalNominalTagihan();
+        calculateTotalGagal();
         isLoading.value = false;
         print('berhasil fetch tagihan akan datang');
         listTagihanAkanDatang.forEach((tagihan) {
@@ -76,6 +78,31 @@ class ApiTagihanAkanDatangController extends GetxController {
     }
   }
 
+  Future bayarLangsung(idTagihan, idMetodePembayaran) async {
+    print('bayar langsung dijalankan');
+    try {
+      isLoading.value = true;
+      var response = await http.post(
+        Uri.parse('${url}/history-tagihan/bayar-langsung/$idTagihan/$idMetodePembayaran'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}',
+        },
+      );
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        print('berhasil bayar langsung');
+        print(json.decode(response.body));
+      } else {
+        isLoading.value = false;
+        print(json.decode(response.body));
+      }
+    } catch (e) {
+      isLoading.value = false;
+      print(e.toString());
+    }
+  }
+
   void calculateTotalNominalTagihan() {
     int total = 0;
     listTagihanAkanDatang.forEach((tagihan) {
@@ -89,5 +116,9 @@ class ApiTagihanAkanDatangController extends GetxController {
     totalNominal.value = totalNominalFormatted;
 
     print('Total Nominal Tagihan: $total');
+  }
+
+  void calculateTotalGagal() {
+    totalGagal.value = listTagihanAkanDatang.where((tagihan) => tagihan.status == 'Gagal').length;
   }
 }
