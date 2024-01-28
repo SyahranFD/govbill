@@ -8,12 +8,12 @@ class SplashScreenPageController extends GetxController {
     super.onInit();
     if (box.read('token') != null) {
       Future.delayed(
-        Duration(seconds: 10),
-        () => Get.offNamed('/'),
+        Duration(seconds: 5),
+        () => Get.offNamed('/navbar'),
       );
     } else {
       Future.delayed(
-        Duration(seconds: 10),
+        Duration(seconds: 5),
         () => Get.offNamed('/login'),
       );
     }

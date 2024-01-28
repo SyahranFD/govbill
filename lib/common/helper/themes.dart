@@ -39,6 +39,12 @@ TextStyle tsHeadlineLargeBoldWhite = GoogleFonts.poppins(
   fontSize: figmaFontsize(28),
 );
 
+TextStyle tsHeadlineLargeBoldBlack = GoogleFonts.poppins(
+  color: blackColor,
+  fontWeight: FontWeight.w700,
+  fontSize: figmaFontsize(28),
+);
+
 TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
   color: secondaryColor,
   fontWeight: FontWeight.w700,
@@ -81,6 +87,12 @@ TextStyle tsBodyLargeSemiboldBlack = GoogleFonts.poppins(
   fontSize: figmaFontsize(16),
 );
 
+TextStyle tsBodyLargeSemiboldWhite = GoogleFonts.poppins(
+  color: primaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(16),
+);
+
 TextStyle tsBodyMediumSemiboldWhite = GoogleFonts.poppins(
   color: primaryColor,
   fontWeight: FontWeight.w600,
@@ -107,6 +119,12 @@ TextStyle tsBodyMediumSemiboldDarkGrey = GoogleFonts.poppins(
 
 TextStyle tsBodyMediumRegularDarkGrey = GoogleFonts.poppins(
   color: darkGrey,
+  fontWeight: FontWeight.w400,
+  fontSize: figmaFontsize(14),
+);
+
+TextStyle tsBodyMediumRegularBlack = GoogleFonts.poppins(
+  color: blackColor,
   fontWeight: FontWeight.w400,
   fontSize: figmaFontsize(14),
 );

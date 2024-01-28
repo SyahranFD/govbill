@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_history_controller.dart';
 import 'package:govbill/app/api/model/history_model.dart';
-import 'package:govbill/app/global_component/defineTagihan.dart';
 import 'package:govbill/app/pages/history_page/components/card_history.dart';
+import 'package:govbill/app/pages/history_page/history_page_controller.dart';
 import 'package:govbill/app/pages/history_page/history_page_view.dart';
 import 'package:govbill/app/global_component/no_bill_indicator.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../../../global_component/defineTagihan.dart';
 
 class HomeHistoryComponent extends StatelessWidget {
   final ApiHistoryController apiHistoryController =
@@ -16,6 +18,7 @@ class HomeHistoryComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HistoryPageController());
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
 
@@ -41,14 +44,14 @@ class HomeHistoryComponent extends StatelessWidget {
         ),
         SizedBox(height: 15),
         Obx(
-          () {
-            if (apiHistoryController.isLoading.value) {
+              () {
+            if (controller.isLoading.value) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else {
-              final List<HistoryModel> historyList =
-                  apiHistoryController.listHistory;
+               List<HistoryModel> historyList =
+                  controller.listHistory;
 
               if (historyList.isEmpty) {
                 return noBillIndicator(
@@ -58,9 +61,9 @@ class HomeHistoryComponent extends StatelessWidget {
               }
 
               return ListView.builder(
-                itemCount: apiHistoryController.listHistory.length > 2
+                itemCount: controller.listHistory.length > 2
                     ? 2
-                    : apiHistoryController.listHistory.length,
+                    : controller.listHistory.length,
                 padding: EdgeInsets.zero,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -75,7 +78,7 @@ class HomeHistoryComponent extends StatelessWidget {
 
                   var paymentDateFormatted = tagihan.waktuBayar != null
                       ? DateFormat('dd MMMM yyyy', 'id_ID')
-                          .format(tagihan.waktuBayar!)
+                      .format(tagihan.waktuBayar!)
                       : 'N/A';
 
                   String namaNoTagihan =
@@ -95,7 +98,7 @@ class HomeHistoryComponent extends StatelessWidget {
                           namaTagihan: tagihan.namaTagihan,
                           waktuBayar: paymentDateFormatted,
                           nominalTagihan: nominalTagihanFormatted,
-                        ),
+                        )
                       ],
                     ),
                   );

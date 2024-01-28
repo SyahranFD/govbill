@@ -93,3 +93,23 @@ export 'tambah_tagihan_page/component/tambah_bpjs/tambah_bpjs_view.dart' show Ta
 export 'onboarding_page/onboarding_page_view.dart' show OnboardingPageView;
 export 'onboarding_page/onboarding_page_controller.dart' show OnboardingPageController;
 export 'onboarding_page/onboarding_page_binding.dart' show OnboardingPageBinding;
+
+// Berhasil Terdaftar Page
+export 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart' show BerhasilTerdaftarPageBinding;
+export 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart' show BerhasilTerdaftarPageView;
+
+// Cart Metode Pembayaran
+export 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_binding.dart' show CartMetodePembayaranPageBinding;
+export 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_view.dart' show CartMetodePembayaranPageView;
+
+// Cart Tagihan Page
+export 'package:govbill/app/pages/cart-tagihan-page/cart_binding.dart' show CartPageBinding;
+export 'package:govbill/app/pages/cart-tagihan-page/cart_view.dart' show CartPageView;
+
+// Edit Tagihan Terdaftar Page
+export 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart' show EditTagihanTerdaftarPageBinding;
+export 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart' show EditTagihanTerdaftarPageView;
+
+// Rincian Pembayaran Page
+export 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_binding.dart' show RincianPembayaranBinding;
+export 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_view.dart' show RincianPembayaranPageView;
