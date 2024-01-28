@@ -76,25 +76,25 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
                       color:
-                      fetchTagihanAkanDatangController.totalGagal.value > 0
-                          ? gagalColor
-                          : Colors.transparent,
+                          fetchTagihanAkanDatangController.totalGagal.value > 0
+                              ? gagalColor
+                              : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: fetchTagihanAkanDatangController.totalGagal.value > 0
                         ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.warning_amber_rounded,
-                            color: primaryColor, size: 16),
-                        SizedBox(width: 5),
-                        Text(
-                          "${fetchTagihanAkanDatangController.totalGagal.value} Pembayaran Gagal",
-                          style: tsLabelSemiboldWhite,
-                        ),
-                      ],
-                    )
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.warning_amber_rounded,
+                                  color: primaryColor, size: 16),
+                              SizedBox(width: 5),
+                              Text(
+                                "${fetchTagihanAkanDatangController.totalGagal.value} Pembayaran Gagal",
+                                style: tsLabelSemiboldWhite,
+                              ),
+                            ],
+                          )
                         : SizedBox(),
                   ),
                 ),
@@ -104,10 +104,16 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                   children: [
                     Text("Total Tagihan", style: tsBodySmallMediumWhite),
                     SizedBox(height: 0),
-                    Obx(() => Text(
-                          fetchTagihanAkanDatangController.totalNominal.value,
-                          style: tsHeadlineLargeBoldWhite,
-                        )),
+                    Obx(() {
+                      String totalNominal = fetchTagihanAkanDatangController.totalNominal.value;
+
+                      return totalNominal == 'Rp 0'
+                          ? Container(
+                            margin: EdgeInsets.only(top: 10),
+                            child: Text('🎉  Semua Tagihan Lunas  🎉', style: tsTitleMediumSemiboldWhite))
+                          : Text(totalNominal, style: tsHeadlineLargeBoldWhite);
+                    }),
+
                     SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

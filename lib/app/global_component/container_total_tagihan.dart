@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_history_controller.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
 import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_controller.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
@@ -12,6 +13,8 @@ Widget ContainerTotalTagihan(
       Get.put(CartMetodePembayaranPageController());
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
+  final ApiHistoryController apiHistoryController =
+      Get.put(ApiHistoryController());
 
   final Size mediaQuery = MediaQuery.of(context).size;
   final double height = mediaQuery.height;
@@ -25,8 +28,8 @@ Widget ContainerTotalTagihan(
     });
 
     await Future.wait(paymentFutures);
-
     await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
+    await apiHistoryController.fetchHistory();
 
     Get.offAllNamed('/');
   }
