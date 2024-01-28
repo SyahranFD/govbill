@@ -17,6 +17,7 @@ class TagihanAkanDatangModel {
   String? namaTagihan;
   int? nominalTagihan;
   DateTime? waktuBayar;
+  String? status;
 
   TagihanAkanDatangModel({
     this.id,
@@ -27,6 +28,7 @@ class TagihanAkanDatangModel {
     this.namaTagihan,
     this.nominalTagihan,
     this.waktuBayar,
+    this.status,
   });
 
   factory TagihanAkanDatangModel.fromJson(Map<String, dynamic> json) => TagihanAkanDatangModel(
@@ -38,6 +40,7 @@ class TagihanAkanDatangModel {
     namaTagihan: json["nama_tagihan"],
     nominalTagihan: json["nominal_tagihan"],
     waktuBayar: DateTime.parse(json["waktu_bayar"]),
+    status: json["status"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +52,6 @@ class TagihanAkanDatangModel {
     "nama_tagihan": namaTagihan,
     "nominal_tagihan": nominalTagihan,
     "waktu_bayar": "${waktuBayar!.year.toString().padLeft(4, '0')}-${waktuBayar!.month.toString().padLeft(2, '0')}-${waktuBayar!.day.toString().padLeft(2, '0')}",
+    "status": status,
   };
 }

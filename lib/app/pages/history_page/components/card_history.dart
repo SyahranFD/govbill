@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:govbill/common/helper/themes.dart';
 
-class CardTagihanAkanDatangPLN extends StatelessWidget {
+class CardHistory extends StatelessWidget {
 
-  CardTagihanAkanDatangPLN(
+  CardHistory(
       {Key? key,
+        required this.namaNoTagihan,
+        required this.colorTagihan,
         required this.noTagihan,
         required this.jenisTagihan,
         required this.namaTagihan,
@@ -13,6 +15,8 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
         required this.nominalTagihan,
       });
 
+  final String? namaNoTagihan;
+  final Color? colorTagihan;
   final String? noTagihan;
   final String? jenisTagihan;
   final String? namaTagihan;
@@ -42,22 +46,18 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 15, bottom: 20, left: 15),
+            margin: EdgeInsets.only(top: 20, bottom: 20, left: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("ID Pelanggan : $noTagihan", style: tsLabelRegularDarkBlue),
-
-                SizedBox(height: 10),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: categoryPLN,
+                        color: colorTagihan,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
@@ -82,13 +82,40 @@ class CardTagihanAkanDatangPLN extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text("$namaNoTagihan : $noTagihan", style: tsLabelRegularDarkBlue),
                           Text("$namaTagihan", style: tsBodySmallSemiboldBlack),
-                          SizedBox(height: 4),
-                          Text("Akan dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
-                          SizedBox(height: 4),
-                          Text("$nominalTagihan", style: tsLabelRegularRed),
                         ],
                       ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 10),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Dibayar tanggal $waktuBayar", style: tsLabelRegularBlack),
+                        Text("$nominalTagihan", style: tsLabelSemiboldDarkBlue),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                            color: lunasColor,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          child: Text("Lunas", style: tsLabelSemiboldWhite),
+                        ),
+                      ],
                     ),
                   ],
                 )

@@ -17,21 +17,8 @@ class HomeCategoryComponent extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
-              onTap: () {
-                Get.toNamed('/tagihan-terdaftar');
-                controller.selectedTagihan.value = "Motor";
-              },
-              child: categoryRectangle(context: context, colorCategory: categoryMotor, jenisTagihan: "Motor")
-            ),
-            InkWell(
-                onTap: () {
-                  Get.toNamed('/tagihan-terdaftar');
-                  controller.selectedTagihan.value = "Mobil";
-                },
-                child: categoryRectangle(context: context, colorCategory: categoryMobil, jenisTagihan: "Mobil"),
-            ),
             InkWell(
               onTap: () {
                 Get.toNamed('/tagihan-terdaftar');
@@ -48,13 +35,6 @@ class HomeCategoryComponent extends StatelessWidget {
               },
               child: categoryRectangle(context: context, colorCategory: categoryPLN, jenisTagihan: "PLN"),
             ),
-          ],
-        ),
-
-        SizedBox(height: 18),
-
-        Row(
-          children: [
             InkWell(
               onTap: () {
                 Get.toNamed('/tagihan-terdaftar');
@@ -80,7 +60,7 @@ class HomeCategoryComponent extends StatelessWidget {
               child: categoryRectangle(context: context, colorCategory: categoryPDAM, jenisTagihan: "PDAM"),
             ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:govbill/app/api/controller/api_history_controller.dart';
 import 'package:govbill/app/api/model/history_model.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_bpjs.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_mobil.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_motor.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_pbb.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_pdam.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_pgn.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_pln.dart';
+import 'package:govbill/app/global_component/defineTagihan.dart';
+import 'package:govbill/app/pages/history_page/components/card_history.dart';
 import 'package:govbill/app/pages/history_page/history_page_controller.dart';
+import 'package:govbill/app/global_component/no_bill_indicator.dart';
+import 'package:govbill/app/pages/tambah_tagihan_page/widget/dropdown_date_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
-import 'package:intl/intl.dart';
 
 class HistoryPageView extends StatelessWidget {
 
@@ -34,141 +29,141 @@ class HistoryPageView extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: Text("History", style: tsBodyLargeSemiboldBlack),
         ),
-        body: Obx(
-              () {
-            if (controller.isLoading.value) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-               List<HistoryModel> historyList =
-                  controller.listHistory;
-
-              if (historyList.isEmpty) {
-                return Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 100,
-                  child: Text(
-                    "Tidak Ada Riwayat",
-                    style: tsBodyMediumRegularDarkGrey,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Row(
+                children: [
+                  Text(
+                    "Tanggal",
+                    style: tsBodySmallSemiboldBlueGrey,
                   ),
-                );
-              }
-              return Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  child: ListView.builder(
-                    itemCount: controller.listHistory.length,
-                    padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      HistoryModel tagihan = historyList[index];
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 0),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
+                  SizedBox(
+                    width: 10,
+                  ),
+                  DropdownDateWidget(
+                    minNumber: 0,
+                    maxNumber: 32,
+                    onChanged: (value) {
+                      if (value == 0) {
+                        controller.onSearch.value = false;
+                        controller.tanggalDipilih.value = 0;
+                        controller.refreshData();
+                      } else {
+                        controller.onSearch.value = true;
+                        controller.tanggalDipilih.value = value!;
+                        controller.refreshData();
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
+            Obx(
+              () {
+                if (controller.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  List<HistoryModel> historyList = controller.listHistory;
+                  if (historyList.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: noBillIndicator(
+                        context: context,
+                        textIndicator: 'Tidak Ada History',
+                      ),
+                    );
+                  }
+                  return Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        top: 15, left: width * 0.05, right: width * 0.05),
+                    child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      child: ListView.builder(
+                        itemCount: controller.listHistory.length,
+                        padding: EdgeInsets.zero,
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          var tagihan = historyList[index];
+                          String namaNoTagihan =
+                              defineNamaNoTagihan(tagihan.jenisTagihan!);
+                          Color colorTagihan =
+                              defineColorTagihan(tagihan.jenisTagihan!);
+                          print(tagihan.namaTagihan);
+                          if (controller.onSearch.value == true) {
+                            if (tagihan.waktuBayar!.day ==
+                                controller.tanggalDipilih.value) {
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      child: Column(
+                                        children: [
+                                          CardHistory(
+                                              namaNoTagihan: namaNoTagihan,
+                                              colorTagihan: colorTagihan,
+                                              noTagihan: tagihan.noTagihan,
+                                              jenisTagihan:
+                                                  tagihan.jenisTagihan,
+                                              namaTagihan: tagihan.namaTagihan,
+                                              waktuBayar: controller.dateFormat(
+                                                  date: tagihan.waktuBayar),
+                                              nominalTagihan:
+                                                  controller.currencyFormat(
+                                                      nominal: tagihan
+                                                          .nominalTagihan!))
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          } else {
+                            return Container(
+                              margin: EdgeInsets.only(bottom: 0),
                               child: Column(
                                 children: [
-                                  tagihan.jenisTagihan == "BPJS"
-                                      ? CardHistoryBPJS(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan: controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan == "PDAM"
-                                      ? CardHistoryPDAM(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan == "PLN"
-                                      ? CardHistoryPLN(
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan:
-                                      tagihan.jenisTagihan,
-                                      namaTagihan:
-                                      tagihan.namaTagihan,
-                                      waktuBayar:
-                                      controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan == "PBB"
-                                      ? CardHistoryPBB(
-                                      noTagihan:
-                                      tagihan.noTagihan,
-                                      jenisTagihan:
-                                      tagihan.jenisTagihan,
-                                      namaTagihan:
-                                      tagihan.namaTagihan,
-                                      waktuBayar:
-                                      controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan ==
-                                      "Mobil"
-                                      ? CardHistoryMobil(
-                                      noTagihan:
-                                      tagihan.noTagihan,
-                                      jenisTagihan:
-                                      tagihan.jenisTagihan,
-                                      namaTagihan:
-                                      tagihan.namaTagihan,
-                                      waktuBayar:
-                                      controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan ==
-                                      "Motor"
-                                      ? CardHistoryMotor(
-                                      noTagihan: tagihan
-                                          .noTagihan,
-                                      jenisTagihan:
-                                      tagihan
-                                          .jenisTagihan,
-                                      namaTagihan:
-                                      tagihan
-                                          .namaTagihan,
-                                      waktuBayar:
-                                      controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : tagihan.jenisTagihan ==
-                                      "PGN"
-                                      ? CardHistoryPGN(
-                                      noTagihan: tagihan
-                                          .noTagihan,
-                                      jenisTagihan:
-                                      tagihan
-                                          .jenisTagihan,
-                                      namaTagihan:
-                                      tagihan
-                                          .namaTagihan,
-                                      waktuBayar:
-                                      controller.dateFormat(date: tagihan.waktuBayar),
-                                      nominalTagihan:
-                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
-                                      : Container(),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Column(
+                                      children: [
+                                        CardHistory(
+                                            namaNoTagihan: namaNoTagihan,
+                                            colorTagihan: colorTagihan,
+                                            noTagihan: tagihan.noTagihan,
+                                            jenisTagihan: tagihan.jenisTagihan,
+                                            namaTagihan: tagihan.namaTagihan,
+                                            waktuBayar: controller.dateFormat(
+                                                date: tagihan.waktuBayar),
+                                            nominalTagihan:
+                                                controller.currencyFormat(
+                                                    nominal: tagihan
+                                                        .nominalTagihan!))
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              );
-            }
-          },
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
         ),
       ),
     );

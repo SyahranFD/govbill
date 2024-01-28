@@ -55,9 +55,9 @@ export 'splash_screen_page/splash_screen_controller.dart' show SplashScreenPageC
 export 'splash_screen_page/splash_screen_binding.dart' show SplashScreenPageBinding;
 
 // Tagihan Akan Datang Page
-export 'tagihan_akan_datang_page/tagihan_akan_datang_view.dart' show TagihanAkanDatangPageView;
-export 'tagihan_akan_datang_page/tagihan_akan_datang_controller.dart' show TagihanAkanDatangPageController;
-export 'tagihan_akan_datang_page/tagihan_akan_datang_binding.dart' show TagihanAkanDatangPageBinding;
+export 'tagihan_tersedia_page/tagihan_tersedia_view.dart' show TagihanTersediaPageView;
+export 'tagihan_tersedia_page/tagihan_tersedia_controller.dart' show TagihanTersediaPageController;
+export 'tagihan_tersedia_page/tagihan_tersedia_binding.dart' show TagihanTersediaPageBinding;
 
 // Tambah Alamat Page
 export 'tambah_alamat_page/tambah_alamat_view.dart' show TambahAlamatPageView;

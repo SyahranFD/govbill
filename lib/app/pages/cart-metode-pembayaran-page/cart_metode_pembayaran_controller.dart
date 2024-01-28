@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart';
 
 class CartMetodePembayaranPageController extends GetxController {
+  final ApiMetodePembayaranController apiMetodePembayaranController =
+      Get.put(ApiMetodePembayaranController());
+
   RxList<int> selectedId = <int>[].obs;
   RxBool isSelectedIdEmpty = false.obs;
 
@@ -17,4 +21,12 @@ class CartMetodePembayaranPageController extends GetxController {
     return selectedId.contains(id);
   }
 
+  void addDefaultToSelectedId() {
+    selectedId.clear();
+    apiMetodePembayaranController.listMetodePembayaran.forEach((element) {
+      if(element.pembayaranUtama == 1) {
+        selectedId.add(element.id!);
+      }
+    });
+  }
 }

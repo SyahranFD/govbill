@@ -16,7 +16,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.NAVBAR;
+  static const INITIAL = Routes.HISTORY_PAGE;
 
   static final routes = [
     GetPage(
@@ -44,9 +44,9 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.TAGIHAN_AKAN_DATANG_PAGE,
-      page: () => TagihanAkanDatangPageView(),
-      binding: TagihanAkanDatangPageBinding(),
+      name: _Paths.TAGIHAN_TERSEDIA_PAGE,
+      page: () => TagihanTersediaPageView(),
+      binding: TagihanTersediaPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

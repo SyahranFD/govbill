@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
+import 'package:govbill/app/global_component/container_total_tagihan.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/components/cart_listview_tagihan.dart';
 import 'package:govbill/common/helper/themes.dart';
 
@@ -33,7 +34,13 @@ class CartPageView extends StatelessWidget {
       ),
       body: Container(
         width: double.infinity,
-        child: CartListViewTagihan(),
+        height: height,
+        child: Stack(
+          children: [
+            CartListViewTagihan(),
+            ContainerTotalTagihan(context: context, route: '/cart-metode-pembayaran', isListTagihan: true)
+          ],
+        ),
       ),
     );
   }

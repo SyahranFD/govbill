@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
+import 'package:govbill/app/global_component/defineTagihan.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/cart_controller.dart';
 import 'package:govbill/app/pages/cart-tagihan-page/widgets/card_cart_tagihan_tersedia.dart';
 import 'package:govbill/common/helper/themes.dart';
@@ -31,8 +32,7 @@ class CartListViewTagihan extends StatelessWidget {
                 )
               : Container(
                   width: double.infinity,
-                  margin: EdgeInsets.only(
-                      top: 15, left: width * 0.05, right: width * 0.05),
+                  margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
                   child: SingleChildScrollView(
                     child: ListView.builder(
                       itemCount: apiTagihanAkanDatangController
@@ -43,113 +43,34 @@ class CartListViewTagihan extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var tagihan = apiTagihanAkanDatangController
                             .listTagihanAkanDatang[index];
+
                         var nominalTagihanFormatted = NumberFormat.currency(
                           locale: 'id_ID',
                           symbol: 'Rp ',
                         ).format(tagihan.nominalTagihan);
-                        nominalTagihanFormatted =
-                            nominalTagihanFormatted.replaceAll(",00", "");
+                        nominalTagihanFormatted = nominalTagihanFormatted.replaceAll(",00", "");
+
+                        String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
+                        Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
 
 
                         return InkWell(
                             onTap: () {
                               cartPageController.addToSelectedId(tagihan.id!);
+                              cartPageController.calculateTotalSelectedNominal();
                               print(cartPageController.selectedId);
                             },
                             child: Container(
                               width: double.infinity,
-                              child: tagihan.jenisTagihan == "BPJS"
-                                  ? CardCartTagihanTersedia(
-                                      namaNoTagihan: 'No. VA',
-                                      colorTagihan: categoryBPJS,
-                                      noTagihan: tagihan.noTagihan,
-                                      jenisTagihan: tagihan.jenisTagihan,
-                                      namaTagihan: tagihan.namaTagihan,
-                                      nominalTagihan: nominalTagihanFormatted,
-                                      id: tagihan.id,
-                                    )
-                                  : tagihan.jenisTagihan == "PDAM"
-                                      ? CardCartTagihanTersedia(
-                                          namaNoTagihan: 'No. Pelanggan',
-                                          colorTagihan: categoryPDAM,
-                                          noTagihan: tagihan.noTagihan,
-                                          jenisTagihan: tagihan.jenisTagihan,
-                                          namaTagihan: tagihan.namaTagihan,
-                                          nominalTagihan: nominalTagihanFormatted,
-                                          id: tagihan.id,
-                                        )
-                                      : tagihan.jenisTagihan == "PLN"
-                                          ? CardCartTagihanTersedia(
-                                              namaNoTagihan: 'ID Pelanggan',
-                                              colorTagihan: categoryPLN,
-                                              noTagihan: tagihan.noTagihan,
-                                              jenisTagihan: tagihan.jenisTagihan,
-                                              namaTagihan: tagihan.namaTagihan,
-                                              nominalTagihan:
-                                                  nominalTagihanFormatted,
-                                              id: tagihan.id,
-                                            )
-                                          : tagihan.jenisTagihan == "PBB"
-                                              ? CardCartTagihanTersedia(
-                                                  namaNoTagihan: 'NOP',
-                                                  colorTagihan: categoryPBB,
-                                                  noTagihan: tagihan.noTagihan,
-                                                  jenisTagihan:
-                                                      tagihan.jenisTagihan,
-                                                  namaTagihan:
-                                                      tagihan.namaTagihan,
-                                                  nominalTagihan:
-                                                      nominalTagihanFormatted,
-                                                  id: tagihan.id,
-                                                )
-                                              : tagihan.jenisTagihan == "Mobil"
-                                                  ? CardCartTagihanTersedia(
-                                                      namaNoTagihan: 'NRKB',
-                                                      colorTagihan: categoryMobil,
-                                                      noTagihan:
-                                                          tagihan.noTagihan,
-                                                      jenisTagihan:
-                                                          tagihan.jenisTagihan,
-                                                      namaTagihan:
-                                                          tagihan.namaTagihan,
-                                                      nominalTagihan:
-                                                          nominalTagihanFormatted,
-                                                      id: tagihan.id,
-                                                    )
-                                                  : tagihan.jenisTagihan ==
-                                                          "Motor"
-                                                      ? CardCartTagihanTersedia(
-                                                          namaNoTagihan: 'NRKB',
-                                                          colorTagihan:
-                                                              categoryMotor,
-                                                          noTagihan:
-                                                              tagihan.noTagihan,
-                                                          jenisTagihan: tagihan
-                                                              .jenisTagihan,
-                                                          namaTagihan:
-                                                              tagihan.namaTagihan,
-                                                          nominalTagihan:
-                                                              nominalTagihanFormatted,
-                                                          id: tagihan.id,
-                                                        )
-                                                      : tagihan.jenisTagihan ==
-                                                              "PGN"
-                                                          ? CardCartTagihanTersedia(
-                                                              namaNoTagihan:
-                                                                  'ID Pelanggan',
-                                                              colorTagihan:
-                                                                  categoryPGN,
-                                                              noTagihan: tagihan
-                                                                  .noTagihan,
-                                                              jenisTagihan: tagihan
-                                                                  .jenisTagihan,
-                                                              namaTagihan: tagihan
-                                                                  .namaTagihan,
-                                                              nominalTagihan:
-                                                                  nominalTagihanFormatted,
-                                                              id: tagihan.id,
-                                                            )
-                                                          : Container(),
+                              child: CardCartTagihanTersedia(
+                                namaNoTagihan: namaNoTagihan,
+                                colorTagihan: colorTagihan,
+                                noTagihan: tagihan.noTagihan,
+                                jenisTagihan: tagihan.jenisTagihan,
+                                namaTagihan: tagihan.namaTagihan,
+                                nominalTagihan: nominalTagihanFormatted,
+                                id: tagihan.id,
+                              ),
                             ),
                           );
                       },

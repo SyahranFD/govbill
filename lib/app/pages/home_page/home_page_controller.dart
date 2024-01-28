@@ -59,4 +59,9 @@ class HomePageController extends GetxController {
     return paymentDateFormatted;
   }
 
+  @override
+  void onInit() {
+    fetchHistory();
+    super.onInit();
+  }
 }

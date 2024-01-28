@@ -59,8 +59,8 @@ class EditTagihanTerdaftarPageView extends StatelessWidget {
               Text("Tanggal Bayar", style: tsLabelRegularDarkGrey),
               SizedBox(height: 3),
               DropdownDateWidget(
-                minNumber: 2,
-                maxNumber: 18,
+                minNumber: 5,
+                maxNumber: 16,
                 onChanged: (value) {
                   tagihanTerdaftarPageController.ctrTanggalBayar?.text = value.toString();
                 },
@@ -68,14 +68,14 @@ class EditTagihanTerdaftarPageView extends StatelessWidget {
               ),
 
               SizedBox(height: 10),
-              tagihanTerdaftarPageController.ctrBulanBayar?.text != "0"
+              tagihanTerdaftarPageController.isWithBulan.value == true
                   ? Column(
                     children: [
                       Text("Bulan Bayar", style: tsLabelRegularDarkGrey),
                       SizedBox(height: 3),
                       DropdownDateWidget(
-                        minNumber: 2,
-                        maxNumber: 18,
+                        minNumber: 1,
+                        maxNumber: 12,
                         onChanged: (value) {
                           tagihanTerdaftarPageController.ctrBulanBayar?.text = value.toString();
                         },

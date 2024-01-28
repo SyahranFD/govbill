@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_history_controller.dart';
 import 'package:govbill/app/api/model/history_model.dart';
-import 'package:govbill/app/pages/history_page/components/card_history_bpjs.dart';
 import 'package:intl/intl.dart';
 
 class HistoryPageController extends GetxController {
   final ApiHistoryController apiHistoryController = Get.put(ApiHistoryController());
   var isLoading = false.obs;
+  var onSearch = false.obs;
 
   Future<void> refreshData() async {
     fetchHistory();
@@ -28,6 +27,7 @@ class HistoryPageController extends GetxController {
   }
 
   RxList<HistoryModel> listHistory = <HistoryModel>[].obs;
+  var tanggalDipilih = 0.obs;
   void fetchHistory() async {
     isLoading.value = true;
     await ApiHistoryController.fetchHistory().then((value) {
@@ -35,5 +35,11 @@ class HistoryPageController extends GetxController {
       listHistory.value = data.map((e) => HistoryModel.fromJson(e)).toList();
     });
     isLoading.value = false;
+  }
+
+  @override
+  void onInit() {
+    fetchHistory();
+    super.onInit();
   }
 }

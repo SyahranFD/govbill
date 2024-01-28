@@ -27,7 +27,7 @@ class TagihanTerdaftarPageView extends StatelessWidget {
           centerTitle: true,
           title: Text(tagihanTerdaftarPageController.selectedTagihan.value + " Terdaftar", style: tsBodyLargeSemiboldBlack),
           leading: IconButton(
-            onPressed: () => Get.back(),
+            onPressed: () => Get.offAllNamed('/'),
             icon: Icon(
               Icons.arrow_back_ios_new_rounded,
               size: 20,

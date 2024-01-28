@@ -13,6 +13,8 @@ class TagihanTerdaftarPageController extends GetxController {
   TextEditingController? ctrTanggalBayar;
   TextEditingController? ctrBulanBayar;
 
+  RxBool isWithBulan = false.obs;
+
   RxInt selectedMenu = 0.obs;
 
   @override
@@ -29,8 +31,16 @@ class TagihanTerdaftarPageController extends GetxController {
     selectedIdTagihan.value = tagihan.id.toString();
     ctrNamaTagihan!.text = tagihan.namaTagihan!;
     ctrTanggalBayar!.text = tagihan.tanggalBayar.toString();
+    isWithBulan.value = false;
+  }
+
+  void updateTextEditingControllerWithBulan({required int index, required list}) {
+    var tagihan = list[index];
+    selectedIdTagihan.value = tagihan.id.toString();
+    ctrNamaTagihan!.text = tagihan.namaTagihan!;
+    ctrTanggalBayar!.text = tagihan.tanggalBayar.toString();
     ctrBulanBayar!.text = tagihan.bulanBayar.toString();
-    print(ctrBulanBayar!.text);
+    isWithBulan.value = true;
   }
 
   Future<void> refreshData() async {

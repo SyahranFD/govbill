@@ -9,6 +9,7 @@ const Color backgroundPageColor = Color(0xFFF8F4F3);
 const Color successColor = Color(0xFF36D100);
 const Color lunasColor = Color(0xFF31C78A);
 const Color warningColor = Color(0xFFBE1833);
+const Color gagalColor = Color(0xFFE3465F);
 
 const Color smoothGreen = Color(0xFF3EB67B);
 const Color darkGreen = Color(0xFF357959);
@@ -44,6 +45,18 @@ TextStyle tsHeadlineSmallBoldDarkBlue = GoogleFonts.poppins(
   fontSize: figmaFontsize(24),
 );
 
+TextStyle tsTitleLargeSemiboldDarkBlue = GoogleFonts.poppins(
+  color: secondaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(18),
+);
+
+TextStyle tsTitleMediumSemiboldWhite = GoogleFonts.poppins(
+  color: primaryColor,
+  fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(20),
+);
+
 TextStyle tsTitleMediumSemiboldBlack = GoogleFonts.poppins(
   color: blackColor,
   fontWeight: FontWeight.w600,
@@ -56,8 +69,8 @@ TextStyle tsTitleSmallSemiboldWhite = GoogleFonts.poppins(
   fontSize: figmaFontsize(18),
 );
 
-TextStyle tsTitleLargeSemiboldDarkBlue = GoogleFonts.poppins(
-  color: secondaryColor,
+TextStyle tsTitleSmallSemiboldBlack = GoogleFonts.poppins(
+  color: blackColor,
   fontWeight: FontWeight.w600,
   fontSize: figmaFontsize(18),
 );
@@ -119,6 +132,12 @@ TextStyle tsBodySmallSemiboldBlack = GoogleFonts.poppins(
 TextStyle tsBodySmallSemiboldBlueGrey = GoogleFonts.poppins(
   color: blueGreyColor,
   fontWeight: FontWeight.w600,
+  fontSize: figmaFontsize(12),
+);
+
+TextStyle tsBodySmallMediumWhite = GoogleFonts.poppins(
+  color: primaryColor,
+  fontWeight: FontWeight.w500,
   fontSize: figmaFontsize(12),
 );
 

@@ -32,16 +32,6 @@ class PilihTagihanPageView extends StatelessWidget {
                 height: 30,
               ),
               TagihanCardWidget(
-                iconLeft: SvgPicture.asset("assets/icons/icKategoriMotor.svg"),
-                titleLeft: "Pajak Motor",
-                colorLeft: categoryMotor,
-                iconRight: SvgPicture.asset("assets/icons/icKategoriMobil.svg"),
-                titleRight: "Pajak Mobil",
-                colorRight: categoryMobil,
-                routeLeft: "/tambah-motor",
-                routeRight: "/tambah-mobil",
-              ),
-              TagihanCardWidget(
                 iconLeft: SvgPicture.asset("assets/icons/icKategoriPBB.svg"),
                 titleLeft: "Pajak Bumi dan Bangunan",
                 colorLeft: categoryPBB,
