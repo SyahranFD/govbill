@@ -6,7 +6,6 @@ class CartMetodePembayaranPageController extends GetxController {
       Get.put(ApiMetodePembayaranController());
 
   RxList<int> selectedId = <int>[].obs;
-  RxBool isSelectedIdEmpty = false.obs;
 
   void addToSelectedId(int id) {
     selectedId.clear();

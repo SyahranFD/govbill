@@ -56,7 +56,7 @@ class HomeHistoryComponent extends StatelessWidget {
               if (historyList.isEmpty) {
                 return noBillIndicator(
                   context: context,
-                  textIndicator: 'Tidak Ada Tagihan',
+                  textIndicator: 'Tidak Ada Riwayat',
                 );
               }
 

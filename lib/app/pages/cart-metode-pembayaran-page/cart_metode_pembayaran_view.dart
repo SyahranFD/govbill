@@ -35,7 +35,7 @@ class CartMetodePembayaranPageView extends StatelessWidget {
         child: Stack(
           children: [
             CartListViewMetodePembayaran(),
-            ContainerTotalTagihan(context: context, route: '/', isListTagihan: false)
+            ContainerTotalTagihan(context: context, route: '', isListTagihan: false)
           ],
         ),
       ),
