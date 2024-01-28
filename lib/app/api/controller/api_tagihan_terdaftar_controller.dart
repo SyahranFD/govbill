@@ -65,7 +65,6 @@ class ApiTagihanTerdaftarController extends GetxController {
         'Authorization': 'Bearer ${box.read('token')}',
       });
       if (response.statusCode == 200) {
-        isLoading.value = false;
         print('berhasil hapus tagihan terdaftar');
         fetchTagihanTerdaftar();
       } else {

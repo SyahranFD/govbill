@@ -61,13 +61,6 @@ class HomeCategoryComponent extends StatelessWidget {
             ),
           ],
         ),
-
-        SizedBox(height: 18),
-
-        Row(
-          children: [
-          ],
-        )
       ],
     );
   }
