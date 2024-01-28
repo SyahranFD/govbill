@@ -34,6 +34,7 @@ abstract class Routes {
   static const CART_PAGE = _Paths.CART_PAGE;
   static const CART_METODE_PEMBAYARAN_PAGE = _Paths.CART_METODE_PEMBAYARAN_PAGE;
   static const NAVBAR = _Paths.NAVBAR;
+  static const RINCIAN_PEMBAYARAN = _Paths.RINCIAN_PEMBAYARAN;
 }
 
 abstract class _Paths {
@@ -70,4 +71,5 @@ abstract class _Paths {
   static const CART_PAGE = "/cart";
   static const CART_METODE_PEMBAYARAN_PAGE = "/cart-metode-pembayaran";
   static const NAVBAR = "/navbar";
+  static const RINCIAN_PEMBAYARAN = "/rincian-pembayaran";
 }

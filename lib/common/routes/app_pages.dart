@@ -1,14 +1,7 @@
 import 'package:get/get.dart';
 import 'package:govbill/app/global_component/navbar.dart';
-import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart';
-import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart';
-import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_binding.dart';
-import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_view.dart';
-import 'package:govbill/app/pages/cart-tagihan-page/cart_binding.dart';
-import 'package:govbill/app/pages/cart-tagihan-page/cart_view.dart';
-import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
-import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -16,7 +9,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.HISTORY_PAGE;
+  static const INITIAL = Routes.RINCIAN_PEMBAYARAN;
 
   static final routes = [
     GetPage(
@@ -186,10 +179,16 @@ class AppPages {
         page: () => CartMetodePembayaranPageView(),
         binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
-        GetPage(
+    GetPage(
         name: _Paths.NAVBAR,
         page: () => NavbarMain(),
         // binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
+    GetPage(
+        name: _Paths.RINCIAN_PEMBAYARAN,
+        page: () => RincianPembayaranPageView(),
+        binding: RincianPembayaranBinding(),
+        transition: Transition.noTransition),
+    
   ];
 }

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ApiHistoryController {
   static final box = GetStorage();
 
-
+  
   static Future fetchHistory() async {
     print('fetch history dijalankan');
     try {
