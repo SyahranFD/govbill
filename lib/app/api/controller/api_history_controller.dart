@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 class ApiHistoryController extends GetxController {
   RxList<HistoryModel> listHistory = <HistoryModel>[].obs;
   final isLoading = false.obs;
+  final isLoadingPayment = false.obs;
   final box = GetStorage();
 
   @override
@@ -29,6 +30,7 @@ class ApiHistoryController extends GetxController {
       });
       if (response.statusCode == 200) {
         isLoading.value = false;
+        isLoadingPayment.value = false;
         final content = json.decode(response.body)['data'];
         for (var item in content) {
           listHistory.add(HistoryModel.fromJson(item));

@@ -5,6 +5,7 @@ import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart
 import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_controller.dart';
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:govbill/common/routes/app_pages.dart';
 import 'package:intl/intl.dart';
 
 class CartListViewMetodePembayaran extends StatelessWidget {
@@ -139,7 +140,7 @@ class CartListViewMetodePembayaran extends StatelessWidget {
                   },
                 ),
                 InkWell(
-                  onTap: () => Get.toNamed('/tambah-metode-pembayaran'),
+                  onTap: () => Get.toNamed(Routes.TAMBAH_KARTU_PAGE),
                   child: Container(
                     height: 50,
                     width: double.infinity,

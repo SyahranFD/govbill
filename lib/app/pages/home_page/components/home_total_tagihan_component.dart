@@ -110,7 +110,7 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                       return totalNominal == 'Rp 0'
                           ? Container(
                             margin: EdgeInsets.only(top: 10),
-                            child: Text('🎉  Semua Tagihan Lunas  🎉', style: tsTitleMediumSemiboldWhite))
+                            child: Text('Semua Tagihan Lunas  🎉', style: tsTitleMediumSemiboldWhite))
                           : Text(totalNominal, style: tsHeadlineLargeBoldWhite);
                     }),
 
@@ -138,7 +138,7 @@ class HomeTotalTagihanComponent extends StatelessWidget {
                         SizedBox(width: width * 0.04),
                         InkWell(
                           onTap: () {
-                            cartPageController.addAllToSelectedId();
+                            cartPageController.addAllToSelected();
                             cartPageController.calculateTotalSelectedNominal();
                             Get.toNamed("/cart");
                           },

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class RincianPembayaranPageView extends StatelessWidget {
@@ -5,6 +6,8 @@ class RincianPembayaranPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
+    return Scaffold(
+
+    );
   }
 }

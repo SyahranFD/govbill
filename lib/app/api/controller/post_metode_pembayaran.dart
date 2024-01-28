@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
+import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class PostMetodePembayaranController extends GetxController {
+  final ApiMetodePembayaranController apiMetodePembayaranController =
+      Get.put(ApiMetodePembayaranController());
   final isLoading = false.obs;
-
   final box = GetStorage();
 
   Future postMetodePembayaranKartu({
@@ -36,7 +38,8 @@ class PostMetodePembayaranController extends GetxController {
       );
 
       if (response.statusCode == 201) {
-        Get.offAllNamed('/metode-pembayaran');
+        apiMetodePembayaranController.fetchMetodePembayaran();
+        Get.back();
       } else {
         isLoading.value = false;
         Get.snackbar(

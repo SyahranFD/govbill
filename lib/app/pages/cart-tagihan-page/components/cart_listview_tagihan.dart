@@ -32,7 +32,8 @@ class CartListViewTagihan extends StatelessWidget {
                 )
               : Container(
                   width: double.infinity,
-                  margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
+                  margin: EdgeInsets.only(
+                      top: 15, left: width * 0.05, right: width * 0.05),
                   child: SingleChildScrollView(
                     child: ListView.builder(
                       itemCount: apiTagihanAkanDatangController
@@ -48,31 +49,38 @@ class CartListViewTagihan extends StatelessWidget {
                           locale: 'id_ID',
                           symbol: 'Rp ',
                         ).format(tagihan.nominalTagihan);
-                        nominalTagihanFormatted = nominalTagihanFormatted.replaceAll(",00", "");
+                        nominalTagihanFormatted =
+                            nominalTagihanFormatted.replaceAll(",00", "");
 
-                        String namaNoTagihan = defineNamaNoTagihan(tagihan.jenisTagihan!);
-                        Color colorTagihan = defineColorTagihan(tagihan.jenisTagihan!);
-
+                        String namaNoTagihan =
+                            defineNamaNoTagihan(tagihan.jenisTagihan!);
+                        Color colorTagihan =
+                            defineColorTagihan(tagihan.jenisTagihan!);
 
                         return InkWell(
-                            onTap: () {
-                              cartPageController.addToSelectedId(tagihan.id!);
-                              cartPageController.calculateTotalSelectedNominal();
-                              print(cartPageController.selectedId);
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              child: CardCartTagihanTersedia(
-                                namaNoTagihan: namaNoTagihan,
-                                colorTagihan: colorTagihan,
-                                noTagihan: tagihan.noTagihan,
-                                jenisTagihan: tagihan.jenisTagihan,
-                                namaTagihan: tagihan.namaTagihan,
-                                nominalTagihan: nominalTagihanFormatted,
-                                id: tagihan.id,
-                              ),
+                          onTap: () {
+                            cartPageController.addToSelectedId(tagihan.id!);
+                            cartPageController.addToSelectedTagihan(tagihan);
+                            cartPageController.calculateTotalSelectedNominal();
+                            print(cartPageController.selectedId);
+                            cartPageController.selectedTagihan
+                                .forEach((element) {
+                              print(element.namaTagihan);
+                            });
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            child: CardCartTagihanTersedia(
+                              namaNoTagihan: namaNoTagihan,
+                              colorTagihan: colorTagihan,
+                              noTagihan: tagihan.noTagihan,
+                              jenisTagihan: tagihan.jenisTagihan,
+                              namaTagihan: tagihan.namaTagihan,
+                              nominalTagihan: nominalTagihanFormatted,
+                              id: tagihan.id,
                             ),
-                          );
+                          ),
+                        );
                       },
                     ),
                   ),

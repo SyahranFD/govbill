@@ -9,12 +9,9 @@ import 'package:govbill/common/helper/themes.dart';
 Widget ContainerTotalTagihan(
     {required context, required String route, required bool isListTagihan}) {
   final CartPageController cartController = Get.put(CartPageController());
-  final CartMetodePembayaranPageController cartMetodePembayaranPageController =
-      Get.put(CartMetodePembayaranPageController());
-  final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
-      Get.put(ApiTagihanAkanDatangController());
-  final ApiHistoryController apiHistoryController =
-      Get.put(ApiHistoryController());
+  final CartMetodePembayaranPageController cartMetodePembayaranPageController = Get.put(CartMetodePembayaranPageController());
+  final ApiTagihanAkanDatangController apiTagihanAkanDatangController = Get.put(ApiTagihanAkanDatangController());
+  final ApiHistoryController apiHistoryController = Get.put(ApiHistoryController());
 
   final Size mediaQuery = MediaQuery.of(context).size;
   final double height = mediaQuery.height;
@@ -22,6 +19,7 @@ Widget ContainerTotalTagihan(
 
   Future<void> processPayments() async {
     List<Future<void>> paymentFutures = [];
+    apiHistoryController.isLoadingPayment.value = true;
 
     cartController.selectedId.forEach((element) {
       paymentFutures.add(apiTagihanAkanDatangController.bayarLangsung(element, cartMetodePembayaranPageController.selectedId[0]));
@@ -30,8 +28,7 @@ Widget ContainerTotalTagihan(
     await Future.wait(paymentFutures);
     await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
     await apiHistoryController.fetchHistory();
-
-    Get.offAllNamed('/');
+    await Get.offAllNamed('/');
   }
 
   return Positioned(
@@ -39,7 +36,7 @@ Widget ContainerTotalTagihan(
     right: 0,
     bottom: 0,
     child: Obx(() => Container(
-          height: height * 0.125,
+          height: height * 0.13,
           padding: EdgeInsets.symmetric(horizontal: width * 0.025),
           decoration: BoxDecoration(
             color: primaryColor,
@@ -58,7 +55,10 @@ Widget ContainerTotalTagihan(
               ),
               ElevatedButton(
                 onPressed: () {
-                  Get.toNamed(route);
+                  isListTagihan
+                      ? Get.toNamed(route)
+                      : print('isListTagihan is false, not navigating to');
+
                   isListTagihan
                       ? cartMetodePembayaranPageController.addDefaultToSelectedId()
                       : processPayments();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:govbill/app/api/controller/api_tagihan_akan_datang_controller.dart';
+import 'package:govbill/app/api/model/tagihan_akan_datang_model.dart';
 import 'package:intl/intl.dart';
 
 class CartPageController extends GetxController {
@@ -8,13 +9,15 @@ class CartPageController extends GetxController {
       Get.put(ApiTagihanAkanDatangController());
 
   RxList<int> selectedId = <int>[].obs;
-  RxBool isSelectedIdEmpty = false.obs;
+  RxList<TagihanAkanDatangModel> selectedTagihan = <TagihanAkanDatangModel>[].obs;
   RxString totalSelectedNominal = "".obs;
 
-  void addAllToSelectedId() {
+  void addAllToSelected() {
     selectedId.clear();
+    selectedTagihan.clear();
     apiTagihanAkanDatangController.listTagihanAkanDatang.forEach((element) {
       selectedId.add(element.id!);
+      selectedTagihan.add(element);
     });
   }
 
@@ -26,12 +29,16 @@ class CartPageController extends GetxController {
     }
   }
 
-  bool isIdSelected(int id) {
-    return selectedId.contains(id);
+  void addToSelectedTagihan(TagihanAkanDatangModel tagihan) {
+    if (!selectedTagihan.contains(tagihan)) {
+      selectedTagihan.add(tagihan);
+    } else {
+      selectedTagihan.remove(tagihan);
+    }
   }
 
-  void checkIsIdEmpty() {
-    isSelectedIdEmpty.value = selectedId.isEmpty;
+  bool isIdSelected(int id) {
+    return selectedId.contains(id);
   }
 
   void calculateTotalSelectedNominal() {

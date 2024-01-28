@@ -5,6 +5,7 @@ import 'package:govbill/app/api/controller/api_metode_pembayaran_controller.dart
 import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/metode_pembayaran_page/widgets/popup_menu_metode_pembayaran.dart';
 import 'package:govbill/common/helper/themes.dart';
+import 'package:govbill/common/routes/app_pages.dart';
 import 'package:intl/intl.dart';
 
 class MetodePembayaranPageView extends StatelessWidget {
@@ -42,6 +43,28 @@ class MetodePembayaranPageView extends StatelessWidget {
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
+                    Container(
+                      width: double.infinity,
+                      height: 50,
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: categoryPLN,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.info_outline,
+                            color: primaryColor,
+                            size: 30,
+                          ),
+                          Text(
+                            "Klik Icon Menu Untuk Mengubah Pembayaran Utama",
+                            style: tsLabelRegularWhite,
+                          )
+                        ],
+                      ),
+                    ),
                     SizedBox(height: 15),
                     ListView.builder(
                       itemCount: apiMetodePembayaranController
@@ -141,7 +164,7 @@ class MetodePembayaranPageView extends StatelessWidget {
                       },
                     ),
                     InkWell(
-                      onTap: () => Get.toNamed('/tambah-metode-pembayaran'),
+                      onTap: () => Get.toNamed(Routes.TAMBAH_KARTU_PAGE),
                       child: Container(
                         height: 50,
                         width: double.infinity,
