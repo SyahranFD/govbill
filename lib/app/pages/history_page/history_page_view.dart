@@ -14,18 +14,16 @@ import 'package:govbill/common/helper/themes.dart';
 import 'package:intl/intl.dart';
 
 class HistoryPageView extends StatelessWidget {
-  final ApiHistoryController apiHistoryController =
-      Get.put(ApiHistoryController());
-  final HistoryPageController historyPageController =
-      Get.put(HistoryPageController());
+
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HistoryPageController());
     final Size mediaQuery = MediaQuery.of(context).size;
     final double width = mediaQuery.width;
 
     return RefreshIndicator(
-      onRefresh: () => historyPageController.refreshData(),
+      onRefresh: () => controller.refreshData(),
       child: Scaffold(
         backgroundColor: backgroundPageColor,
         appBar: AppBar(
@@ -38,13 +36,13 @@ class HistoryPageView extends StatelessWidget {
         ),
         body: Obx(
               () {
-            if (apiHistoryController.isLoading.value) {
+            if (controller.isLoading.value) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else {
-              final List<HistoryModel> historyList =
-                  apiHistoryController.listHistory;
+               List<HistoryModel> historyList =
+                  controller.listHistory;
 
               if (historyList.isEmpty) {
                 return Container(
@@ -57,31 +55,18 @@ class HistoryPageView extends StatelessWidget {
                   ),
                 );
               }
-
               return Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(top: 15, left: width * 0.05, right: width * 0.05),
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   child: ListView.builder(
-                    itemCount: apiHistoryController.listHistory.length,
+                    itemCount: controller.listHistory.length,
                     padding: EdgeInsets.zero,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      var tagihan = historyList[index];
-                      var nominalTagihanFormatted = NumberFormat.currency(
-                        locale: 'id_ID',
-                        symbol: 'Rp ',
-                      ).format(tagihan.nominalTagihan);
-                      nominalTagihanFormatted =
-                          nominalTagihanFormatted.replaceAll(",00", "");
-
-                      var paymentDateFormatted = tagihan.waktuBayar != null
-                          ? DateFormat('dd MMMM yyyy', 'id_ID')
-                          .format(tagihan.waktuBayar!)
-                          : 'N/A';
-
+                      HistoryModel tagihan = historyList[index];
                       return Container(
                         margin: EdgeInsets.only(bottom: 0),
                         child: Column(
@@ -95,16 +80,16 @@ class HistoryPageView extends StatelessWidget {
                                       noTagihan: tagihan.noTagihan,
                                       jenisTagihan: tagihan.jenisTagihan,
                                       namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
-                                      nominalTagihan: nominalTagihanFormatted)
+                                      waktuBayar: controller.dateFormat(date: tagihan.waktuBayar),
+                                      nominalTagihan: controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan == "PDAM"
                                       ? CardHistoryPDAM(
                                       noTagihan: tagihan.noTagihan,
                                       jenisTagihan: tagihan.jenisTagihan,
                                       namaTagihan: tagihan.namaTagihan,
-                                      waktuBayar: paymentDateFormatted,
+                                      waktuBayar: controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan == "PLN"
                                       ? CardHistoryPLN(
                                       noTagihan: tagihan.noTagihan,
@@ -113,9 +98,9 @@ class HistoryPageView extends StatelessWidget {
                                       namaTagihan:
                                       tagihan.namaTagihan,
                                       waktuBayar:
-                                      paymentDateFormatted,
+                                      controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan == "PBB"
                                       ? CardHistoryPBB(
                                       noTagihan:
@@ -125,9 +110,9 @@ class HistoryPageView extends StatelessWidget {
                                       namaTagihan:
                                       tagihan.namaTagihan,
                                       waktuBayar:
-                                      paymentDateFormatted,
+                                      controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan ==
                                       "Mobil"
                                       ? CardHistoryMobil(
@@ -138,9 +123,9 @@ class HistoryPageView extends StatelessWidget {
                                       namaTagihan:
                                       tagihan.namaTagihan,
                                       waktuBayar:
-                                      paymentDateFormatted,
+                                      controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan ==
                                       "Motor"
                                       ? CardHistoryMotor(
@@ -153,9 +138,9 @@ class HistoryPageView extends StatelessWidget {
                                       tagihan
                                           .namaTagihan,
                                       waktuBayar:
-                                      paymentDateFormatted,
+                                      controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : tagihan.jenisTagihan ==
                                       "PGN"
                                       ? CardHistoryPGN(
@@ -168,9 +153,9 @@ class HistoryPageView extends StatelessWidget {
                                       tagihan
                                           .namaTagihan,
                                       waktuBayar:
-                                      paymentDateFormatted,
+                                      controller.dateFormat(date: tagihan.waktuBayar),
                                       nominalTagihan:
-                                      nominalTagihanFormatted)
+                                      controller.currencyFormat(nominal: tagihan.nominalTagihan!))
                                       : Container(),
                                 ],
                               ),

@@ -30,7 +30,7 @@ class LoginPageController extends GetxController {
           colorText: Colors.white,
         );
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.NAVBAR);
       } else {
         Get.snackbar(
           'Error',

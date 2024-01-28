@@ -54,7 +54,6 @@ class ApiTagihanAkanDatangController extends GetxController {
   }
 
   Future postTagihanAkanDatang() async {
-    print('post tagihan akan datang dijalankan');
     try {
       isLoading.value = true;
       var response = await http.post(Uri.parse('${url}/tagihan-tersedia/store'), headers: {
@@ -64,7 +63,6 @@ class ApiTagihanAkanDatangController extends GetxController {
       if (response.statusCode == 200) {
         isLoading.value = false;
         print('berhasil post tagihan akan datang');
-        Get.offNamed('/');
       } else {
         isLoading.value = false;
         print(json.decode(response.body));

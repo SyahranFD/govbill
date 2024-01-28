@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/global_component/navbar.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart';
 import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_binding.dart';
@@ -15,7 +16,7 @@ class AppPages {
 
   AppPages._();
   
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.NAVBAR;
 
   static final routes = [
     GetPage(
@@ -184,6 +185,11 @@ class AppPages {
         name: _Paths.CART_METODE_PEMBAYARAN_PAGE,
         page: () => CartMetodePembayaranPageView(),
         binding: CartMetodePembayaranPageBinding(),
+        transition: Transition.noTransition),
+        GetPage(
+        name: _Paths.NAVBAR,
+        page: () => NavbarMain(),
+        // binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
   ];
 }
