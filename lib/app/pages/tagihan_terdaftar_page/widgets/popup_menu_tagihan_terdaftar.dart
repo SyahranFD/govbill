@@ -6,9 +6,9 @@ import 'package:govbill/common/helper/themes.dart';
 
 Widget popupMenuTagihanTerdaftar ({required index, required list, required idTagihan}) {
   final TagihanTerdaftarPageController tagihanTerdaftarPageController =
-      Get.put(TagihanTerdaftarPageController());
+  Get.put(TagihanTerdaftarPageController());
   final ApiTagihanTerdaftarController apiTagihanTerdaftarController =
-      Get.put(ApiTagihanTerdaftarController());
+  Get.put(ApiTagihanTerdaftarController());
 
   return PopupMenuButton(
     onSelected: (value) {

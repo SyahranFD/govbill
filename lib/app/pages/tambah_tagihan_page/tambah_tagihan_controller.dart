@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:govbill/app/api/constant/url.dart';
+import 'package:govbill/app/api/controller/api_tagihan_terdaftar_controller.dart';
 import 'package:govbill/app/api/controller/api_tambah_tagihan_controller.dart';
 import 'package:govbill/app/api/model/alamat_model.dart';
+import 'package:govbill/app/pages/index.dart';
 import 'package:govbill/app/pages/tambah_tagihan_page/widget/alamat_button_widget.dart';
 import 'package:govbill/common/helper/themes.dart';
 import 'package:govbill/common/routes/app_pages.dart';
@@ -13,6 +15,10 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 class TambahTagihanPageController extends GetxController {
+  final TagihanTerdaftarPageController tagihanTerdaftarPageController =
+      Get.put(TagihanTerdaftarPageController());
+  final ApiTagihanTerdaftarController apiTagihanTerdaftarController =
+      Get.put(ApiTagihanTerdaftarController());
 
   static void snackbar(
       {required String title,
@@ -97,7 +103,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan PBB",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.toNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "PBB";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else if (value == "Unauthenticated") {
         snackbar(
             title: "Error",
@@ -134,7 +142,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan PDAM",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.toNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "PDAM";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else if (value == "Unauthenticated") {
         snackbar(
             title: "Error",
@@ -171,7 +181,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan PLN",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.toNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "PLN";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else if (value == "Unauthenticated") {
         snackbar(
             title: "Error",
@@ -207,7 +219,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan PGN",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "PGN";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else if (value == "Unauthenticated") {
         snackbar(
             title: "Error",
@@ -243,7 +257,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan BPJS",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "BPJS";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else if (value == "Unauthenticated") {
         snackbar(
             title: "Error",
@@ -283,7 +299,9 @@ class TambahTagihanPageController extends GetxController {
             message: "Berhasil Menambahkan Tagihan Motor",
             backgroundColor: lunasColor);
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME_PAGE);
+        Get.offAllNamed(Routes.TAGIHAN_TERDAFTAR_PAGE);
+        tagihanTerdaftarPageController.selectedTagihan.value = "Motor";
+        apiTagihanTerdaftarController.fetchTagihanTerdaftar();
       } else {
         snackbar(
             title: "Terjadi Kesalahan",

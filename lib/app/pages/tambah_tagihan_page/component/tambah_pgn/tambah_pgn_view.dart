@@ -127,7 +127,7 @@ class TambahPgnView extends GetView<TambahTagihanPageController> {
                         if (value == null) {
                           return "";
                         } else {
-                          controller.tanggalPDAM.value = value;
+                          controller.tanggalPGN.value = value;
                         }
                         return null;
                       },
