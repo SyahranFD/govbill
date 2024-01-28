@@ -67,7 +67,7 @@ class CardCartTagihanTersedia extends GetView<CartPageController> {
                 ),
                 SizedBox(width: width * 0.04),
                 Container(
-                  width: width * 0.6,
+                  width: width * 0.5,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
