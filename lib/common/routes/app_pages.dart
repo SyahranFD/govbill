@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:govbill/app/global_component/navbar.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_binding.dart';
 import 'package:govbill/app/pages/berhasil_terdaftar_page/berhasil_terdaftar_view.dart';
 import 'package:govbill/app/pages/cart-metode-pembayaran-page/cart_metode_pembayaran_binding.dart';
@@ -8,16 +9,14 @@ import 'package:govbill/app/pages/cart-tagihan-page/cart_view.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_binding.dart';
 import 'package:govbill/app/pages/edit_tagihan_terdaftar_page/edit_tagihan_view.dart';
 import 'package:govbill/app/pages/index.dart';
-import 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_binding.dart';
-import 'package:govbill/app/pages/rincian_pembayaran_page/rincian_pembayaran_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
   // static var routes;
 
   AppPages._();
-
-  static const INITIAL = Routes.SPLASH_SCREEN;
+  
+  static const INITIAL = Routes.HISTORY_PAGE;
 
   static final routes = [
     GetPage(
@@ -188,9 +187,9 @@ class AppPages {
         binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
         GetPage(
-        name: _Paths.RINCIAN_PEMBAYARAN_PAGE,
-        page: () => RincianPembayaranPageView(),
-        binding: RincianPembayaranBinding(),
+        name: _Paths.NAVBAR,
+        page: () => NavbarMain(),
+        // binding: CartMetodePembayaranPageBinding(),
         transition: Transition.noTransition),
   ];
 }

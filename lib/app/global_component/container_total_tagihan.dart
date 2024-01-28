@@ -13,8 +13,6 @@ Widget ContainerTotalTagihan(
       Get.put(CartMetodePembayaranPageController());
   final ApiTagihanAkanDatangController apiTagihanAkanDatangController =
       Get.put(ApiTagihanAkanDatangController());
-  final ApiHistoryController apiHistoryController =
-      Get.put(ApiHistoryController());
 
   final Size mediaQuery = MediaQuery.of(context).size;
   final double height = mediaQuery.height;
@@ -29,9 +27,7 @@ Widget ContainerTotalTagihan(
 
     await Future.wait(paymentFutures);
     await apiTagihanAkanDatangController.fetchTagihanAkanDatang();
-    await apiHistoryController.fetchHistory();
-
-    Get.offAllNamed('/');
+    await ApiHistoryController.fetchHistory();
   }
 
   return Positioned(
